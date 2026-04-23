@@ -63,12 +63,19 @@ print("\n[INFO] Running full RAG evaluation...\n")
 for q in queries:
     print(f"\n--- Query: {q}")
     try:
-        answer = ask_rag(q)
+        rag_result = ask_rag(q)
+        answer = rag_result.get("answer", "")
+        context = rag_result.get("context", "")
+        
         if not answer or "[ERROR]" in str(answer):
             raise ValueError("Invalid answer from RAG")
-        context = answer
+        if not context:
+            raise ValueError("No context retrieved")
+            
+        # FIXED: Use CONTEXT (not answer) in evaluation
         eval_result = evaluate(q, context, answer)
         print("[ANSWER]", answer)
+        print("[CONTEXT]", context)
         try:
             parsed = json.loads(eval_result)
             print("[EVAL CLEAN]", parsed)

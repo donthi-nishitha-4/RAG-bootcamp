@@ -16,3 +16,10 @@ dist/
 *.log
 # VS Code
 .vscode/
+
+# Added during Day 0 fixes
+data/
+chroma_db/
+*.bin
+*.pt
+*.onnx

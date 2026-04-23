@@ -52,10 +52,8 @@ The system uses cloud LLM APIs and local CPU-based models to simulate a full RAG
 
 ## What is NOT Implemented (Pending)
 
-* PostgreSQL + pgvector (required by bootcamp)
 * pg_trgm (BM25 search)
 * Apache AGE (graph layer)
-* Full fallback chain (Cerebras, Google AI Studio)
 * HuggingFace API usage for embeddings (optional)
 
 ---
@@ -115,3 +113,18 @@ docker run --env-file .env rag-pipeline
 
 This repository focuses only on completing the **Day 0 setup checklist**.
 Further experiments and optimizations are not included.
+
+---
+
+## Test Results
+
+Successfully loaded 485 chunks from real Indian Railways GCC data into PostgreSQL using pgvector.
+
+**Query:** "What is the procedure for Security Deposit?"
+
+**Output:**
+> The procedure for Security Deposit is as follows:
+> 
+> 1. **Refund of Security Deposit**: The Security Deposit will be returned to the Contractor along with or after Final Payment, Execution of Final Supplementary Agreement, and Maintenance Certificate issued.
+> 2. **Forfeiture of Security Deposit**: If the contract is rescinded, the Security Deposit will be retained/encashed by the Railways.
+> 3. **Submission of alternative security**: Cash, Term Deposit Receipt, or Bank Guarantee can be submitted.
