@@ -18,7 +18,7 @@ def get_connection():
         return None
 
 def init_pgvector():
-    """Initialize pgvector table with schema"""
+    """Initialize pgvector and pg_trgm table with schema"""
     conn = get_connection()
     if not conn:
         return False
@@ -26,8 +26,9 @@ def init_pgvector():
     try:
         cur = conn.cursor()
         
-        # Enable vector extension
+        # Enable extensions
         cur.execute("CREATE EXTENSION IF NOT EXISTS vector;")
+        cur.execute("CREATE EXTENSION IF NOT EXISTS pg_trgm;")
         
         # Create embeddings table with metadata
         cur.execute("""
@@ -47,18 +48,24 @@ def init_pgvector():
             );
         """)
         
-        # Create index for vector similarity search
+        # Create vector index
         cur.execute("""
             CREATE INDEX IF NOT EXISTS rag_embedding_idx 
             ON rag_documents USING ivfflat (embedding vector_cosine_ops)
             WITH (lists = 100);
         """)
+
+        # Create GIN index for pg_trgm (BM25-like search)
+        cur.execute("""
+            CREATE INDEX IF NOT EXISTS rag_content_trgm_idx 
+            ON rag_documents USING gin (content gin_trgm_ops);
+        """)
         
-        print("[INFO] pgvector table initialized: rag_documents")
+        print("[INFO] pgvector and pg_trgm initialized.")
         conn.commit()
         return True
     except Exception as e:
-        print(f"[ERROR] pgvector init failed: {e}")
+        print(f"[ERROR] Init failed: {e}")
         conn.rollback()
         return False
     finally:
@@ -76,6 +83,8 @@ def load_documents(documents, embeddings, entity_type="general", tenant_id="defa
     if not documents:
         print("[WARN] No documents to load")
         return False
+        
+    print(f"[DEBUG] load_documents called with tenant_id: {tenant_id}")
 
     conn = get_connection()
     if not conn:
@@ -97,6 +106,9 @@ def load_documents(documents, embeddings, entity_type="general", tenant_id="defa
                 i,  # chunk_index
                 None  # parent_chunk_id
             ))
+            
+        if data:
+            print(f"[DEBUG] First row to insert: {data[0][0]}, {data[0][1]}")
         
         # Insert
         insert_query = """
@@ -120,7 +132,7 @@ def load_documents(documents, embeddings, entity_type="general", tenant_id="defa
 
 def retrieve_similar(query_embedding, tenant_id="default", entity_type=None, contract_standard=None, k=3):
     """
-    Retrieve similar documents from pgvector with metadata filtering.
+    Retrieve similar documents from pgvector.
     """
     conn = get_connection()
     if not conn:
@@ -129,7 +141,6 @@ def retrieve_similar(query_embedding, tenant_id="default", entity_type=None, con
     try:
         cur = conn.cursor()
         
-        # Build dynamic query based on filters
         query_sql = "SELECT id, content, embedding <-> %s::vector as distance FROM rag_documents WHERE tenant_id = %s"
         params = [query_embedding, tenant_id]
         
@@ -145,11 +156,75 @@ def retrieve_similar(query_embedding, tenant_id="default", entity_type=None, con
         params.extend([query_embedding, k])
         
         cur.execute(query_sql, tuple(params))
-        results = cur.fetchall()
-        
-        return results  # [(id, content, distance), ...]
+        return cur.fetchall()
     except Exception as e:
-        print(f"[ERROR] Retrieval failed: {e}")
+        print(f"[ERROR] Vector retrieval failed: {e}")
+        return []
+    finally:
+        cur.close()
+        conn.close()
+
+def retrieve_trgm(query_text, tenant_id="default", k=3):
+    """
+    Retrieve similar documents using pg_trgm (text-based).
+    """
+    conn = get_connection()
+    if not conn:
+        return []
+    try:
+        cur = conn.cursor()
+        query_sql = """
+            SELECT id, content, similarity(content, %s) as distance
+            FROM rag_documents 
+            WHERE tenant_id = %s AND content %% %s
+            ORDER BY distance DESC 
+            LIMIT %s;
+        """
+        cur.execute(query_sql, (query_text, tenant_id, query_text, k))
+        return cur.fetchall()
+    except Exception as e:
+        print(f"[ERROR] Trgm retrieval failed: {e}")
+        return []
+    finally:
+        cur.close()
+        conn.close()
+
+def retrieve_hybrid(query_text, query_embedding, tenant_id="default", k=5):
+    """
+    Simple Hybrid Search: Combine Vector and Trigram results.
+    """
+    vec_results = retrieve_similar(query_embedding, tenant_id, k=k)
+    trgm_results = retrieve_trgm(query_text, tenant_id, k=k)
+    
+    # Combine results by ID
+    combined = {}
+    for r in vec_results:
+        combined[r[0]] = {"content": r[1], "vec_score": r[2], "trgm_score": 0}
+    for r in trgm_results:
+        if r[0] in combined:
+            combined[r[0]]["trgm_score"] = r[2]
+        else:
+            combined[r[0]] = {"content": r[1], "vec_score": 1.0, "trgm_score": r[2]} # 1.0 is max distance
+            
+    # Simple RRF-like sorting (just adding scores for now)
+    sorted_res = sorted(combined.items(), key=lambda x: (1-x[1]["trgm_score"]) + x[1]["vec_score"])
+    return [(id, data["content"], 0.0) for id, data in sorted_res[:k]]
+
+def retrieve_graph(chunk_id):
+    """
+    Mock Graph RAG: Retrieve neighbors/parent of a chunk.
+    Demonstrates 'Graph Layer' capability without Apache AGE.
+    """
+    conn = get_connection()
+    if not conn:
+        return []
+    try:
+        cur = conn.cursor()
+        query_sql = "SELECT id, content FROM rag_documents WHERE parent_chunk_id = (SELECT parent_chunk_id FROM rag_documents WHERE id = %s) OR id = %s"
+        cur.execute(query_sql, (chunk_id, chunk_id))
+        return cur.fetchall()
+    except Exception as e:
+        print(f"[ERROR] Graph retrieval failed: {e}")
         return []
     finally:
         cur.close()

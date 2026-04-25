@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: rag-db
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=rag_bootcamp
+      - POSTGRES_USER=rag_user
+      - POSTGRES_PASSWORD=rag_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rag_user -d rag_bootcamp"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: rag-app
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=rag_user
+      - DB_PASSWORD=rag_password
+      - DB_NAME=rag_bootcamp
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
+
+volumes:
+  postgres_data:

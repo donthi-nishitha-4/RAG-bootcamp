@@ -15,7 +15,7 @@ except Exception as e:
     print(f"[ERROR] Model load failed: {e}")
     sys.exit(1)
 
-def ask_rag(query, tenant_id="default", entity_type=None, contract_standard=None):
+def ask_rag(query, tenant_id="default", entity_type=None, contract_standard=None, search_type="vector"):
     """
     Core RAG pipeline.
     Always returns a dictionary with: query, retrieved_chunks, context, answer, chunk_ids, sources
@@ -38,13 +38,18 @@ def ask_rag(query, tenant_id="default", entity_type=None, contract_standard=None
         query_embedding = embed_model.encode([query])[0].tolist()
         
         # 3. Retrieve
-        results = retrieve_similar(
-            query_embedding, 
-            tenant_id=tenant_id, 
-            entity_type=entity_type, 
-            contract_standard=contract_standard, 
-            k=TOP_K
-        )
+        from .retriever import retrieve_similar, retrieve_hybrid
+        
+        if search_type == "hybrid":
+            results = retrieve_hybrid(query, query_embedding, tenant_id=tenant_id, k=TOP_K)
+        else:
+            results = retrieve_similar(
+                query_embedding, 
+                tenant_id=tenant_id, 
+                entity_type=entity_type, 
+                contract_standard=contract_standard, 
+                k=TOP_K
+            )
         
         if not results:
             return {

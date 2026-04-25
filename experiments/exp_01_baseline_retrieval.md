@@ -1,5 +1,5 @@
 # Experiment: exp_01_baseline_retrieval
-- **Date:** 2026-04-25 13:17:47
+- **Date:** 2026-04-25 08:58:07
 - **Dataset:** GCC + Sample Docs
 - **Config:** {"top_k": 5, "final_k": 3}
 
