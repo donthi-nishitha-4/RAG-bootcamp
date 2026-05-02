@@ -5,9 +5,9 @@
 ## FILLED TEMPLATE - READY TO SEND TO CLAUDE
 
 ```
-# ANTIGRAVITY'S EXPERIMENT REPORT
+# UDAY'S EXPERIMENT REPORT
 Date: 2026-05-03
-Experimenter: Antigravity
+Experimenter: Uday
 Experiment ID: EXP-001
 
 ## HYPOTHESIS
@@ -115,7 +115,7 @@ updates:
   - section: "D2.1"
     field: "Contract Clause P@5 — bge-large-en-v1.5"
     value: "0.91"
-    contributor: "Antigravity"
+    contributor: "Uday"
     date: "2026-05-03"
     reasoning: "Semantic depth on legal terminology"
     proof: "experiments/exp_001_hybrid_vs_vector.json:L45, src/retriever.py:L45"
@@ -123,7 +123,7 @@ updates:
   - section: "D2.1"
     field: "NCR P@5 — bge-large-en-v1.5"
     value: "0.85"
-    contributor: "Antigravity"
+    contributor: "Uday"
     date: "2026-05-03"
     reasoning: "Contextual awareness on change requests"
     proof: "experiments/exp_001_hybrid_vs_vector.json:L46"
@@ -131,7 +131,7 @@ updates:
   - section: "D2.1"
     field: "DPR P@5 — bge-large-en-v1.5"
     value: "0.82"
-    contributor: "Antigravity"
+    contributor: "Uday"
     date: "2026-05-03"
     reasoning: "Robustness on defect reports"
     proof: "experiments/exp_001_hybrid_vs_vector.json:L47"
@@ -140,7 +140,7 @@ updates:
   - section: "D5.3"
     field: "Hybrid (BM25+Vec+RRF) — P@5"
     value: "0.89"
-    contributor: "Antigravity"
+    contributor: "Uday"
     date: "2026-05-03"
     reasoning: "Excellent precision on contract clauses"
     proof: "experiments/exp_001_hybrid_vs_vector.json:L50, src/retriever.py:L65"
@@ -148,7 +148,7 @@ updates:
   - section: "D5.3"
     field: "Hybrid (BM25+Vec+RRF) — P@10"
     value: "0.92"
-    contributor: "Antigravity"
+    contributor: "Uday"
     date: "2026-05-03"
     reasoning: "Strong recall at top-10"
     proof: "experiments/exp_001_hybrid_vs_vector.json:L51"
@@ -156,7 +156,7 @@ updates:
   - section: "D5.3"
     field: "Hybrid (BM25+Vec+RRF) — MRR"
     value: "0.85"
-    contributor: "Antigravity"
+    contributor: "Uday"
     date: "2026-05-03"
     reasoning: "Good ranking quality"
     proof: "experiments/exp_001_hybrid_vs_vector.json:L52"
@@ -164,7 +164,7 @@ updates:
   - section: "D5.3"
     field: "Hybrid (BM25+Vec+RRF) — NDCG @10"
     value: "0.87"
-    contributor: "Antigravity"
+    contributor: "Uday"
     date: "2026-05-03"
     reasoning: "DCG normalized well"
     proof: "experiments/exp_001_hybrid_vs_vector.json:L53"
@@ -172,7 +172,7 @@ updates:
   - section: "D5.3"
     field: "Hybrid (BM25+Vec+RRF) — Latency p95"
     value: "345ms"
-    contributor: "Antigravity"
+    contributor: "Uday"
     date: "2026-05-03"
     reasoning: "Vector p95 245ms + BM25 p95 88ms + RRF p95 18ms (concurrent)"
     proof: "experiments/latency_benchmark_exp_001.json:L67, scripts/benchmark_latency.py:L210"
@@ -180,7 +180,7 @@ updates:
   - section: "D5.3"
     field: "Hybrid (BM25+Vec+RRF) — Verdict"
     value: "RECOMMENDED for legal/contract queries"
-    contributor: "Antigravity"
+    contributor: "Uday"
     date: "2026-05-03"
     reasoning: "Best precision-recall balance for DMRC use case"
     proof: "experiments/exp_001_hybrid_vs_vector.json"

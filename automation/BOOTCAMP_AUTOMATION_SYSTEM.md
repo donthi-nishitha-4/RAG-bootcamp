@@ -8,13 +8,13 @@
 
 **Three Roles:**
 1. **Balu (Lead)** — Architecture decisions, final sign-offs
-2. **Antigravity (Dev)** — Experimental results, latency benchmarks, code proofs
-3. **[TO FILL] (Support)** — Security testing, adversarial cases, hallucination checks
+2. **Uday (Engineer)** — Experimental results, latency benchmarks, code proofs
+3. **Nishitha (Engineer)** — Security testing, adversarial cases, hallucination checks
 
 **How it works:**
 - Each person fills their role-specific template below
 - They provide: **VALUE | CONTRIBUTOR | DATE | PROOF FILE | REASON**
-- Claude agent automatically updates DELIVERABLES.md
+- Claude agent automatically updates Final_Deliverables/Documentation.md
 - Audit trail preserved forever
 - No deletions, no overwrites, only [TO FILL] replacements
 
@@ -123,7 +123,7 @@ updates:
 
 ---
 
-## ROLE #2: ANTIGRAVITY (DEV/EXPERIMENTS) — Metrics & Implementation
+## ROLE #2: UDAY (ENGINEER) — Metrics & Implementation
 
 ### YOUR MISSION
 - Run experiments: embedding comparisons, chunking, retrieval strategies, latency benchmarks
@@ -131,12 +131,12 @@ updates:
 - Prove your code with function signatures and file paths
 - Document failures as thoroughly as successes
 
-### TEMPLATE: ANTIGRAVITY'S EXPERIMENT SUBMISSION
+### TEMPLATE: UDAY'S EXPERIMENT SUBMISSION
 
 ```
-# ANTIGRAVITY'S EXPERIMENT REPORT
+# UDAY'S EXPERIMENT REPORT
 Date: YYYY-MM-DD
-Experimenter: Antigravity
+Experimenter: Uday
 Experiment ID: EXP-###
 
 ## HYPOTHESIS
@@ -258,7 +258,7 @@ updates:
   - section: "D10"
     field: "Experiment EXP-### — Hypothesis"
     value: "[Your hypothesis exactly]"
-    contributor: "Antigravity"
+    contributor: "Uday"
     date: "YYYY-MM-DD"
     reasoning: "Experimental justification"
     proof: "experiments/exp_XX_XXXXX.json"
@@ -267,7 +267,7 @@ updates:
 ---
 ```
 
-### ANTIGRAVITY'S CHECKLIST
+### UDAY'S CHECKLIST
 - [ ] All metrics come from actual experimental runs (not estimates)
 - [ ] Each metric has a proof file with line number reference
 - [ ] Code implementation cited with function name + line range
@@ -279,7 +279,7 @@ updates:
 
 ---
 
-## ROLE #3: [SUPPORT TEAM] (SECURITY/TESTING) — Validation & Edge Cases
+## ROLE #3: NISHITHA (ENGINEER) — Validation & Edge Cases
 
 ### YOUR MISSION
 - Test failure modes, adversarial cases, security (D4, D9)
@@ -290,9 +290,9 @@ updates:
 ### TEMPLATE: SECURITY/TEST SUBMISSION
 
 ```
-# [SUPPORT TEAM] VALIDATION REPORT
+# NISHITHA'S VALIDATION REPORT
 Date: YYYY-MM-DD
-Tester: [Name]
+Tester: Nishitha
 Test ID: TEST-### or FE-### (for failures)
 
 ## TEST PURPOSE
@@ -365,7 +365,7 @@ updates:
 ---
 ```
 
-### SECURITY/TEST CHECKLIST
+### NISHITHA'S CHECKLIST
 - [ ] Test covers a specific NFR or known risk
 - [ ] Sample size is statistically meaningful (50+ cases for security)
 - [ ] All edge cases documented (what fails, why)
@@ -387,12 +387,12 @@ Balu:
   • Decides on embedding model (e.g., "bge-large-en-v1.5")
   • Documents why (metrics from EXP-01, EXP-02)
 
-Antigravity:
+Uday:
   • Runs experiment: Embedding comparison
   • Measures: P@5, latency, index size, etc.
   • Saves results to experiments/exp_01_embeddings.json
 
-Support Team:
+Nishitha:
   • Tests: Cross-tenant isolation
   • Runs 50 adversarial queries
   • Documents pass/fail for each
@@ -428,7 +428,7 @@ You are Claude, serving as the automation agent for the DMRC AI-PMS RAG Bootcamp
 6. **OUTPUT**: Return updated DELIVERABLES + summary of changes
 
 ## ROLE SUBMITTING
-[Pick one: BALU (Architecture) | ANTIGRAVITY (Experiments) | [SUPPORT] (Testing)]
+[Pick one: BALU (Architecture) | UDAY (Experiments) | NISHITHA (Testing)]
 
 ## CONTRIBUTOR INFO
 **Name**: [Full Name]
@@ -480,7 +480,7 @@ updates:
 3. Bump Document Version
 4. Update SR. DEV AUDIT LOG table with entries
 5. Return:
-   - ✅ UPDATED DELIVERABLES.md (full document)
+   - ✅ UPDATED Documentation.md (full document)
    - ✅ CHANGE SUMMARY (what was updated, section by section)
    - ✅ REMAINING [TO FILL] FIELDS (list of still-empty fields)
    - ✅ VALIDATION REPORT (any rejected updates + reasons)
@@ -528,7 +528,7 @@ Claude will output:
 cat DELIVERABLES_v1.1_UPDATED.md
 
 # If good, commit
-git add DELIVERABLES.md experiments/
+git add Final_Deliverables/Documentation.md experiments/
 git commit -m "Day X: [Name] updates — D2.1 embedding metrics, D8.1 latency, etc."
 git push
 ```
@@ -592,8 +592,8 @@ updates:
 | Role | Primary Sections | Key Responsibilities | Proof Sources |
 |------|------------------|----------------------|---------------|
 | **Balu** | D1, D11 | Architecture decisions, final recommendations | Experiment IDs, design docs, docker-compose.yml |
-| **Antigravity** | D2, D3, D5, D7, D8, D10 | Metrics, latency, experiment logs | experiments/, scripts/, src/ with line numbers |
-| **[Support]** | D4, D6, D9, D10 | Failure modes, security, testing, multi-hop | Test logs, adversarial queries, RAGAS output |
+| **Uday** | D2, D3, D5, D7, D8, D10 | Metrics, latency, experiment logs | experiments/, scripts/, src/ with line numbers |
+| **Nishitha** | D4, D6, D9, D10 | Failure modes, security, testing, multi-hop | Test logs, adversarial queries, RAGAS output |
 
 ---
 

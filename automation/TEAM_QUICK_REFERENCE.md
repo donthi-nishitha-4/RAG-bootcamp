@@ -4,7 +4,7 @@
 
 ## 📌 THE 5-MINUTE PROCESS
 
-### YOU (Antigravity / Balu / Support)
+### YOU (Uday / Balu / Nishitha)
 1. **Run your experiment or make your decision**
 2. **Fill the template** (BOOTCAMP_AUTOMATION_SYSTEM.md, your role)
 3. **Get the YAML updates** (copy from examples or your filled template)
@@ -15,7 +15,7 @@
 
 ## 📋 TEMPLATES BY ROLE
 
-### If you're **ANTIGRAVITY** (Experiments/Metrics)
+### If you're UDAY (Engineer/Experiments)
 
 ```
 Copy from: BOOTCAMP_AUTOMATION_SYSTEM.md → ROLE #2
@@ -52,7 +52,7 @@ Generate YAML:
   - Each decision = 1-3 YAML blocks
 ```
 
-### If you're **[SUPPORT]** (Security/Testing)
+### If you're NISHITHA (Engineer/Testing)
 
 ```
 Copy from: BOOTCAMP_AUTOMATION_SYSTEM.md → ROLE #3
@@ -98,7 +98,7 @@ Generate YAML:
 [START]
 
 Use the BOOTCAMP_AUTOMATION_SYSTEM.md file.
-I am submitting updates as [ROLE: ANTIGRAVITY / BALU / SUPPORT].
+I am submitting updates as [ROLE: UDAY / BALU / NISHITHA].
 
 [PASTE YOUR FILLED TEMPLATE HERE]
 
@@ -108,7 +108,7 @@ I am submitting updates as [ROLE: ANTIGRAVITY / BALU / SUPPORT].
 
 ---
 
-[PASTE CURRENT DELIVERABLES.md HERE]
+[PASTE CURRENT Final_Deliverables/Documentation.md HERE]
 
 [END]
 ```
@@ -128,13 +128,13 @@ updates:
   - section: "D2.1"
     field: "Index Size (1000 chunks) — MiniLM L6-v2"
     value: "~2.1 MB"
-    contributor: "Antigravity"
+    contributor: "Uday"
     date: "2026-05-03"
     reasoning: "384-dim embeddings, GiST index"
     proof: "experiments/exp_001.json:L12"
 ```
 
-[PASTE DELIVERABLES.md]
+[PASTE Final_Deliverables/Documentation.md]
 ```
 
 ---

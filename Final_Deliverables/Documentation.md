@@ -9,10 +9,11 @@
 K. Bala Chowdappa, GPREC  
 
 ### Team Members  
-[TO FILL]
+- Uday, Engineer  
+- Nishitha, Engineer  
 
 ### Bootcamp Dates  
-[TO FILL]
+2026-04-20 to 2026-05-02  
 
 ### Document Version  
 v1.0 (Template) — Update as experiments are completed  
@@ -23,6 +24,16 @@ v1.0 (Template) — Update as experiments are completed
 ### Data Classification  
 **SYNTHETIC DATA ONLY — DMRC Mega Metro**  
 (AI-generated, valid for pipeline testing only)
+
+---
+
+# 📜 SR. DEV AUDIT LOG
+
+| Date | Contributor | Section Updated | Reason / Rationale |
+| :--- | :--- | :--- | :--- |
+| [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
+
+---
 
 ---
 

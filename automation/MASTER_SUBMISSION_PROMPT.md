@@ -6,12 +6,12 @@
 ## 📋 HOW THIS WORKS
 
 **You send this prompt to Claude with:**
-1. **Current DELIVERABLES.md** (at top, never changes)
+1. **Current Final_Deliverables/Documentation.md** (at top, never changes)
 2. **Your updates in YAML** (who did what, with proof)
 3. **Branch name** (git branch name auto-identifies contributor)
 
 **Claude returns:**
-- ✅ Updated DELIVERABLES.md (template preserved, [TO FILL] replaced)
+- ✅ Updated Final_Deliverables/Documentation.md (template preserved, [TO FILL] replaced)
 - ✅ Audit log entry (auto-filled with branch name)
 - ✅ Change summary (what was updated)
 - ✅ Validation report (any errors)
@@ -24,7 +24,6 @@
 Git Branch Name          → Auto-Detected Contributor
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 feature/balu/*           → K. Bala Chowdappa (GPREC) [LEAD]
-feature/antigravity/*    → Antigravity [DEV]
 feature/uday/*           → Uday [ENGINEER]
 feature/nishitha/*       → Nishitha [ENGINEER]
 feature/ai/*             → AI Agent [AUTO]
@@ -48,8 +47,8 @@ main / develop           → Ask user for name
 
 You are Claude, serving as the automation agent for DMRC AI-PMS RAG Bootcamp.
 
-**Input**: Current DELIVERABLES.md + YAML updates
-**Output**: Updated DELIVERABLES.md (template preserved) + audit log entry
+**Input**: Current Final_Deliverables/Documentation.md + YAML updates
+**Output**: Updated Final_Deliverables/Documentation.md (template preserved) + audit log entry
 
 ---
 
@@ -60,7 +59,6 @@ User provided a **git branch name**. Use this mapping:
 | Branch Pattern | Contributor Name | Role |
 |---|---|---|
 | feature/balu/* | K. Bala Chowdappa | Lead / Architecture |
-| feature/antigravity/* | Antigravity | Dev / Experiments |
 | feature/uday/* | Uday | Engineer |
 | feature/nishitha/* | Nishitha | Engineer |
 | feature/ai/* | AI Agent | Auto-run |
@@ -91,7 +89,7 @@ Rule 6: Audit trail maintained — Every change logged
 Expect input like:
 
 ```yaml
-branch_name: "feature/antigravity/exp-001-embedding-comparison"
+branch_name: "feature/uday/exp-001-embedding-comparison"
 date_submitted: "2026-05-03"
 
 updates:
@@ -119,7 +117,7 @@ updates:
 
 For every update block:
 
-1. **Field existence**: Verify field name exists in DELIVERABLES.md
+1. **Field existence**: Verify field name exists in Final_Deliverables/Documentation.md
 2. **[TO FILL] check**: Confirm target is `[TO FILL]`, not already filled
 3. **Format value**: `VALUE (Contributor | Date | Reasoning | Proof)`
 4. **Proof validation**: Ensure proof file path + line number provided
@@ -130,7 +128,7 @@ For every update block:
   Field: "Index Size (1000 chunks) — MiniLM L6-v2"
   Value: "~2.1 MB"
   Proof: "experiments/exp_001_embeddings.json:L12"
-  → Formatted: "~2.1 MB (Antigravity | 2026-05-03 | 384-dim embeddings, pgvector GiST index | experiments/exp_001_embeddings.json:L12)"
+  → Formatted: "~2.1 MB (Uday | 2026-05-03 | 384-dim embeddings, pgvector GiST index | experiments/exp_001_embeddings.json:L12)"
 
 ❌ INVALID:
   Field: "Random Field Not in Template"
@@ -147,7 +145,7 @@ For every update block:
 
 For each validated update:
 
-1. **Find exact field in DELIVERABLES.md**
+1. **Find exact field in Final_Deliverables/Documentation.md**
 2. **Verify next occurrence is `[TO FILL]`**
 3. **Replace ONLY the `[TO FILL]` with formatted value**
 4. **Preserve ALL markdown formatting**
@@ -199,7 +197,7 @@ v1.0 (Template) — Update as experiments are completed
 AFTER:
 ```
 Document Version
-v1.1 (Antigravity | 2026-05-03) — Updates to D2.1 (embedding metrics), D8.1 (latency), D10 (EXP-001 log)
+v1.1 (Uday | 2026-05-03) — Updates to D2.1 (embedding metrics), D8.1 (latency), D10 (EXP-001 log)
 ```
 
 ---
@@ -208,7 +206,7 @@ v1.1 (Antigravity | 2026-05-03) — Updates to D2.1 (embedding metrics), D8.1 (l
 
 Return exactly these sections:
 
-### ✅ UPDATED DELIVERABLES.md
+### ✅ UPDATED Final_Deliverables/Documentation.md
 [Full document with updates applied]
 
 ### 📊 CHANGE SUMMARY
@@ -314,9 +312,8 @@ updates:
 feature/[contributor]/[experiment-name]
 
 Examples:
-- feature/antigravity/exp-001-embedding-comparison
+- feature/uday/exp-001-embedding-comparison
 - feature/balu/architecture-decisions-final
-- feature/uday/failure-mode-testing
 - feature/nishitha/security-tenant-isolation
 - feature/ai/auto-latency-benchmark-2026-05-04
 ```
@@ -356,9 +353,9 @@ updates:
 
 ---
 
-### 3️⃣ CURRENT DELIVERABLES.md
+### 3️⃣ CURRENT Final_Deliverables/Documentation.md
 ```
-[PASTE THE ENTIRE CURRENT DELIVERABLES.md DOCUMENT HERE]
+[PASTE THE ENTIRE CURRENT Final_Deliverables/Documentation.md DOCUMENT HERE]
 ```
 
 ---
@@ -370,17 +367,17 @@ updates:
 
 # 📌 HOW TEAM MEMBERS USE THIS
 
-## For Antigravity (Experiments)
+## For Uday (Experiments)
 
 ```bash
 # After finishing EXP-001, create branch
-git checkout -b feature/antigravity/exp-001-embedding-comparison
+git checkout -b feature/uday/exp-001-embedding-comparison
 
 # Run experiment, get metrics
 # measurements: P@5=0.89, latency p95=245ms, etc.
 
 # Send to Claude:
-Branch: feature/antigravity/exp-001-embedding-comparison
+Branch: feature/uday/exp-001-embedding-comparison
 Date: 2026-05-03
 
 updates:
@@ -390,13 +387,13 @@ updates:
     reasoning: "Semantic depth on legal terminology"
     proof: "experiments/exp_001_hybrid_vs_vector.json:L45, src/retriever.py:L65"
 
-[+ paste current deliverables]
+[+ paste current documentation]
 
 # Claude returns updated doc
 # You review + commit
-git add DELIVERABLES.md
+git add Final_Deliverables/Documentation.md
 git commit -m "EXP-001: Embedding comparison metrics (D2.1)"
-git push origin feature/antigravity/exp-001-embedding-comparison
+git push origin feature/uday/exp-001-embedding-comparison
 ```
 
 ---
@@ -429,7 +426,7 @@ updates:
 [+ paste current deliverables]
 
 # Claude returns updated doc
-git add DELIVERABLES.md
+git add Final_Deliverables/Documentation.md
 git commit -m "D1, D11: Final architecture decisions (Balu sign-off)"
 git push origin feature/balu/architecture-decisions-day-10
 ```
@@ -445,7 +442,7 @@ git checkout -b feature/uday/tenant-isolation-validation
 # Run cross-tenant tests, adversarial queries
 
 # Send to Claude:
-Branch: feature/uday/tenant-isolation-validation
+Branch: feature/nishitha/tenant-isolation-validation
 Date: 2026-05-07
 
 updates:
@@ -461,11 +458,11 @@ updates:
     reasoning: "System correctly refused OOS query"
     proof: "experiments/hallucination_test_001.json:L23"
 
-[+ paste current deliverables]
+[+ paste current documentation]
 
-git add DELIVERABLES.md
+git add Final_Deliverables/Documentation.md
 git commit -m "D9: Tenant isolation + hallucination tests (5/5 PASS)"
-git push origin feature/uday/tenant-isolation-validation
+git push origin feature/nishitha/tenant-isolation-validation
 ```
 
 ---
@@ -488,7 +485,7 @@ updates:
 
 # Claude auto-updates
 # Commit auto-triggered by CI/CD
-git add DELIVERABLES.md
+git add Final_Deliverables/Documentation.md
 git commit -m "[AI AUTO] D8.1: Latency benchmarks (feature/ai/auto-latency-benchmark-2026-05-04)"
 git push origin feature/ai/auto-latency-benchmark-2026-05-04
 git pull-request —auto
@@ -501,9 +498,8 @@ git pull-request —auto
 | Person | Branch Pattern | Sections | Frequency | Example |
 |--------|---|---|---|---|
 | **Balu** | `feature/balu/*` | D1, D11 | ~3-4 times (decisions) | `feature/balu/architecture-decisions-day-10` |
-| **Antigravity** | `feature/antigravity/*` | D2, D3, D5, D7, D8, D10 | ~15 times (experiments) | `feature/antigravity/exp-001-embedding` |
-| **Uday** | `feature/uday/*` | D4, D9.1, D10 | ~5-8 times (tests) | `feature/uday/failure-mode-testing` |
-| **Nishitha** | `feature/nishitha/*` | D6, D9.2, D10 | ~5-8 times (tests) | `feature/nishitha/tenant-isolation` |
+| **Uday** | `feature/uday/*` | D2, D3, D5, D7, D8, D10 | ~15 times (experiments) | `feature/uday/exp-001-embedding` |
+| **Nishitha** | `feature/nishitha/*` | D4, D6, D9, D10 | ~5-8 times (tests) | `feature/nishitha/tenant-isolation` |
 | **AI Agent** | `feature/ai/*` | D8 (auto) | ~5-10 times (daily) | `feature/ai/auto-latency-benchmark-2026-05-04` |
 
 ---
@@ -512,13 +508,13 @@ git pull-request —auto
 
 ```bash
 # 1. Create branch with contributor name
-git checkout -b feature/antigravity/exp-001-embedding
+git checkout -b feature/uday/exp-001-embedding
 
 # 2. Do your work (run experiments, collect metrics)
 # Commit code/scripts to branch
 git add experiments/exp_001.json
 git commit -m "EXP-001: Embedding comparison complete"
-git push origin feature/antigravity/exp-001-embedding
+git push origin feature/uday/exp-001-embedding
 
 # 3. Create YAML updates (see template above)
 # Copy this prompt to Claude
@@ -529,20 +525,20 @@ git push origin feature/antigravity/exp-001-embedding
 # Make sure all [TO FILL] → VALUES are correct
 # Check audit log entry is accurate
 
-# 5. Commit updated deliverables
-git add DELIVERABLES.md
+# 5. Commit updated documentation
+git add Final_Deliverables/Documentation.md
 git commit -m "EXP-001: Update metrics in D2.1, D8.1, D10"
-git push origin feature/antigravity/exp-001-embedding
+git push origin feature/uday/exp-001-embedding
 
 # 6. Create PR (optional, for review)
 git pull-request \
   --title "EXP-001: Embedding comparison (D2.1, D8.1, D10)" \
-  --description "Metrics via feature/antigravity/exp-001-embedding"
+  --description "Metrics via feature/uday/exp-001-embedding"
 
 # 7. Merge to main when ready
 git checkout main
-git pull origin feature/antigravity/exp-001-embedding
-git merge --no-ff feature/antigravity/exp-001-embedding
+git pull origin feature/uday/exp-001-embedding
+git merge --no-ff feature/uday/exp-001-embedding
 git push origin main
 ```
 
@@ -556,10 +552,9 @@ After 5 submissions, audit log looks like:
 | Date | Contributor | Section Updated | Reason / Rationale |
 | :--- | :--- | :--- | :--- |
 | 2026-05-02 | K. Bala Chowdappa | D1, D11 | Initial architecture decisions + rationale |
-| 2026-05-03 | Antigravity | D2.1, D8.1, D10 | EXP-001 metrics (feature/antigravity/exp-001-embedding) |
-| 2026-05-04 | Uday | D4, D9.1, D10 | Failure mode FE-01 + tenant isolation tests (feature/uday/failure-testing) |
+| 2026-05-03 | Uday | D2.1, D8.1, D10 | EXP-001 metrics (feature/uday/exp-001-embedding) |
+| 2026-05-04 | Nishitha | D4, D9.1, D10 | Failure mode FE-01 + tenant isolation tests (feature/nishitha/failure-testing) |
 | 2026-05-04 | AI Agent | D8.1 | Auto-latency benchmark via CI/CD (feature/ai/auto-latency-benchmark-2026-05-04) |
-| 2026-05-05 | Nishitha | D9.2, D10 | Hallucination testing + OOS query validation (feature/nishitha/hallucination-tests) |
 ```
 
 ---
