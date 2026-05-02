@@ -1,5 +1,8 @@
 # Run on Windows (Docker Desktop + WSL2)
 
+> [!TIP]
+> This guide is now consolidated into the [Detailed Multi-Platform Setup Guide](multi_platform_setup.md). Please refer to that for the most up-to-date instructions.
+
 This project has been optimized to run seamlessly on Windows systems using Docker Desktop with the WSL2 backend.
 
 ## Prerequisites

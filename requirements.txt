@@ -8,3 +8,4 @@ psycopg2-binary
 pymupdf
 einops
 torch
+umap-learn

@@ -34,6 +34,16 @@
    pg_trgm | 1.6
   ```
 
+## 6. RAGAS Integration
+- **Status:** **READY**
+- **Evidence:** `eval_ragas.py` at root.
+- **Proof:** Implements the RAGAS framework for automated metric calculation using the Groq fallback chain.
+
+## 7. Legacy Reviewer Support
+- **Status:** **READY**
+- **Evidence:** `eval_baseline.py`, `setup_mlflow.py` at root.
+- **Proof:** Provides fixed legacy entry points for reviewers expecting Day 0 structure, while internally using the refactored production logic.
+
 ---
 
 ## Final Submission Package Instructions

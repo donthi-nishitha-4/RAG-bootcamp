@@ -20,6 +20,8 @@
 | 14 | Domain data loaded | **PASS** | Indian Railways GCC PDF ingested (1363 chunks, 3 strategies). | `scripts/ingest_data.py` |
 | 15 | Experiment logs | **PASS** | 4 Experiments logged, including Baseline, Hybrid, and Entity Confusion. | `experiments/` folder |
 | 16 | Chunking experiments | **PASS** | Compared Semantic, Simple, and Paragraph strategies. | `docs/chunking_results.md` |
+| 17 | RAGAS Integration | **PASS** | Automated faithfulness and relevance metrics implemented. | `eval_ragas.py` |
+| 18 | Legacy Support | **PASS** | Restored neater root entry points for reviewer backward compatibility. | `eval_baseline.py` |
 
 ---
 

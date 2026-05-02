@@ -1,5 +1,6 @@
 import time
 import torch
+import json
 import numpy as np
 from sentence_transformers import SentenceTransformer
 import os
@@ -13,16 +14,24 @@ def compare_models():
         "nomic-ai/nomic-embed-text-v1.5"
     ]
     
-    sample_texts = [
-        "The security deposit shall be 5% of the contract value.",
-        "Artificial intelligence is transforming medical diagnosis.",
-        "A breach of contract occurs when one party fails to fulfill obligations.",
-        "The contractor must submit a bank guarantee within 30 days.",
-        "Deep learning models require massive amounts of data and compute.",
-        "Contract termination procedures are outlined in Clause 60.",
-        "Machine learning algorithms can predict maintenance needs.",
-        "The consultant shall provide a progress report every month."
-    ]
+    # Load real domain text from processed GCC chunks
+    sample_texts = []
+    processed_dir = "data/processed"
+    if os.path.exists(processed_dir):
+        for f in os.listdir(processed_dir):
+            if f.endswith(".json"):
+                with open(os.path.join(processed_dir, f), "r") as j:
+                    data = json.load(j)
+                    chunks = data.get("chunks", [])
+                    sample_texts.extend(chunks[:5]) # Take 5 chunks from each file
+    
+    # Fallback to placeholders if no data found
+    if not sample_texts:
+        sample_texts = [
+            "The security deposit shall be 5% of the contract value.",
+            "A breach of contract occurs when one party fails to fulfill obligations.",
+            "The contractor must submit a bank guarantee within 30 days."
+        ]
     
     print("--- Embedding Model Comparison & UMAP ---")
     results = "# Embedding Model Comparison\n\n| Model | Dim | Latency (ms/doc) | Device |\n|---|---|---|---|\n"

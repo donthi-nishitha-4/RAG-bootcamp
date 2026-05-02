@@ -4,17 +4,18 @@ services:
   db:
     image: pgvector/pgvector:pg16
     container_name: rag-db
+    restart: always
     ports:
-      - "5433:5432"
+      - "${DB_PORT:-5433}:5432"
     environment:
-      - POSTGRES_DB=rag_bootcamp
-      - POSTGRES_USER=rag_user
-      - POSTGRES_PASSWORD=rag_password
+      - POSTGRES_DB=${DB_NAME:-rag_bootcamp}
+      - POSTGRES_USER=${DB_USER:-rag_user}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-rag_password}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U rag_user -d rag_bootcamp"]
-      interval: 5s
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-rag_user} -d ${DB_NAME:-rag_bootcamp}"]
+      interval: 10s
       timeout: 5s
       retries: 5
 
@@ -25,15 +26,10 @@ services:
       db:
         condition: service_healthy
     env_file:
-      - path: .env
-        required: false
+      - .env
     environment:
-      - PYTHONDONTWRITEBYTECODE=1
-      - DB_HOST=db
-      - DB_PORT=5432
-      - DB_USER=rag_user
-      - DB_PASSWORD=rag_password
-      - DB_NAME=rag_bootcamp
+      - DB_HOST=db  # Internal network name
+      - DB_PORT=5432 # Internal container port
     volumes:
       - .:/app
     stdin_open: true
