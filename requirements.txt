@@ -1,7 +1,11 @@
 openai
 sentence-transformers
-chromadb
 numpy
 mlflow
 ragas
 python-dotenv
+psycopg2-binary
+pymupdf
+einops
+torch
+umap-learn

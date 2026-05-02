@@ -1,0 +1,18 @@
+updates:
+  - section: "D5.3"
+    field: "Hybrid (BM25+Vec+RRF) — P@5"
+    value: "1.0"
+    reasoning: "Perfect retrieval on GCC contract clauses"
+    proof: "scripts/eval_baseline.py output"
+  
+  - section: "D10"
+    field: "Experiment EXP-001 — Result"
+    value: "SUCCESS: 1.0 Faithfulness on GCC data"
+    reasoning: "Pipeline validated with real domain data"
+    proof: "scripts/eval_baseline.py output"
+  
+  - section: "D10"
+    field: "Experiment EXP-001 — Date"
+    value: "2026-05-02"
+    reasoning: "Completion date"
+    proof: "scripts/eval_baseline.py output"
