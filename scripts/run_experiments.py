@@ -7,8 +7,8 @@ import mlflow
 # Add project root to path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.rag_pipeline import ask_rag
-from src.evaluator import evaluate_generation
+from src.core.pipeline import ask_rag
+from src.evals.metrics import evaluate_generation
 
 def run_experiment(exp_name, dataset, config, queries, tenant_id="default", entity_type=None, contract_standard=None, search_type="vector"):
     """

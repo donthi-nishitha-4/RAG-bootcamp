@@ -1,5 +1,5 @@
 import json
-from .llm import query_llm
+from src.core.llm import query_llm
 
 def evaluate_retrieval(retrieved_chunk_ids, expected_chunk_ids, k=None):
     """

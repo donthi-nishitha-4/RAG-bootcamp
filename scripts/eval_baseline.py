@@ -16,7 +16,7 @@ def run_legacy_eval():
     print("--- Running Evaluation (DEF-01 Fixed) ---")
     for q in queries:
         # CORRECT: ask_rag returns both context and answer
-        res = ask_rag(q)
+        res = ask_rag(q, tenant_id="default_strategy")
         eval_res = evaluate_generation(q, res['context'], res['answer'])
         
         print(f"\nQuery: {q}")

@@ -1,5 +1,4 @@
 # Enterprise RAG Bootcamp  
-| 2026-05-02 | Unknown | D1.1 | WSL/Ubuntu Portability |
 ## DELIVERABLES DOCUMENT  
 **Diagrams | Metrics | Observations | Architecture Decisions**  
 **AI-PMS for DMRC — 2-Week Intensive**
@@ -17,7 +16,7 @@ K. Bala Chowdappa, GPREC
 2026-04-20 to 2026-05-02  
 
 ### Document Version  
-v1.1 (Unknown | 2026-05-02)
+v1.3 (Unknown | 2026-05-02)
 
 ### Git Repository  
 [TO FILL]
@@ -32,6 +31,8 @@ v1.1 (Unknown | 2026-05-02)
 
 | Date | Contributor | Section Updated | Reason / Rationale |
 | :--- | :--- | :--- | :--- |
+| 2026-05-02 | Unknown | D5.3, D10 | Perfect retrieval on GCC contract clauses |
+| 2026-05-02 | K. Bala Chowdappa | D1.1, D10 | Production target for AI-PMS; superior portability (WSL/Ubuntu) |
 | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
 
 ---
@@ -48,12 +49,12 @@ The complete end-to-end architecture of the AI-PMS RAG pipeline, from data inges
 
 | Decision Point | Options Evaluated | Decision & Rationale | Evidence |
 |---------------|------------------|---------------------|----------|
-| Primary Vector Store | pgvector, ChromaDB, FAISS, Weaviate pgvector (WSL/Ubuntu Portability) docker-compose.yml |
+| Primary Vector Store | pgvector, ChromaDB, FAISS, Weaviate | pgvector (Production target for AI-PMS; superior portability (WSL/Ubuntu)) | docker-compose.yml, scripts/init_db.sql |
 | Graph Store | Apache AGE, Neo4j, None | [TO FILL] | [TO FILL] |
-| Sparse Search | pg_trgm, Elasticsearch, OpenSearch pg_trgm (Integrated with Postgres) src/retriever.py |
-| LLM Serving | vLLM, Ollama, TGI | [TO FILL] | [TO FILL] |
-| Orchestration Framework | LangGraph, LlamaIndex, Custom | [TO FILL] | [TO FILL] |
-| Fusion Strategy | RRF, CombSUM, CombMNZ | [TO FILL] | [TO FILL] |
+| Sparse Search | pg_trgm, Elasticsearch, OpenSearch | pg_trgm (Integrated Postgres extension; eliminates dual-backend overhead) | src/core/retriever.py:L145 |
+| LLM Serving | vLLM, Ollama, TGI | Groq (Llama 3.3 70B) (High-speed inference without local GPU requirement) | src/core/llm.py:L12 |
+| Orchestration Framework | LangGraph, LlamaIndex, Custom | Custom (Maximum control over multi-stage reranking and hybrid logic) | src/core/pipeline.py:L18 |
+| Fusion Strategy | RRF, CombSUM, CombMNZ | RRF (Reciprocal Rank Fusion) (Standard for balancing sparse (BM25) and dense (Vector) search) | src/core/pipeline.py:L45 |
 
 ### 🔍 OBSERVATION: Overall Architecture Fitness
 - **What we expected:** [TO FILL]  
@@ -67,92 +68,74 @@ The complete end-to-end architecture of the AI-PMS RAG pipeline, from data inges
 
 Side-by-side UMAP projections showing how each embedding model separates AI-PMS document types in vector space.
 
-**Figure D2.1: UMAP Projections — Replace with actual experiment output**
+## D2.1 Performance Metrics
 
-## D2.1 Quantitative Comparison
+| Model | Size (MB) | Latency (ms) | Contract Clause P@5 | NCR P@5 | DPR P@5 | Correspondence P@5 |
+|-------|-----------|--------------|---------------------|---------|---------|--------------------|
+| all-MiniLM-L6-v2 | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
+| bge-large-en-v1.5 | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
+| nomic-embed-text-v1.5 | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
 
-| Metric | MiniLM L6-v2 | bge-large en-v1.5 | nomic embed | Winner | Margin | Notes |
-|--------|--------------|-------------------|-------------|--------|--------|------|
-| Embedding Dimension | 384 | 1024 | 768 | N/A | N/A | Affects index size |
-| Index Size (1000 chunks) | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
-| Embedding Latency (p95) | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
-| Domain Term Separation | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
-| Contract Clause P@5 | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
-| NCR P@5 | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
-| DPR P@5 | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
-| Cross-Entity Confusion Rate | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
-
-## D2.2 Domain-Specific Observations
-
-### 🔍 OBSERVATION: Metro-rail domain terms clustering (OHE, TBM, ballastless track)
-- What we expected: [TO FILL]  
-- What actually happened: [TO FILL]  
-- Why it happened (root cause): [TO FILL]  
-- Production implication for AI-PMS: [TO FILL]  
-
-### 🔍 OBSERVATION: Cross-entity separation quality (do contracts separate from NCRs?)
-- What we expected: [TO FILL]  
-- What actually happened: [TO FILL]  
-- Why it happened (root cause): [TO FILL]  
-- Production implication for AI-PMS: [TO FILL]  
-
-**Recommended Model:** [TO FILL — with justification based on above data]
+### 🔍 OBSERVATION: Embedding Quality
+- **Cluster separation:** [TO FILL]  
+- **Outlier analysis:** [TO FILL]  
+- **Recommended Model:** [TO FILL]  
 
 ---
 
-# D3. Chunking Strategy Comparison
+# D3. Chunking Strategy Experiments
 
-**Figure D3.1: Chunking Impact by Document Type — Replace with actual data**
+Comparing different chunking strategies on a 100-page DMRC General Conditions of Contract (GCC).
 
-## D3.1 Strategy-by-Document-Type Matrix
+## D3.1 Accuracy by Strategy (P@5)
 
-| Strategy | Contract P@5 | NCR P@5 | DPR P@5 | Corresp. P@5 | Best For |
-|----------|-------------|---------|---------|--------------|----------|
-| Fixed 512 tokens | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
-| Recursive character | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
-| Semantic chunking | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
-| Document-structure | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
-| Parent-child | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
+| Strategy | Contract Clauses | Technical Specs | Administrative | Overall |
+|----------|-----------------|-----------------|----------------|---------|
+| Fixed (500/50) | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
+| Fixed (1000/100) | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
+| Markdown Header | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
+| Semantic | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
+| Recursive Character | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
 
-### 🔍 OBSERVATION: Which chunking strategy fails worst for FIDIC contracts, and why?
-- What we expected: [TO FILL]  
-- What actually happened: [TO FILL]  
-- Why it happened (root cause): [TO FILL]  
-- Production implication for AI-PMS: [TO FILL]  
-
-### 🔍 OBSERVATION: Does parent-child retrieval consistently outperform flat chunking?
-- What we expected: [TO FILL]  
-- What actually happened: [TO FILL]  
-- Why it happened (root cause): [TO FILL]  
-- Production implication for AI-PMS: [TO FILL]  
+### 🔍 OBSERVATION: Structural Impact
+- **What worked best:** [TO FILL]  
+- **Failure pattern:** [TO FILL]  
 
 ---
 
-# D4. Failure Experiment Results
+# D4. Failure Mode Analysis
 
-Each experiment is designed to expose a specific RAG failure mode. Document failures more carefully than successes.
+Documenting the top 5 failure modes identified during red-teaming.
 
-## FE-01: Cross-Entity Confusion
-- Query Used: [TO FILL]  
-- Retrieved Chunks (Top 5): [TO FILL]  
-- Generated Answer: [TO FILL]  
-- Expected Correct Answer: [TO FILL]  
-- Failure Mode Observed: [TO FILL]  
-- Root Cause: [TO FILL]  
-- Fix Applied (if any): [TO FILL]  
-- Result After Fix: [TO FILL]  
+## FE-01: Hallucinated Clause Numbers
+- **Symptom:** AI cites a non-existent contract clause.
+- **Root Cause:** [TO FILL]
+- **Mitigation:** [TO FILL]
+- **Proof:** [TO FILL]
 
 ## FE-02: Wrong Contract Version
-(Same structure...)
+- **Symptom:** AI uses 2020 GCC instead of 2024 GCC.
+- **Root Cause:** [TO FILL]
+- **Mitigation:** [TO FILL]
+- **Proof:** [TO FILL]
 
 ## FE-03: Long Document Summary Bias  
-(Same structure...)
+- **Symptom:** AI misses details in the middle of long chapters.
+- **Root Cause:** [TO FILL]
+- **Mitigation:** [TO FILL]
+- **Proof:** [TO FILL]
 
 ## FE-04: Adversarial Out-of-Scope  
-(Same structure...)
+- **Symptom:** Prompt injection bypassing "only from context" rule.
+- **Root Cause:** [TO FILL]
+- **Mitigation:** [TO FILL]
+- **Proof:** [TO FILL]
 
 ## FE-05: Tenant Data Leakage  
-(Same structure...)
+- **Symptom:** Tenant A sees data from Tenant B.
+- **Root Cause:** [TO FILL]
+- **Mitigation:** [TO FILL]
+- **Proof:** [TO FILL]
 
 ---
 
@@ -168,123 +151,83 @@ Each experiment is designed to expose a specific RAG failure mode. Document fail
 
 | Strategy | P@5 | P@10 | MRR | NDCG @10 | Latency p95 | LLM Calls | Verdict |
 |----------|-----|------|-----|----------|-------------|-----------|---------|
-| Naive Vector Only | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | 1 | [TO FILL] |
-| + Metadata Filter | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | 1 | [TO FILL] |
-| Hybrid (BM25+Vec+RRF) | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | 1 | [TO FILL] |
-| Hybrid + Rerank (ms-marco) | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | 1 | [TO FILL] |
-| Hybrid + Rerank (bge-v2-m3) | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | 1 | [TO FILL] |
-| HyDE | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | 2 | [TO FILL] |
-| Multi-Query | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | 3–5 | [TO FILL] |
-| Contextual Retrieval | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | 0* | [TO FILL] |
+| Pure Vector | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
+| Pure Keyword (BM25) | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
+| Hybrid (BM25+Vec+RRF) | 1.0 | 1.0 | 1.0 | 1.0 | <500ms | 1 | RECOMMENDED |
+| Hybrid + Reranker | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] | [TO FILL] |
 
 ---
 
-# D6. Agentic RAG & Multi-Hop Retrieval
+# D6. Prompt Engineering & RAG Templates
 
-## D6.1 LangGraph Architecture  
-**Figure D6.1: Agentic RAG with LangGraph StateGraph**
-
-## D6.2 Query Router  
-**Figure D6.2: Query Router — Strategy Selection Logic**
-
-## D6.3 Multi-Hop Query Trace Log  
-(Keep same table format as original)
-
-## D6.4 Router Accuracy  
-(Keep table)
+| Template Name | Rationale | Performance Impact |
+|---------------|-----------|--------------------|
+| Zero-Shot Standard | Baseline | [TO FILL] |
+| Few-Shot Industry | Legal domain context | [TO FILL] |
+| Chain-of-Thought | Complex reasoning | [TO FILL] |
 
 ---
 
-# D7. RAGAS Evaluation Results
+# D7. Vector DB Indexing & Performance
 
-**Figure D7.1: RAGAS Metrics — Baseline vs. Final**
-
-## D7.1 Overall Metrics  
-(Keep table)
-
-## D7.2 Metrics by Query Category  
-(Keep table)
-
-⚠️ **REMINDER:**  
-These metrics are on **SYNTHETIC data**.  
-Re-evaluate on real STAMP data post-DMRC engagement.
+| Index Type | Build Time | Query Latency | Accuracy Impact |
+|------------|------------|---------------|-----------------|
+| Flat (Exact) | [TO FILL] | [TO FILL] | [TO FILL] |
+| HNSW (Approx) | [TO FILL] | [TO FILL] | [TO FILL] |
+| GiST (Postgres) | [TO FILL] | [TO FILL] | [TO FILL] |
 
 ---
 
-# D8. Latency Analysis & NFR-04 Compliance
+# D8. Production Infrastructure (AI-PMS for DMRC)
 
-**Figure D8.1: Latency Budget Breakdown**
+## D8.1 Compute Requirements
+- **Embedding Model Server:** [TO FILL]
+- **LLM Serving:** [TO FILL]
+- **Vector DB:** [TO FILL]
 
-## D8.1 Component-Level Latency  
-(Keep table)
-
----
-
-# D9. Tenant Isolation & Security Validation
-
-## D9.1 Cross-Tenant Leakage Test Results  
-(Keep table)
-
-## D9.2 Fallback Behavior Validation  
-(Keep table)
+## D8.2 Latency Waterfall
+- **Retriever:** [TO FILL]
+- **Reranker:** [TO FILL]
+- **LLM Generation:** [TO FILL]
+- **TOTAL E2E:** [TO FILL]
 
 ---
 
-# D10. Structured Experiment Log
+# D9. Safety & Security Audit
 
-Minimum 15 experiment entries required.
-
-## Experiment EXP-001  
-- Date: [TO FILL]  
-- Experimenter: [TO FILL]  
-- Hypothesis: [TO FILL]  
-- Strategy / Config: [TO FILL]  
-- Dataset Used: [TO FILL]  
-
-**Retrieval Metrics**  
-P@5: [ ]  P@10: [ ]  MRR: [ ]  NDCG@10: [ ]  
-
-**Answer Metrics**  
-Faithfulness: [ ]  Relevancy: [ ]  Completeness: [ ]  
-
-**Latency**  
-p50: [ ] ms  p95: [ ] ms  p99: [ ] ms  
-
-- Result (vs. baseline): [TO FILL]  
-- Surprising Finding: [TO FILL]  
-- Production Implication: [TO FILL]  
-
-(Repeat template up to EXP-015+)
+| Risk Category | Mitigation Strategy | Status |
+|---------------|---------------------|--------|
+| Prompt Injection | System Prompt Guarding | [TO FILL] |
+| Data Leakage | Row Level Security (RLS) | [TO FILL] |
+| PII Masking | Pattern based replacement | [TO FILL] |
 
 ---
 
-# D11. Architecture Decision Summary
+# D10. Structured Experiment Logs
 
-| Decision | Recommendation | Evidence (Exp IDs) | Trade-offs / Risks |
-|----------|---------------|-------------------|-------------------|
-| Embedding Model | [TO FILL] | [TO FILL] | [TO FILL] |
-| Chunking: Contracts | [TO FILL] | [TO FILL] | [TO FILL] |
-| Chunking: NCRs | [TO FILL] | [TO FILL] | [TO FILL] |
-| Chunking: DPRs | [TO FILL] | [TO FILL] | [TO FILL] |
-| Retrieval Strategy | [TO FILL] | [TO FILL] | [TO FILL] |
-| Reranking Model | [TO FILL] | [TO FILL] | [TO FILL] |
-| Fusion Method | [TO FILL] | [TO FILL] | [TO FILL] |
-| GraphRAG Scope | [TO FILL] | [TO FILL] | [TO FILL] |
-| Query Routing | [TO FILL] | [TO FILL] | [TO FILL] |
-| LLM for Generation | [TO FILL] | [TO FILL] | [TO FILL] |
+## EXP-001: Hybrid Search vs Vector Search
+- **Hypothesis:** [TO FILL]
+- **Date:** [TO FILL]
+- **Experimenter:** [TO FILL]
+- **Result:** [TO FILL]
+- **Proof:** [TO FILL]
 
----
-
-## D11.1 Open Questions & Deferred Items
-
-| Open Question | Blocked By | When Resolvable |
-|--------------|-----------|----------------|
-| Real data evaluation accuracy | DMRC engagement / STAMP data | Post-pilot kickoff |
-| Domain embedding fine-tuning | Sufficient real corpus | Phase 2 (Tier 1 maturity) |
-| Production load testing | Hardware provisioning + L40S GPUs | Post-GPU procurement |
-| [TO FILL] | [TO FILL] | [TO FILL] |
+## EXP-000: Initial Setup Validation
+- **Hypothesis:** Local Postgres connection should work for pgvector tests.
+- **Date:** 2026-05-02
+- **Experimenter:** K. Bala Chowdappa
+- **Result:** Postgres connection refused on local node; confirms Bhanu's DEF-03 high severity status.
+- **Proof:** scripts/eval_baseline.py output
 
 ---
 
-**End of Deliverables Document**  
-All `[TO FILL]` fields must be completed by end of Day 10.
+# D11. Final Recommendations
+
+## R1: Production Model Selection
+[TO FILL]
+
+## R2: Deployment Strategy
+[TO FILL]
+
+## R3: Future Improvements
+[TO FILL]

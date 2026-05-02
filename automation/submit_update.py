@@ -52,18 +52,13 @@ def update_audit_log(content, contributor, sections, reasoning):
     new_entry = f"| {date_str} | {contributor} | {', '.join(sections)} | {reasoning} |"
     
     # Find the audit log table
-    log_pattern = re.escape(AUDIT_LOG_HEADER) + r"\n| :--- | :--- | :--- | :--- |\n"
+    log_pattern = r"\| Date \| Contributor \| Section Updated \| Reason / Rationale \|\s*\n\| :--- \| :--- \| :--- \| :--- \|"
     match = re.search(log_pattern, content)
     
     if match:
         insertion_point = match.end()
-        # If the first entry is [TO FILL], replace it
-        to_fill_pattern = r"\| \[TO FILL\] \| \[TO FILL\] \| \[TO FILL\] \| \[TO FILL\] \|"
-        if re.search(to_fill_pattern, content[insertion_point:insertion_point+100]):
-            content = re.sub(to_fill_pattern, new_entry, content, count=1)
-        else:
-            # Otherwise prepend to the top of the log
-            content = content[:insertion_point] + new_entry + "\n" + content[insertion_point:]
+        # Ensure we are on a new line
+        content = content[:insertion_point] + "\n" + new_entry + content[insertion_point:]
             
     return content
 
@@ -94,12 +89,12 @@ def apply_updates(content, updates, contributor):
         
         if field in ["Primary Vector Store", "Graph Store", "Sparse Search", "LLM Serving", "Orchestration Framework", "Fusion Strategy"]:
             # These are D1.1 specific replacements
-            content = re.sub(row_pattern, f"\\1{value} ({reason})", content, count=1, flags=re.MULTILINE)
-            content = re.sub(row_pattern, f"\\1{proof}", content, count=1, flags=re.MULTILINE)
+            content = re.sub(row_pattern, f"\\g<1>{value} ({reason})", content, count=1, flags=re.MULTILINE)
+            content = re.sub(row_pattern, f"\\g<1>{proof}", content, count=1, flags=re.MULTILINE)
         else:
             # General replacement
             formatted_value = f"{value} ({contributor} | {date_str} | {reason} | {proof})"
-            content = re.sub(row_pattern, f"\\1{formatted_value}", content, count=1, flags=re.MULTILINE)
+            content = re.sub(row_pattern, f"\\g<1>{formatted_value}", content, count=1, flags=re.MULTILINE)
             
     return content
 

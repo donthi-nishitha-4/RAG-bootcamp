@@ -1,6 +1,9 @@
 import os
 import psycopg2
 from psycopg2.extras import execute_values
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DB_CONFIG = {
     "host": os.getenv("DB_HOST", "127.0.0.1"),
