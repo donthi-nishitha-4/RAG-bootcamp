@@ -1,7 +1,7 @@
 import sys
 import os
-from src.rag_pipeline import ask_rag
-from src.evaluator import evaluate_generation
+from src.core.pipeline import ask_rag
+from src.evals.metrics import evaluate_generation
 
 def run_legacy_eval():
     """

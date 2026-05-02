@@ -1,0 +1,12 @@
+updates:
+  - section: "D1.1"
+    field: "Primary Vector Store"
+    value: "pgvector"
+    reasoning: "WSL/Ubuntu Portability"
+    proof: "docker-compose.yml"
+  
+  - section: "D1.1"
+    field: "Sparse Search"
+    value: "pg_trgm"
+    reasoning: "Integrated with Postgres"
+    proof: "src/retriever.py"

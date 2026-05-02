@@ -1,4 +1,5 @@
 # Enterprise RAG Bootcamp  
+| 2026-05-02 | Unknown | D1.1 | WSL/Ubuntu Portability |
 ## DELIVERABLES DOCUMENT  
 **Diagrams | Metrics | Observations | Architecture Decisions**  
 **AI-PMS for DMRC — 2-Week Intensive**
@@ -16,7 +17,7 @@ K. Bala Chowdappa, GPREC
 2026-04-20 to 2026-05-02  
 
 ### Document Version  
-v1.0 (Template) — Update as experiments are completed  
+v1.1 (Unknown | 2026-05-02)
 
 ### Git Repository  
 [TO FILL]
@@ -47,9 +48,9 @@ The complete end-to-end architecture of the AI-PMS RAG pipeline, from data inges
 
 | Decision Point | Options Evaluated | Decision & Rationale | Evidence |
 |---------------|------------------|---------------------|----------|
-| Primary Vector Store | pgvector, ChromaDB, FAISS, Weaviate | [TO FILL] | [TO FILL] |
+| Primary Vector Store | pgvector, ChromaDB, FAISS, Weaviate pgvector (WSL/Ubuntu Portability) docker-compose.yml |
 | Graph Store | Apache AGE, Neo4j, None | [TO FILL] | [TO FILL] |
-| Sparse Search | pg_trgm, Elasticsearch, OpenSearch | [TO FILL] | [TO FILL] |
+| Sparse Search | pg_trgm, Elasticsearch, OpenSearch pg_trgm (Integrated with Postgres) src/retriever.py |
 | LLM Serving | vLLM, Ollama, TGI | [TO FILL] | [TO FILL] |
 | Orchestration Framework | LangGraph, LlamaIndex, Custom | [TO FILL] | [TO FILL] |
 | Fusion Strategy | RRF, CombSUM, CombMNZ | [TO FILL] | [TO FILL] |

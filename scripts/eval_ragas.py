@@ -2,7 +2,7 @@ import os
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevance, context_precision, context_recall
 from datasets import Dataset
-from src.rag_pipeline import ask_rag
+from src.core.pipeline import ask_rag
 from src.llm import query_llm
 
 def run_ragas_evaluation():
