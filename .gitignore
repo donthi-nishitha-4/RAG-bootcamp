@@ -33,6 +33,8 @@ ENV/
 models/
 data/raw/
 data/processed/
+data/kaggle/*.pdf
+data/kaggle/**/*.pdf
 chroma_db/
 mlflow.db
 
