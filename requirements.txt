@@ -2,7 +2,7 @@ openai
 sentence-transformers
 numpy
 mlflow
-ragas
+//ragas
 python-dotenv
 psycopg2-binary
 pymupdf
