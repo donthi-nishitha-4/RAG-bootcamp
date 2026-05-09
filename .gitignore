@@ -1,18 +1,53 @@
-# .gitignore for Python projects and sensitive files
-mlflow.db
-.env
+# Python
 __pycache__/
-mlruns/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
 .Python
 env/
 build/
+develop-eggs/
 dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
-.DS_Store
-*.sqlite3
-*.log
-# VS Code
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Models and Data
+*.bin
+*.pt
+*.onnx
+models/
+data/raw/
+data/processed/
+chroma_db/
+mlflow.db
+
+# Environment and Secrets
+.env
+.env.example
+!.env.example
+
+# Graphify
+graphify-out/
+
+# IDEs
 .vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
