@@ -1,0 +1,261 @@
+[
+  {
+    "query": "What was the total revenue reported for FY2023?",
+    "expected_answer": "Total revenue was reported as $12.4 billion.",
+    "contexts": [
+      "The company reported total revenue of $12.4 billion for FY2023.",
+      "This represents a 10% increase compared to the previous fiscal year."
+    ],
+    "category": "factual",
+    "source": "kaggle"
+  },
+  {
+    "query": "Which business segment contributed the highest revenue?",
+    "expected_answer": "Cloud services contributed the highest revenue.",
+    "contexts": [
+      "Cloud services accounted for the largest share of total revenue.",
+      "Other segments such as hardware and consulting contributed less."
+    ],
+    "category": "analytical",
+    "source": "kaggle"
+  },
+  {
+    "query": "What were the key risks mentioned in the report?",
+    "expected_answer": "Key risks include supply chain disruptions and regulatory challenges.",
+    "contexts": [
+      "The report highlights supply chain disruptions as a major risk.",
+      "Regulatory compliance challenges are also noted as significant risks."
+    ],
+    "category": "summary",
+    "source": "kaggle"
+  },
+  {
+    "query": "How did operating expenses change year-over-year?",
+    "expected_answer": "Operating expenses increased year-over-year.",
+    "contexts": [
+      "Operating expenses increased by 8% compared to the previous year.",
+      "The increase was driven by expansion and hiring costs."
+    ],
+    "category": "analytical",
+    "source": "kaggle"
+  },
+  {
+    "query": "Which region showed the highest growth?",
+    "expected_answer": "Asia-Pacific region showed the highest growth.",
+    "contexts": [
+      "The Asia-Pacific region recorded the highest growth rate.",
+      "Growth in other regions remained moderate."
+    ],
+    "category": "analytical",
+    "source": "kaggle"
+  },
+
+  {
+    "query": "What is Clause 16 in GCC related to?",
+    "expected_answer": "Clause 16 deals with termination of contract.",
+    "contexts": [
+      "Clause 16 specifies conditions under which the contract may be terminated.",
+      "It includes provisions for termination by both employer and contractor."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What does Clause 20.1 describe?",
+    "expected_answer": "Clause 20.1 describes contractor claims.",
+    "contexts": [
+      "Clause 20.1 outlines the procedure for contractor claims.",
+      "It includes timelines and documentation requirements."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What happens if disputes are not resolved amicably?",
+    "expected_answer": "They are referred to arbitration.",
+    "contexts": [
+      "Disputes shall first be attempted to be resolved amicably.",
+      "If unresolved, disputes are referred to arbitration."
+    ],
+    "category": "summary",
+    "source": "gcc"
+  },
+  {
+    "query": "What penalties apply for contractor default?",
+    "expected_answer": "Penalties and possible termination may apply.",
+    "contexts": [
+      "Failure by the contractor may result in penalties.",
+      "In severe cases, termination of contract may occur."
+    ],
+    "category": "analytical",
+    "source": "gcc"
+  },
+  {
+    "query": "What is the role of the engineer in contract execution?",
+    "expected_answer": "The engineer supervises and administers the contract.",
+    "contexts": [
+      "The engineer is responsible for supervision of works.",
+      "They ensure compliance with contract conditions."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+
+  {
+    "query": "Which contractor has the highest rejection rate?",
+    "expected_answer": "Contractor ABC has the highest rejection rate.",
+    "contexts": [
+      "Contractor ABC shows a rejection rate of 45%.",
+      "Other contractors have lower rejection rates."
+    ],
+    "category": "analytical",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which station has the most RFIs?",
+    "expected_answer": "Station A has the most RFIs.",
+    "contexts": [
+      "Station A recorded the highest number of RFIs.",
+      "Other stations reported fewer RFIs."
+    ],
+    "category": "analytical",
+    "source": "dmrc"
+  },
+  {
+    "query": "What are common defects in NCR reports?",
+    "expected_answer": "Common defects include welding issues and alignment errors.",
+    "contexts": [
+      "NCR reports frequently highlight welding defects.",
+      "Alignment issues are also commonly observed."
+    ],
+    "category": "summary",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which subsystem causes the most delays?",
+    "expected_answer": "Structural subsystem causes the most delays.",
+    "contexts": [
+      "Structural subsystem issues have led to repeated delays.",
+      "Other subsystems show fewer delays."
+    ],
+    "category": "multi-hop",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which contractor shows improving performance?",
+    "expected_answer": "Contractor XYZ shows improvement.",
+    "contexts": [
+      "Contractor XYZ's rejection rate has reduced over time.",
+      "Performance indicators show improvement."
+    ],
+    "category": "multi-hop",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which activity has the highest rejection frequency?",
+    "expected_answer": "Welding has the highest rejection frequency.",
+    "contexts": [
+      "Welding activity shows repeated rejection cases.",
+      "Other activities have fewer issues."
+    ],
+    "category": "analytical",
+    "source": "dmrc"
+  },
+  {
+    "query": "Identify RFIs open beyond SLA.",
+    "expected_answer": "RFIs exceeding SLA timelines are delayed.",
+    "contexts": [
+      "Several RFIs remain open beyond the SLA period.",
+      "These are categorized as delayed cases."
+    ],
+    "category": "anomaly",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which contractor shows abnormal rejection trends?",
+    "expected_answer": "Contractor ABC shows abnormal trends.",
+    "contexts": [
+      "Contractor ABC has fluctuating rejection rates.",
+      "Patterns differ from other contractors."
+    ],
+    "category": "anomaly",
+    "source": "dmrc"
+  },
+
+  {
+    "query": "Which contractor has both high rejection and low closure rate?",
+    "expected_answer": "Contractor ABC has high rejection and low closure rate.",
+    "contexts": [
+      "Contractor ABC has high rejection rates.",
+      "Closure rate for ABC is below 50%."
+    ],
+    "category": "multi-hop",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which region has high revenue but declining growth?",
+    "expected_answer": "Europe has high revenue but declining growth.",
+    "contexts": [
+      "Europe contributes significantly to revenue.",
+      "However, its growth rate has declined."
+    ],
+    "category": "multi-hop",
+    "source": "kaggle"
+  },
+  {
+    "query": "Summarize major issues in station A.",
+    "expected_answer": "Station A has recurring welding defects and high rejection rates.",
+    "contexts": [
+      "Station A shows repeated welding defects.",
+      "Rejection rates are higher compared to other stations."
+    ],
+    "category": "summary",
+    "source": "dmrc"
+  },
+  {
+    "query": "Summarize contract termination conditions.",
+    "expected_answer": "Termination occurs under breach or mutual agreement.",
+    "contexts": [
+      "Termination may occur due to contractor default.",
+      "It can also occur through mutual agreement."
+    ],
+    "category": "summary",
+    "source": "gcc"
+  },
+
+  {
+    "query": "What is the weather today?",
+    "expected_answer": "Not found in context",
+    "contexts": ["Dataset contains only enterprise, contract, and construction data."],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "Explain quantum mechanics.",
+    "expected_answer": "Not found in context",
+    "contexts": ["Dataset is unrelated to physics topics."],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "Who is the CEO of Google?",
+    "expected_answer": "Not found in context",
+    "contexts": ["No corporate leadership data present."],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "What is the capital of France?",
+    "expected_answer": "Not found in context",
+    "contexts": ["System only contains domain-specific documents."],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "Tell me a joke.",
+    "expected_answer": "Not found in context",
+    "contexts": ["System is designed for enterprise and construction queries."],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  }
+]
