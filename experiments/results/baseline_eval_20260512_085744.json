@@ -1,0 +1,352 @@
+[
+  {
+    "query": "What clause governs contractor claims in GCC?",
+    "expected": "Clause 20.1 governs contractor claims.",
+    "answer": "Clause 43 governs contractor claims in GCC. Additionally, Sub-Clause (2) is paid for at the rates determined under Clause-39 of these Conditions.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What happens if disputes are not resolved amicably in GCC contracts?",
+    "expected": "They are referred to arbitration.",
+    "answer": "If disputes are not resolved amicably in GCC contracts, the parties can refer the dispute to a Dispute Adjudication Board (DAB) for adjudication. If any party is not satisfied with the DAB's decision, they can approach an Arbitral Tribunal for arbitration proceedings. However, disputes can only be referred to the Arbitral Tribunal if they have first been referred to the DAB, unless the DAB is not formed due to any reason, in which case the disputes can be directly referred to the Arbitral Tribunal.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "multi-hop",
+    "source": "gcc"
+  },
+  {
+    "query": "Which clause allows termination of contract?",
+    "expected": "Clause 16 deals with termination.",
+    "answer": "The context does not explicitly mention the clause number that allows termination of the contract, but it seems to refer to a clause (the exact number is not provided in the given context, however, it does mention \"under this clause\" which could be related to the mentioned \"Clause 62\" in a different part of the text).",
+    "faithfulness": 1.0,
+    "relevance": 0.8,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What causes TBM delays in GCC projects?",
+    "expected": "Breakdowns and maintenance issues cause TBM delays.",
+    "answer": "I cannot answer this based on the provided context. The context only mentions that claims for delay due to TBM breakdown must be submitted with manufacturer diagnostic reports, but it does not specify what causes TBM delays.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "multi-hop",
+    "source": "gcc"
+  },
+  {
+    "query": "Which GCC clause handles contractor claims and documentation?",
+    "expected": "Clause 20.1 handles claims and requires documentation.",
+    "answer": "Clause 43 handles contractor claims, and the rates for sub-clause (2) are determined under Clause 39.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What is the role of the engineer in GCC contract execution?",
+    "expected": "The engineer supervises project execution and ensures contract compliance.",
+    "answer": "The role of the Engineer in GCC contract execution includes:\n\n1. Determining the date on which the work is considered to have been completed.\n2. Issuing a certificate as sufficient evidence for all purposes to support the completion date.\n3. Giving instructions or approvals to the Contractor in connection with the works.\n4. Disapproving any work or materials, even if the Engineer's representative had previously failed to disapprove.\n5. Making decisions that are final and binding on the Contractor, although the Contractor can refer any dissatisfaction with the Engineer's representative's decision to the Engineer for confirmation or variation.\n6. Coordinating and connecting the work of different Contractors to ensure proper execution and results.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What is the impact of TBM breakdown on project timeline?",
+    "expected": "TBM breakdown causes delays and requires claim submissions with diagnostic reports.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "analytical",
+    "source": "gcc"
+  },
+  {
+    "query": "What are the OHE catenary responsibilities of the contractor during commissioning?",
+    "expected": "The contractor is responsible for maintaining the temporary OHE catenary support system during commissioning.",
+    "answer": "The contractor's OHE catenary responsibilities during commissioning include:\n\n1. Managing temporary power supply\n2. Maintaining the temporary OHE catenary support system\n3. Preparing a detailed OHE catenary risk assessment before energization.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "Which contractor shows highest rejection rate in DMRC data?",
+    "expected": "Contractor ABC has highest rejection rate.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "analytical",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which subsystem causes most delays in DMRC projects?",
+    "expected": "Structural subsystem causes most delays.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "multi-hop",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which station has highest number of RFIs?",
+    "expected": "Station A has the highest number of RFIs.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "analytical",
+    "source": "dmrc"
+  },
+  {
+    "query": "What are common NCR defects in DMRC reports?",
+    "expected": "Welding misalignment and joint failure are common NCR defects.",
+    "answer": "Based on the provided context, common NCR defects in DMRC reports include:\n\n1. Incomplete documentation (e.g., TBM shield locking mechanism documentation)\n2. Incorrect signage (e.g., TBM slurry disposal route signage)\n3. Missing warning signage (e.g., during OHE catenary maintenance)",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "summary",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which contractor shows both high rejection and low closure rate?",
+    "expected": "Contractor ABC shows poor performance with high rejection and low closure rate.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "multi-hop",
+    "source": "dmrc"
+  },
+  {
+    "query": "Identify RFIs open beyond SLA in DMRC system.",
+    "expected": "Several RFIs remain open beyond the SLA and are marked as delayed.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "anomaly",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which contractor shows abnormal rejection trend?",
+    "expected": "Contractor ABC shows an irregular and fluctuating rejection pattern.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "anomaly",
+    "source": "dmrc"
+  },
+  {
+    "query": "What is a common defect type in DMRC welding NCRs?",
+    "expected": "Welding misalignment and joint failure are the most common defects.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "factual",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which subsystem has highest NCR escalation in DMRC?",
+    "expected": "The structural subsystem generates the most NCRs and escalations.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "multi-hop",
+    "source": "dmrc"
+  },
+  {
+    "query": "What NCR was raised for OHE catenary hanger damage?",
+    "expected": "An NCR was issued for damaged OHE catenary hanger at the platform edge.",
+    "answer": "An NCR was issued for a damaged OHE catenary hanger at the platform edge.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "dmrc"
+  },
+  {
+    "query": "What does the DPR say about TBM advance progress?",
+    "expected": "DPR reports TBM advance of 32 meters and successful segmental lining installation.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "factual",
+    "source": "dmrc"
+  },
+  {
+    "query": "What is total revenue reported in the enterprise dataset?",
+    "expected": "Total revenue for FY2023 is $12.4 billion.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "factual",
+    "source": "kaggle"
+  },
+  {
+    "query": "Which segment contributes highest revenue in the enterprise dataset?",
+    "expected": "The cloud services segment contributes the highest revenue.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "analytical",
+    "source": "kaggle"
+  },
+  {
+    "query": "Which region shows highest growth but declining trend?",
+    "expected": "Europe shows high revenue but a declining growth rate.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "multi-hop",
+    "source": "kaggle"
+  },
+  {
+    "query": "What are key risks in the enterprise report?",
+    "expected": "Supply chain disruption and regulatory challenges are the key risks.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "summary",
+    "source": "kaggle"
+  },
+  {
+    "query": "What is the enterprise RAG dataset used for?",
+    "expected": "The Kaggle enterprise dataset is used for benchmarking RAG systems on business reports.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "factual",
+    "source": "kaggle"
+  },
+  {
+    "query": "What is the YoY revenue growth rate in the enterprise dataset?",
+    "expected": "Revenue increased by 10% year-over-year.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "factual",
+    "source": "kaggle"
+  },
+  {
+    "query": "What is an unrelated question about quantum physics?",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "Who is the CEO of Google?",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "What is the capital of France?",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "Generate a Python script for sorting a list.",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "What was the score in last night's cricket match?",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "Does DMRC comply with FIDIC Red Book or Yellow Book?",
+    "expected": "DMRC synthetic dataset references FIDIC as source. Specific book version not distinguishable from context.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 0.0,
+    "status": "FAILED",
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "What is the exact bank guarantee percentage per GCC Yellow Book?",
+    "expected": "Not found in context. The documents do not specify Yellow Book-specific guarantee percentages.",
+    "answer": "According to the provided context, the Performance Guarantee (PG) in the form of an Irrevocable Bank Guarantee is 3% of the Contract value, and the advance payment guarantee is 110% of the sanctioned advance amount. However, the exact bank guarantee percentage as per the GCC (which likely refers to the General Conditions of Contract) for the initial payment is 5% in the form of an Irrevocable Bank Guarantee.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "What is the contractor's warranty period for track slab surfacing?",
+    "expected": "Contractor warranties shall cover 24 months of remedial work on track slab surfacing.",
+    "answer": "The contractor's warranty period for track slab surfacing is 24 months.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What must the contractor submit before OHE catenary energization?",
+    "expected": "The contractor shall prepare a detailed OHE catenary risk assessment before energization.",
+    "answer": "According to the provided context, the contractor must submit the following before OHE catenary energization: \n\n1. A detailed OHE catenary risk assessment \n2. OHE catenary equipment certificates from the supplier",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What action can the engineer take for non-compliant OHE catenary erection?",
+    "expected": "The engineer may issue a stop-work order for non-compliant OHE catenary erection.",
+    "answer": "The engineer may issue a stop-work order for non-compliant OHE catenary erection.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc"
+  }
+]

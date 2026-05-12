@@ -9,31 +9,52 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.core.pipeline import ask_rag
 from src.evals.metrics import evaluate_generation
+from src.core.retriever import check_table_exists
 
-def run_experiment(exp_name, dataset, config, queries, tenant_id="default", entity_type=None, contract_standard=None, search_type="vector"):
+DATASET_PATH = os.path.join(os.path.dirname(__file__), '..', 'evaluation', 'dataset', 'evaluation_dataset.json')
+RESULTS_DIR  = os.path.join(os.path.dirname(__file__), '..', 'experiments', 'results')
+TENANT_ID    = "default_strategy"
+
+
+def load_queries_from_dataset(sources=None, exclude_sources=None):
+    """Load queries from the golden dataset, optionally filtered by source."""
+    with open(DATASET_PATH, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    if sources:
+        data = [d for d in data if d.get("source") in sources]
+    if exclude_sources:
+        data = [d for d in data if d.get("source") not in exclude_sources]
+    return [d["query"] for d in data if d.get("query")]
+
+def run_experiment(exp_name, dataset_label, config, queries, tenant_id=TENANT_ID, entity_type=None, contract_standard=None, search_type="vector"):
     """
-    Runs a batch of queries and generates an experiment log.
+    Runs a batch of queries, logs to MLflow, saves log to experiments/ and experiments/results/.
     """
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    ts_slug   = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     
     exp_log_path = f"experiments/{exp_name}.md"
-    results_path = "docs/evaluation_results.md"
+    results_path = os.path.join(RESULTS_DIR, f"{exp_name}_{ts_slug}.md")
+    docs_path    = "docs/evaluation_results.md"
     
     exp_markdown = f"# Experiment: {exp_name}\n"
     exp_markdown += f"- **Date:** {timestamp}\n"
-    exp_markdown += f"- **Dataset:** {dataset}\n"
+    exp_markdown += f"- **Dataset:** {dataset_label}\n"
     exp_markdown += f"- **Search Type:** {search_type}\n"
+    exp_markdown += f"- **Tenant ID:** {tenant_id}\n"
     exp_markdown += f"- **Config:** {json.dumps(config)}\n\n"
     
     eval_results = []
     
-    print(f"\n[INFO] Starting Experiment: {exp_name} ({search_type})")
+    print(f"\n[INFO] Starting Experiment: {exp_name} | search={search_type} | tenant={tenant_id} | queries={len(queries)}")
     
     mlflow.set_experiment(exp_name)
     with mlflow.start_run():
         mlflow.log_params(config)
-        mlflow.log_param("dataset", dataset)
+        mlflow.log_param("dataset", dataset_label)
         mlflow.log_param("search_type", search_type)
+        mlflow.log_param("tenant_id", tenant_id)
+        mlflow.log_param("num_queries", len(queries))
         
         for q in queries:
             print(f"\nEvaluating Query: '{q}'")
@@ -76,15 +97,22 @@ def run_experiment(exp_name, dataset, config, queries, tenant_id="default", enti
             mlflow.log_metric(f"relevance_{q[:15]}", relevance)
             print(f"  -> {status} (F: {faithfulness}, R: {relevance})")
 
-    # Save log
+    # Save experiment log (experiments/)
     os.makedirs("experiments", exist_ok=True)
     with open(exp_log_path, "w", encoding="utf-8") as f:
         f.write(exp_markdown)
+    print(f"[SAVED] Experiment log → {exp_log_path}")
+    
+    # Save to experiments/results/
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    with open(results_path, "w", encoding="utf-8") as f:
+        f.write(exp_markdown)
+    print(f"[SAVED] Results → {results_path}")
         
     # Append to global docs
     os.makedirs("docs", exist_ok=True)
-    mode = "a" if os.path.exists(results_path) else "w"
-    with open(results_path, mode, encoding="utf-8") as f:
+    mode = "a" if os.path.exists(docs_path) else "w"
+    with open(docs_path, mode, encoding="utf-8") as f:
         if mode == "w": f.write("# Global Evaluation Results\n\n")
         f.write(f"## Experiment: {exp_name} ({timestamp})\n\n")
         for res in eval_results:
@@ -94,39 +122,43 @@ def run_experiment(exp_name, dataset, config, queries, tenant_id="default", enti
             f.write(f"- **Observations:**\n  - {res['observations']}\n\n")
 
 if __name__ == "__main__":
-    queries = [
-        "What is the security deposit amount according to the contract?",
-        "Explain the procedure for breach of contract.",
-        "What is the penalty for late performance bank guarantee?"
-    ]
-    
-    # 1. Baseline Semantic
+    if not check_table_exists():
+        print("[ERROR] No data in DB. Run: python scripts/ingest_data.py first.")
+        sys.exit(1)
+
+    # Load queries from golden dataset (exclude adversarial for experiment runs)
+    all_queries    = load_queries_from_dataset(exclude_sources=["adversarial"])
+    breaking_query = load_queries_from_dataset(sources=["adversarial"])
+
+    print(f"[INFO] Loaded {len(all_queries)} domain queries and {len(breaking_query)} adversarial queries.")
+
+    # Exp 05: Full golden dataset — vector baseline (all sources)
     run_experiment(
-        exp_name="exp_02_semantic_baseline",
-        dataset="GCC (Semantic Strategy)",
+        exp_name="exp_05_vector_golden_dataset",
+        dataset_label="Golden Dataset (all sources, 30+ queries)",
         config={"top_k": 5, "final_k": 3},
-        queries=queries,
-        tenant_id="semantic_strategy"
+        queries=all_queries,
+        tenant_id=TENANT_ID,
+        search_type="vector"
     )
-    
-    # 2. Hybrid Search Test
+
+    # Exp 06: Full golden dataset — hybrid search
     run_experiment(
-        exp_name="exp_03_hybrid_search",
-        dataset="GCC (Semantic Strategy)",
+        exp_name="exp_06_hybrid_golden_dataset",
+        dataset_label="Golden Dataset (all sources, 30+ queries)",
         config={"top_k": 5, "final_k": 3},
-        queries=queries,
-        tenant_id="semantic_strategy",
+        queries=all_queries,
+        tenant_id=TENANT_ID,
         search_type="hybrid"
     )
 
-    # 3. Breaking Experiment: Cross-Entity Confusion
-    # Asking about 'DMRC' specifically while we only have 'GCC'
-    breaking_queries = ["Does the DMRC agreement specify a different bank guarantee period?"]
+    # Exp 07: Breaking — adversarial out-of-scope queries
     run_experiment(
-        exp_name="exp_04_breaking_entity_confusion",
-        dataset="GCC Only",
+        exp_name="exp_07_breaking_adversarial_oob",
+        dataset_label="Adversarial Out-of-Scope (golden dataset)",
         config={"top_k": 5, "final_k": 3},
-        queries=breaking_queries,
-        tenant_id="semantic_strategy"
+        queries=breaking_query,
+        tenant_id=TENANT_ID,
+        search_type="vector"
     )
 

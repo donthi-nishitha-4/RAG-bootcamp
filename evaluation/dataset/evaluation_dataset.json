@@ -30,6 +30,56 @@
     "source": "gcc"
   },
   {
+    "query": "What causes TBM delays in GCC projects?",
+    "expected_answer": "Breakdowns and maintenance issues cause TBM delays.",
+    "contexts": [
+      "TBM breakdown causes delays.",
+      "Claims for delay due to TBM breakdown must be submitted with manufacturer diagnostic reports."
+    ],
+    "category": "multi-hop",
+    "source": "gcc"
+  },
+  {
+    "query": "Which GCC clause handles contractor claims and documentation?",
+    "expected_answer": "Clause 20.1 handles claims and requires documentation.",
+    "contexts": [
+      "Clause 20.1 defines claims procedure.",
+      "It includes documentation rules."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What is the role of the engineer in GCC contract execution?",
+    "expected_answer": "The engineer supervises project execution and ensures contract compliance.",
+    "contexts": [
+      "The engineer will review NCR resolutions related to station cavern fire safety provisions.",
+      "The engineer may instruct design variation for tunnel boring machine alignment before Stage 2 execution."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What is the impact of TBM breakdown on project timeline?",
+    "expected_answer": "TBM breakdown causes delays and requires claim submissions with diagnostic reports.",
+    "contexts": [
+      "Claims for delay due to TBM breakdown must be submitted with manufacturer diagnostic reports.",
+      "The employer may postpone TBM launch if site conditions are deemed unsafe."
+    ],
+    "category": "analytical",
+    "source": "gcc"
+  },
+  {
+    "query": "What are the OHE catenary responsibilities of the contractor during commissioning?",
+    "expected_answer": "The contractor is responsible for maintaining the temporary OHE catenary support system during commissioning.",
+    "contexts": [
+      "The contractor is responsible for maintaining the temporary OHE catenary support system during commissioning.",
+      "The contractor shall prepare a detailed OHE catenary risk assessment before energization."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
     "query": "Which contractor shows highest rejection rate in DMRC data?",
     "expected_answer": "Contractor ABC has highest rejection rate.",
     "contexts": [
@@ -51,7 +101,7 @@
   },
   {
     "query": "Which station has highest number of RFIs?",
-    "expected_answer": "Station A has highest RFIs.",
+    "expected_answer": "Station A has the highest number of RFIs.",
     "contexts": [
       "Station A recorded maximum RFIs.",
       "Other stations have fewer RFIs."
@@ -61,7 +111,7 @@
   },
   {
     "query": "What are common NCR defects in DMRC reports?",
-    "expected_answer": "Welding and alignment defects are common.",
+    "expected_answer": "Welding misalignment and joint failure are common NCR defects.",
     "contexts": [
       "NCR reports frequently mention welding issues.",
       "Alignment problems are also common."
@@ -71,7 +121,7 @@
   },
   {
     "query": "Which contractor shows both high rejection and low closure rate?",
-    "expected_answer": "Contractor ABC shows poor performance.",
+    "expected_answer": "Contractor ABC shows poor performance with high rejection and low closure rate.",
     "contexts": [
       "ABC has high rejection rates.",
       "ABC closure rate is below 50%."
@@ -80,48 +130,8 @@
     "source": "dmrc"
   },
   {
-    "query": "What is total revenue reported in enterprise dataset?",
-    "expected_answer": "Revenue is $12.4 billion.",
-    "contexts": [
-      "Total revenue for FY2023 is $12.4 billion.",
-      "Revenue increased by 10% YoY."
-    ],
-    "category": "factual",
-    "source": "kaggle"
-  },
-  {
-    "query": "Which segment contributes highest revenue?",
-    "expected_answer": "Cloud services segment.",
-    "contexts": [
-      "Cloud services dominate revenue share.",
-      "Other segments contribute less."
-    ],
-    "category": "analytical",
-    "source": "kaggle"
-  },
-  {
-    "query": "Which region shows highest growth but declining trend?",
-    "expected_answer": "Europe shows high revenue but declining growth.",
-    "contexts": [
-      "Europe has high revenue share.",
-      "Growth rate is declining in Europe."
-    ],
-    "category": "multi-hop",
-    "source": "kaggle"
-  },
-  {
-    "query": "What are key risks in enterprise report?",
-    "expected_answer": "Supply chain and regulatory risks.",
-    "contexts": [
-      "Supply chain disruption is a major risk.",
-      "Regulatory challenges also noted."
-    ],
-    "category": "summary",
-    "source": "kaggle"
-  },
-  {
     "query": "Identify RFIs open beyond SLA in DMRC system.",
-    "expected_answer": "Several RFIs are delayed beyond SLA.",
+    "expected_answer": "Several RFIs remain open beyond the SLA and are marked as delayed.",
     "contexts": [
       "RFIs remain open beyond SLA.",
       "These are marked as delayed."
@@ -131,7 +141,7 @@
   },
   {
     "query": "Which contractor shows abnormal rejection trend?",
-    "expected_answer": "Contractor ABC shows irregular rejection pattern.",
+    "expected_answer": "Contractor ABC shows an irregular and fluctuating rejection pattern.",
     "contexts": [
       "ABC has fluctuating rejection rate.",
       "Pattern differs from other contractors."
@@ -140,38 +150,8 @@
     "source": "dmrc"
   },
   {
-    "query": "What causes TBM delays in GCC projects?",
-    "expected_answer": "Breakdowns and maintenance issues.",
-    "contexts": [
-      "TBM breakdown causes delays.",
-      "Maintenance issues require claims."
-    ],
-    "category": "multi-hop",
-    "source": "gcc"
-  },
-  {
-    "query": "Which GCC clause handles contractor claims and documentation?",
-    "expected_answer": "Clause 20.1 handles claims.",
-    "contexts": [
-      "Clause 20.1 defines claims procedure.",
-      "It includes documentation rules."
-    ],
-    "category": "factual",
-    "source": "gcc"
-  },
-  {
-    "query": "What is role of engineer in GCC contract execution?",
-    "expected_answer": "Engineer supervises and ensures compliance.",
-    "contexts": [
-      "Engineer supervises project execution.",
-      "Ensures contract compliance."
-    ],
-    "category": "factual",
-    "source": "gcc"
-  },
-  {
-    "query": "What is common defect type in DMRC welding NCRs?",
-    "expected_answer": "Welding misalignment and joint failure.",
+    "query": "What is a common defect type in DMRC welding NCRs?",
+    "expected_answer": "Welding misalignment and joint failure are the most common defects.",
     "contexts": [
       "Welding defects appear frequently in NCR reports.",
       "Joint alignment issues are common."
@@ -180,8 +160,8 @@
     "source": "dmrc"
   },
   {
-    "query": "Which subsystem has highest NCR escalation?",
-    "expected_answer": "Structural subsystem.",
+    "query": "Which subsystem has highest NCR escalation in DMRC?",
+    "expected_answer": "The structural subsystem generates the most NCRs and escalations.",
     "contexts": [
       "Structural subsystem generates most NCRs.",
       "Other subsystems show fewer issues."
@@ -190,18 +170,68 @@
     "source": "dmrc"
   },
   {
-    "query": "What is impact of TBM breakdown on project timeline?",
-    "expected_answer": "It causes delays and claim submissions.",
+    "query": "What NCR was raised for OHE catenary hanger damage?",
+    "expected_answer": "An NCR was issued for damaged OHE catenary hanger at the platform edge.",
     "contexts": [
-      "TBM breakdown leads to delays.",
-      "Claims must be submitted."
+      "NCR issued for damaged OHE catenary hanger at the platform edge.",
+      "NCR issued for missing insulation on OHE catenary conductor clamps."
     ],
-    "category": "analytical",
-    "source": "gcc"
+    "category": "factual",
+    "source": "dmrc"
   },
   {
-    "query": "What is enterprise RAG dataset used for?",
-    "expected_answer": "Benchmarking RAG systems on reports.",
+    "query": "What does the DPR say about TBM advance progress?",
+    "expected_answer": "DPR reports TBM advance of 32 meters and successful segmental lining installation.",
+    "contexts": [
+      "DPR reports tunnel boring machine advance of 32 meters and successful segmental lining installation.",
+      "DPR documents TBM cutterhead replacement and debris removal from the launch shaft."
+    ],
+    "category": "factual",
+    "source": "dmrc"
+  },
+  {
+    "query": "What is total revenue reported in the enterprise dataset?",
+    "expected_answer": "Total revenue for FY2023 is $12.4 billion.",
+    "contexts": [
+      "Total revenue for FY2023 is $12.4 billion.",
+      "Revenue increased by 10% YoY."
+    ],
+    "category": "factual",
+    "source": "kaggle"
+  },
+  {
+    "query": "Which segment contributes highest revenue in the enterprise dataset?",
+    "expected_answer": "The cloud services segment contributes the highest revenue.",
+    "contexts": [
+      "Cloud services dominate revenue share.",
+      "Other segments contribute less."
+    ],
+    "category": "analytical",
+    "source": "kaggle"
+  },
+  {
+    "query": "Which region shows highest growth but declining trend?",
+    "expected_answer": "Europe shows high revenue but a declining growth rate.",
+    "contexts": [
+      "Europe has high revenue share.",
+      "Growth rate is declining in Europe."
+    ],
+    "category": "multi-hop",
+    "source": "kaggle"
+  },
+  {
+    "query": "What are key risks in the enterprise report?",
+    "expected_answer": "Supply chain disruption and regulatory challenges are the key risks.",
+    "contexts": [
+      "Supply chain disruption is a major risk.",
+      "Regulatory challenges also noted."
+    ],
+    "category": "summary",
+    "source": "kaggle"
+  },
+  {
+    "query": "What is the enterprise RAG dataset used for?",
+    "expected_answer": "The Kaggle enterprise dataset is used for benchmarking RAG systems on business reports.",
     "contexts": [
       "Kaggle dataset contains enterprise reports.",
       "Used for RAG benchmarking."
@@ -210,21 +240,108 @@
     "source": "kaggle"
   },
   {
-    "query": "What is unrelated question about physics?",
+    "query": "What is the YoY revenue growth rate in the enterprise dataset?",
+    "expected_answer": "Revenue increased by 10% year-over-year.",
+    "contexts": [
+      "Total revenue for FY2023 is $12.4 billion.",
+      "Revenue increased by 10% YoY."
+    ],
+    "category": "factual",
+    "source": "kaggle"
+  },
+  {
+    "query": "What is an unrelated question about quantum physics?",
     "expected_answer": "Not found in context",
     "contexts": [
-      "Dataset contains only enterprise and contract data."
+      "Dataset contains only enterprise, DMRC, and contract data. No physics content."
     ],
     "category": "out_of_scope",
     "source": "adversarial"
   },
   {
-    "query": "Who is CEO of Google?",
+    "query": "Who is the CEO of Google?",
     "expected_answer": "Not found in context",
     "contexts": [
-      "No corporate leadership data available."
+      "No corporate leadership data available in the dataset."
     ],
     "category": "out_of_scope",
     "source": "adversarial"
+  },
+  {
+    "query": "What is the capital of France?",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "Dataset contains only infrastructure project and contract documents. No geography data."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "Generate a Python script for sorting a list.",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "Dataset contains only enterprise, DMRC, and GCC contract documents. No programming content."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "What was the score in last night's cricket match?",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "No sports data available in the dataset."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "Does DMRC comply with FIDIC Red Book or Yellow Book?",
+    "expected_answer": "DMRC synthetic dataset references FIDIC as source. Specific book version not distinguishable from context.",
+    "contexts": [
+      "DMRC synthetic data uses FIDIC as a source standard.",
+      "GCC and DMRC documents reference FIDIC but do not specify Red or Yellow Book version."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "What is the exact bank guarantee percentage per GCC Yellow Book?",
+    "expected_answer": "Not found in context. The documents do not specify Yellow Book-specific guarantee percentages.",
+    "contexts": [
+      "GCC documents mention performance bank guarantee but do not differentiate by FIDIC book version.",
+      "No Yellow Book-specific clause data is present in the retrieved context."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "What is the contractor's warranty period for track slab surfacing?",
+    "expected_answer": "Contractor warranties shall cover 24 months of remedial work on track slab surfacing.",
+    "contexts": [
+      "Contractor warranties shall cover 24 months of remedial work on track slab surfacing.",
+      "The contractor shall replace damaged ballastless track components at their own cost."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What must the contractor submit before OHE catenary energization?",
+    "expected_answer": "The contractor shall prepare a detailed OHE catenary risk assessment before energization.",
+    "contexts": [
+      "The contractor shall prepare a detailed OHE catenary risk assessment before energization.",
+      "The contractor must manage temporary power supply during OHE catenary commissioning."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What action can the engineer take for non-compliant OHE catenary erection?",
+    "expected_answer": "The engineer may issue a stop-work order for non-compliant OHE catenary erection.",
+    "contexts": [
+      "The engineer may issue a stop-work order for non-compliant OHE catenary erection.",
+      "The engineer may require additional inspection of OHE catenary supports after rainfall."
+    ],
+    "category": "factual",
+    "source": "gcc"
   }
 ]
