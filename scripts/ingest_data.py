@@ -63,11 +63,11 @@ def chunk_text(text, strategy="semantic", max_chunk_size=800, overlap=100):
                 final_chunks.append(current_chunk.strip())
         return [c for c in final_chunks if len(c.strip()) > 10]
 
-def run_ingestion(raw_dir="data/raw", processed_dir="data/processed", tenant_id="default", init_db=True):
-    if not os.path.exists(raw_dir): return
-    os.makedirs(processed_dir, exist_ok=True)
-    pdf_files = sorted([f for f in os.listdir(raw_dir) if f.endswith('.pdf')])
-    
+def run_ingestion(data_dir="data", tenant_id="default", init_db=True):
+    if not os.path.exists(data_dir): 
+        print(f"[ERROR] Directory {data_dir} does not exist.")
+        return
+        
     if init_db:
         print("[INFO] Initializing pgvector...")
         init_pgvector()
@@ -75,16 +75,44 @@ def run_ingestion(raw_dir="data/raw", processed_dir="data/processed", tenant_id=
     print("[INFO] Loading embedding model...")
     embed_model = SentenceTransformer("all-MiniLM-L6-v2")
     
-    for pdf_file in pdf_files:
-        pdf_path = os.path.join(raw_dir, pdf_file)
-        base_name = os.path.splitext(pdf_file)[0]
+    # Find all PDF and JSON files recursively in data_dir
+    data_paths = []
+    for root, _, files in os.walk(data_dir):
+        for file in files:
+            if file.endswith('.pdf') or file.endswith('.json'):
+                data_paths.append(os.path.join(root, file))
+                
+    data_paths = sorted(data_paths)
+    print(f"[INFO] Found {len(data_paths)} files to process.")
+    
+    for file_path in data_paths:
+        file_name = os.path.basename(file_path)
+        base_name = os.path.splitext(file_name)[0]
         entity_type = "contract"
         contract_standard = "gcc" if "gcc" in base_name.lower() else "unknown"
         
-        print(f"\n[INFO] Processing {pdf_file} with strategy: {tenant_id}...")
-        raw_text = extract_text_from_pdf(pdf_path)
-        if not raw_text: continue
-        chunks = chunk_text(raw_text, strategy=tenant_id)
+        print(f"\n[INFO] Processing {file_name} with strategy: {tenant_id}...")
+        
+        chunks = []
+        if file_name.endswith('.pdf'):
+            raw_text = extract_text_from_pdf(file_path)
+            if raw_text:
+                chunks = chunk_text(raw_text, strategy=tenant_id)
+        elif file_name.endswith('.json'):
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    json_data = json.load(f)
+                    if isinstance(json_data, list):
+                        for item in json_data:
+                            if "text" in item and item["text"].strip():
+                                # In a real scenario we could also extract 'id', 'source', 'category' into metadata
+                                chunks.append(item["text"].strip())
+            except Exception as e:
+                print(f"[ERROR] JSON load failed for {file_name}: {e}")
+                
+        if not chunks:
+            continue
+            
         print(f"[INFO] Generated {len(chunks)} chunks.")
         
         # Batch Embed & Load
@@ -101,8 +129,8 @@ def run_ingestion(raw_dir="data/raw", processed_dir="data/processed", tenant_id=
             )
             gc.collect() # Force GC
             
-        print(f"[SUCCESS] Ingested {pdf_file}")
-        del raw_text, chunks
+        print(f"[SUCCESS] Ingested {file_name}")
+        del chunks
         gc.collect()
 
 if __name__ == "__main__":
