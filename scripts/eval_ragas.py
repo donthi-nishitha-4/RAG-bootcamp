@@ -108,7 +108,12 @@ def run_ragas_evaluation():
     try:
         from datasets import Dataset as HFDataset
         from ragas import evaluate
-        from ragas.metrics.collections import faithfulness, answer_relevancy, context_precision, context_recall
+        from ragas.metrics import (
+            Faithfulness,
+            AnswerRelevancy,
+            ContextPrecision,
+            ContextRecall,
+        )
     except ImportError as e:
         print(f"[ERROR] RAGAS/datasets not installed: {e}")
         print("Run: pip install ragas datasets")
@@ -129,14 +134,20 @@ def run_ragas_evaluation():
         print("[ERROR] Could not build RAGAS embeddings. Evaluation aborted.")
         return
 
+    # Instantiate metrics AFTER llm and embeddings are built
+    metrics = [
+        Faithfulness(llm=ragas_llm),
+        AnswerRelevancy(llm=ragas_llm, embeddings=ragas_embeddings),
+        ContextPrecision(llm=ragas_llm),
+        ContextRecall(llm=ragas_llm),
+    ]
+
     # Run RAGAS evaluation
     print("\n[INFO] Running RAGAS evaluate()...")
     try:
         result = evaluate(
             dataset=hf_dataset,
-            metrics=[faithfulness, answer_relevancy, context_precision, context_recall],
-            llm=ragas_llm,
-            embeddings=ragas_embeddings,
+            metrics=metrics,
         )
         print("\n[RAGAS SCORES]")
         print(result)

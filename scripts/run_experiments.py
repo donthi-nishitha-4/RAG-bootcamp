@@ -11,9 +11,14 @@ from src.core.pipeline import ask_rag
 from src.evals.metrics import evaluate_generation
 from src.core.retriever import check_table_exists
 
-DATASET_PATH = os.path.join(os.path.dirname(__file__), '..', 'evaluation', 'dataset', 'evaluation_dataset.json')
-RESULTS_DIR  = os.path.join(os.path.dirname(__file__), '..', 'experiments', 'results')
-TENANT_ID    = "default_strategy"
+DATASET_PATH  = os.path.join(os.path.dirname(__file__), '..', 'evaluation', 'dataset', 'evaluation_dataset.json')
+RESULTS_DIR   = os.path.join(os.path.dirname(__file__), '..', 'experiments', 'results')
+TENANT_ID     = "default_strategy"
+MLFLOW_DIR    = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'experiments', 'mlflow_runs'))
+
+# Use file-based MLflow tracking — avoids readonly sqlite error on shared mlflow.db
+os.makedirs(MLFLOW_DIR, exist_ok=True)
+mlflow.set_tracking_uri(f"file://{MLFLOW_DIR}")
 
 
 def load_queries_from_dataset(sources=None, exclude_sources=None):

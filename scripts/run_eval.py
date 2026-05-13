@@ -173,6 +173,6 @@ if __name__ == "__main__":
     vector_results = run_eval(dataset, search_type="vector")
     save_results(vector_results, search_type="vector")
 
-    # Run hybrid search evaluation (uncomment once vector baseline is confirmed working)
-    # hybrid_results = run_eval(dataset, search_type="hybrid")
-    # save_results(hybrid_results, search_type="hybrid")
+    # Run hybrid search evaluation
+    hybrid_results = run_eval(dataset, search_type="hybrid")
+    save_results(hybrid_results, search_type="hybrid")
