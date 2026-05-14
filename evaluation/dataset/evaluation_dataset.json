@@ -343,5 +343,32 @@
     ],
     "category": "factual",
     "source": "gcc"
+  },
+  {
+    "query": "What is the best recipe for baking a chocolate cake?",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "Dataset contains infrastructure and contract documents. No culinary content."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "How many planets are in the solar system?",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "Dataset focuses on civil engineering and enterprise reports. No astronomy data."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "Translate 'Hello' to Japanese.",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "No linguistic or translation data available in the dataset."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial"
   }
 ]
