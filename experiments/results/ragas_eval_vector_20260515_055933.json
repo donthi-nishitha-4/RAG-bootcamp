@@ -6,7 +6,7 @@
     ],
     "response": "The clause that governs contractor claims in GCC is Clause 43.",
     "reference": "Clause 20.1 governs contractor claims.",
-    "faithfulness": NaN,
+    "faithfulness": 0.0,
     "answer_relevancy": 0.9980700560754214
   },
   {
