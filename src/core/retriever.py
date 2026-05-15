@@ -223,7 +223,7 @@ def retrieve_similar(query_embedding, tenant_id="default", entity_type=None, con
         cur.close()
         conn.close()
 
-def retrieve_trgm(query_text, tenant_id="default", k=3):
+def retrieve_trgm(query_text, tenant_id="default", entity_type=None, contract_standard=None, k=3):
     """
     Retrieve similar documents using pg_trgm (text-based).
     """
@@ -232,14 +232,22 @@ def retrieve_trgm(query_text, tenant_id="default", k=3):
         return []
     try:
         cur = conn.cursor()
-        query_sql = """
-            SELECT id, content, similarity(content, %s) as distance
-            FROM rag_documents 
-            WHERE tenant_id = %s AND content %% %s
-            ORDER BY distance DESC 
-            LIMIT %s;
-        """
-        cur.execute(query_sql, (query_text, tenant_id, query_text, k))
+        
+        query_sql = "SELECT id, content, similarity(content, %s) as distance FROM rag_documents WHERE tenant_id = %s AND content %% %s"
+        params = [query_text, tenant_id, query_text]
+        
+        if entity_type:
+            query_sql += " AND entity_type = %s"
+            params.append(entity_type)
+            
+        if contract_standard:
+            query_sql += " AND contract_standard = %s"
+            params.append(contract_standard)
+            
+        query_sql += " ORDER BY distance DESC LIMIT %s;"
+        params.append(k)
+        
+        cur.execute(query_sql, tuple(params))
         return cur.fetchall()
     except Exception as e:
         print(f"[ERROR] Trgm retrieval failed: {e}")
@@ -248,26 +256,30 @@ def retrieve_trgm(query_text, tenant_id="default", k=3):
         cur.close()
         conn.close()
 
-def retrieve_hybrid(query_text, query_embedding, tenant_id="default", k=5):
+def retrieve_hybrid(query_text, query_embedding, tenant_id="default", entity_type=None, contract_standard=None, k=5, rrf_k=60):
     """
-    Simple Hybrid Search: Combine Vector and Trigram results.
+    Hybrid Search: Combine Vector and Trigram results using Reciprocal Rank Fusion (RRF).
     """
-    vec_results = retrieve_similar(query_embedding, tenant_id, k=k)
-    trgm_results = retrieve_trgm(query_text, tenant_id, k=k)
+    vec_results = retrieve_similar(query_embedding, tenant_id, entity_type, contract_standard, k=k)
+    trgm_results = retrieve_trgm(query_text, tenant_id, entity_type, contract_standard, k=k)
     
-    # Combine results by ID
     combined = {}
-    for r in vec_results:
-        combined[r[0]] = {"content": r[1], "vec_score": r[2], "trgm_score": 0}
-    for r in trgm_results:
-        if r[0] in combined:
-            combined[r[0]]["trgm_score"] = r[2]
-        else:
-            combined[r[0]] = {"content": r[1], "vec_score": 1.0, "trgm_score": r[2]} # 1.0 is max distance
-            
-    # Simple RRF-like sorting (just adding scores for now)
-    sorted_res = sorted(combined.items(), key=lambda x: (1-x[1]["trgm_score"]) + x[1]["vec_score"])
-    return [(id, data["content"], 0.0) for id, data in sorted_res[:k]]
+    
+    # Rank vectors
+    for rank, (doc_id, content, distance) in enumerate(vec_results):
+        if doc_id not in combined:
+            combined[doc_id] = {"content": content, "rrf_score": 0}
+        combined[doc_id]["rrf_score"] += 1.0 / (rrf_k + rank + 1)
+        
+    # Rank trgm
+    for rank, (doc_id, content, similarity) in enumerate(trgm_results):
+        if doc_id not in combined:
+            combined[doc_id] = {"content": content, "rrf_score": 0}
+        combined[doc_id]["rrf_score"] += 1.0 / (rrf_k + rank + 1)
+        
+    # Sort by descending RRF score
+    sorted_res = sorted(combined.items(), key=lambda x: x[1]["rrf_score"], reverse=True)
+    return [(doc_id, data["content"], data["rrf_score"]) for doc_id, data in sorted_res[:k]]
 
 def retrieve_graph(chunk_id):
     """

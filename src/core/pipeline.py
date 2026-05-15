@@ -3,8 +3,8 @@ from sentence_transformers import SentenceTransformer, CrossEncoder
 from .retriever import retrieve_similar, init_pgvector, retrieve_hybrid
 from .llm import query_llm
 
-TOP_K = 5
-FINAL_K = 3
+TOP_K = 20
+FINAL_K = 5
 
 # ---- SETUP MODELS ----
 try:
@@ -41,7 +41,14 @@ def ask_rag(query, tenant_id="default", entity_type=None, contract_standard=None
         from .retriever import retrieve_similar, retrieve_hybrid
         
         if search_type == "hybrid":
-            results = retrieve_hybrid(query, query_embedding, tenant_id=tenant_id, k=TOP_K)
+            results = retrieve_hybrid(
+                query,
+                query_embedding,
+                tenant_id=tenant_id,
+                entity_type=entity_type,
+                contract_standard=contract_standard,
+                k=TOP_K
+)
         else:
             results = retrieve_similar(
                 query_embedding, 
