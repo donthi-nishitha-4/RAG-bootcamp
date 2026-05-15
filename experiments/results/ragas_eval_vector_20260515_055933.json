@@ -1,0 +1,52 @@
+[
+  {
+    "user_input": "What clause governs contractor claims in GCC?",
+    "retrieved_contexts": [
+      "ur \nshall, for the purpose of this Clause, still be deemed to be persons employed by the Contractor. GCC April 2022 \n \n \n \n87 \n \n \nIf any moneys shall, as a result of any claim or application made under the said Act be \ndirected to be paid by the Railway, such money shall be deemed to be moneys payable to the Railway \nby the Contractor and on failure by the Contractor to repay the Railway any moneys paid by it as \naforesaid within seven days after the same shall have been demanded, the Railways shall be entitled \nto recover the same from Contractor\u2019s bills/Security Deposit or any other dues of Contractor with the \nGovernment of India. 54-A.\nSub-Clause (2) above shall be paid for at the rates \ndetermined under Clause-39 of these Conditions. CLAIMS \n43.(1)  Quarterly Statement of Claims: The Contractor shall prepare and furnish to the Engineer \nonce in every quarter commencing from the month following the month of issue of Letter of \nAcceptance, an account giving full and detailed particulars of all claims for any additional expenses \nto which the Contractor may consider himself entitled to and of all extra or additional works ordered \nby the Engineer which he has executed during the preceding quarter and no claim for payment for \nsuch work will be considered which has not been included in such particulars.\nSub-Clause (2) \nabove shall be paid for at the rates determined under Clause-39 of these Conditions. CLAIMS \n43.(1)  Quarterly Statement of Claims: The Contractor shall prepare and furnish to the \nEngineer once in every quarter commencing from the month following the month of issue of \nLetter of Acceptance, an account giving full and detailed particulars of all claims for any \nadditional expenses to which the Contractor may consider himself entitled to and of all extra or \nadditional works ordered by the Engineer which he has executed during the preceding month \nquarter and no claim for payment for such work will be considered which has not been \nincluded in such particulars."
+    ],
+    "response": "The clause that governs contractor claims in GCC is Clause 43.",
+    "reference": "Clause 20.1 governs contractor claims.",
+    "faithfulness": NaN,
+    "answer_relevancy": 0.9980700560754214
+  },
+  {
+    "user_input": "What happens if disputes are not resolved amicably in GCC contracts?",
+    "retrieved_contexts": [
+      "tions of the \ncontract. This time limit shall be extendable subject to the Parties mutual agreement. GCC April 2022 \n \n \n \n97 \n \n63.2.7   The DAB decision shall not be binding on both the Parties. In case any party is not satisfied \nby the decision of DAB, then the aggrieved party may approach Arbitral Tribunal for arbitration \nproceedings. 63.2.8   No dispute shall be referred to Arbitral Tribunal unless the same has been referred to DAB \nfor adjudication. However, in case DAB is not formed due to any reason, the disputes can be directly \nreferred to Arbitral Tribunal to adjudicate the dispute.\nspecifically excluded from the purview of \nthe Arbitration Clause. 64.(1) : Demand for Arbitration: GCC July 2020 \n \n86 \n \n64.(1)(i): In the event of any dispute or difference between the parties hereto as to the \nconstruction or operation of this contract, or the respective rights and liabilities of the parties \non any matter in question, dispute or difference on any account or as to the withholding by the \nRailway of any certificate to which the Contractor may claim to be entitled to, or if the \nRailway fails to make a decision within 120 days, then and in any such case, but except in any \nof the \u201cexcepted matters\u201d referred to in Clause 63.1 of these Conditions, the Contractor, after \n120 days but within 180 days of his presenting his final claim on disputed matters shall \ndemand in writing that the dispute or difference be referred to arbitration.\no reach an amicable settlement in an independent and \nimpartial manner within the terms of contract. If the parties reach agreement on a settlement of the dispute, they shall draw up and sign a written \nsettlement agreement duly signed by DFCCIL, Contractor and conciliator(s). When the parties sign \nthe settlement agreement, it shall be final and binding on the parties. The parties shall not initiate, during the conciliation proceedings, any arbitral or judicial proceedings \nin respect of a dispute that is the subject matter of the conciliation proceedings. The conciliation proceedings shall be terminated as per Section 76 of \u2018The Arbitration and \nConciliation Act, 1996."
+    ],
+    "response": "If disputes are not resolved amicably in GCC contracts, the parties may approach the Arbitral Tribunal for arbitration proceedings, as per Clause 63.2.7. However, the DAB decision shall not be binding on both the Parties, and the dispute must first be referred to the DAB for adjudication, unless DAB is not formed due to any reason, in which case the disputes can be directly referred to the Arbitral Tribunal.",
+    "reference": "They are referred to arbitration.",
+    "faithfulness": 1.0,
+    "answer_relevancy": 0.9965729783666397
+  },
+  {
+    "user_input": "Which contractor shows highest rejection rate in DMRC data?",
+    "retrieved_contexts": [
+      "contractor\u2019s authorized engineer in accordance with the rules prescribed for the purpose by \nDFCCIL. The quantities for items the unit of which in the accepted Schedule of Rates is 100 or \n1000 shall be calculated to the nearest whole number, any fraction below half being dropped and \nhalf above being taken as one; for items the unit of which in the accepted Schedule of Rates is \nsingle, the quantity shall be calculated to two places of decimals. Such measurements will be \ntaken of the works in progress from time to time. The date and time on which \u2018on account or final\u2019 \nmeasurements are to be made shall be communicated to the Engineer.\nte of determination of rates as aforesaid according to the rates as shall be fixed by the \nEngineer. However, if the Contractor is not satisfied with the decision of the Engineer in this respect, he \nmay appeal to the CGM within 30 days of getting the decision of the Engineer, supported by analysis of \nthe rates claimed. The CGM\u2019s decision after hearing both the parties in the matter would be final and \nbinding on the Contractor and the DFCCIL. 40. (1) Handing over of works: - The Contractor shall be bound to hand over the works executed under the \ncontract to the DFCCIL complete in all respects to the satisfaction of the Engineer.\nic objections to test check of any recorded \nmeasurements within 7 days of date of such test checks. Any re-test check done by the \nconcerned DFCCIL\u2019s Authority in the presence of the Contractor or in his absence after due \nnotice, given to him in consequent of objections made by the Contractor shall be final and \nbinding on the Contractor and no claim whatsoever shall thereafter be entertained regarding \nthe accuracy and classification of the measurements. (ii) \nIf an objection raised by the Contractor is found by the Engineer to be incorrect, the \nContractor shall be liable to pay the actual expenses incurred in measurements. CGM/DFCCIL/NOIDA UNIT/Interior Fitout works for DFCCIL C. O."
+    ],
+    "response": "I cannot answer this based on the provided context.",
+    "reference": "Contractor ABC has highest rejection rate.",
+    "faithfulness": 0.0,
+    "answer_relevancy": 0.0
+  },
+  {
+    "user_input": "What are common NCR defects in DMRC reports?",
+    "retrieved_contexts": [
+      "NCR issued for incomplete TBM shield locking mechanism documentation.\nNCR issued for incorrect TBM slurry disposal route signage.\nNCR issued for missing warning signage during OHE catenary maintenance."
+    ],
+    "response": "I cannot answer this based on the provided context.",
+    "reference": "Welding misalignment and joint failure are common NCR defects.",
+    "faithfulness": 0.5,
+    "answer_relevancy": 0.0
+  },
+  {
+    "user_input": "Which segment contributes highest revenue in the enterprise dataset?",
+    "retrieved_contexts": [
+      "Which of the companies had the lowest total revenue in EUR at the end of the period listed in annual report: \"Atreca, Inc.\", \"Poste Italiane\", \"Datalogic\", \"Duni Group\", \"Incyte Corporation\"? If data for the company is not available, exclude it from the comparison. If only one company is left, return this company.\nWhich of the companies had the lowest total revenue in EUR at the end of the period listed in annual report: \"Atreca, Inc.\", \"Poste Italiane\", \"Datalogic\", \"NuCana plc\", \"RWE AG\"? If data for the company is not available, exclude it from the comparison. If only one company is left, return this company.\nWhich of the companies had the lowest net income in EUR at the end of the period listed in annual report: \"Datalogic\", \"NuCana plc\", \"Duni Group\", \"Playtech plc\", \"Atreca, Inc.\"? If data for the company is not available, exclude it from the comparison. If only one company is left, return this company."
+    ],
+    "response": "I cannot answer this based on the provided context.",
+    "reference": "The cloud services segment contributes the highest revenue.",
+    "faithfulness": 0.0,
+    "answer_relevancy": 0.0
+  }
+]

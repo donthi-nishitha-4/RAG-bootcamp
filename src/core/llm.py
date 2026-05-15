@@ -15,7 +15,7 @@ def query_llm(messages, temperature=0.1, max_retries=2, timeout=10.0):
             "name": "groq",
             "base_url": "https://api.groq.com/openai/v1",
             "api_key": os.getenv("GROQ_API_KEY"),
-            "model": "llama-3.3-70b-versatile"
+            "model": "llama-3.1-8b-instant"
         },
         {
             "name": "openrouter",

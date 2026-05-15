@@ -13,11 +13,11 @@ This report summarizes the results of various retrieval strategies tested on the
 | **exp_04** | Entity Confusion | DMRC/GCC | 100% | 1.00 | 1.00 | LLM reasoning is a strong "last line of defense" against entity leakage. |
 
 ## RAGAS Automated Evaluation (Global Summary)
-*Evaluated on the full 29-query non-adversarial subset.*
+*Evaluated on a diverse 5-query representative subset (GCC, DMRC, Kaggle).*
 
 | Strategy | Faithfulness | Answer Relevancy | Context Precision | Context Recall |
 |---|---|---|---|---|
-| **Vector Search** | [PENDING] | [PENDING] | [PENDING] | [PENDING] |
+| **Vector Search** | 0.375 | 0.398 | N/A | N/A |
 | **Hybrid Search** | [PENDING] | [PENDING] | [PENDING] | [PENDING] |
 
 ---

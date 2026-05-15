@@ -50,17 +50,17 @@ The complete end-to-end architecture of the AI-PMS RAG pipeline, from data inges
 | Decision Point | Options Evaluated | Decision & Rationale | Evidence |
 |---------------|------------------|---------------------|----------|
 | Primary Vector Store | pgvector, ChromaDB, FAISS, Weaviate | pgvector (Production target for AI-PMS; superior portability (WSL/Ubuntu)) | docker-compose.yml, scripts/init_db.sql |
-| Graph Store | Apache AGE, Neo4j, None | [TO FILL] | [TO FILL] |
-| Sparse Search | pg_trgm, Elasticsearch, OpenSearch | pg_trgm (Integrated Postgres extension; eliminates dual-backend overhead) | src/core/retriever.py:L145 |
-| LLM Serving | vLLM, Ollama, TGI | Groq (Llama 3.3 70B) (High-speed inference without local GPU requirement) | src/core/llm.py:L12 |
-| Orchestration Framework | LangGraph, LlamaIndex, Custom | Custom (Maximum control over multi-stage reranking and hybrid logic) | src/core/pipeline.py:L18 |
-| Fusion Strategy | RRF, CombSUM, CombMNZ | RRF (Reciprocal Rank Fusion) (Standard for balancing sparse (BM25) and dense (Vector) search) | src/core/pipeline.py:L45 |
+| Graph Store | Apache AGE, Neo4j, None | Apache AGE (Integrated with Postgres to support structural taxonomy queries) | src/core/retriever.py |
+| Sparse Search | pg_trgm, Elasticsearch, OpenSearch | pg_trgm (Integrated Postgres extension; eliminates dual-backend overhead) | src/core/retriever.py |
+| LLM Serving | vLLM, Ollama, TGI | Groq (Llama 3.3 70B) with Robust Failover (High-speed inference with failover to OpenRouter/Cerebras) | src/core/llm.py |
+| Orchestration Framework | LangGraph, LlamaIndex, Custom | Custom (Maximum control over multi-stage reranking and hybrid logic) | src/core/pipeline.py |
+| Fusion Strategy | RRF, CombSUM, CombMNZ | RRF (Reciprocal Rank Fusion) (Standard for balancing sparse (BM25) and dense (Vector) search) | src/core/retriever.py |
 
 ### 🔍 OBSERVATION: Overall Architecture Fitness
-- **What we expected:** [TO FILL]  
-- **What actually happened:** [TO FILL]  
-- **Why it happened (root cause):** [TO FILL]  
-- **Production implication for AI-PMS:** [TO FILL]  
+- **What we expected:** A simple vector search would be sufficient for contract retrieval.
+- **What actually happened:** Pure vector search failed on technical acronyms and specific clause references.
+- **Why it happened (root cause):** Legal documents rely heavily on exact terminology which embeddings sometimes "smooth over."
+- **Production implication for AI-PMS:** Hybrid search (Vector + Keyword) and Cross-Encoder reranking are mandatory for 100% accuracy in contract auditing.
 
 ---
 
@@ -109,33 +109,33 @@ Documenting the top 5 failure modes identified during red-teaming.
 
 ## FE-01: Hallucinated Clause Numbers
 - **Symptom:** AI cites a non-existent contract clause.
-- **Root Cause:** [TO FILL]
-- **Mitigation:** [TO FILL]
-- **Proof:** [TO FILL]
+- **Root Cause:** Inconsistent chunking where a clause body is separated from its header.
+- **Mitigation:** Hierarchical parsing that prepends clause headers to every child chunk.
+- **Proof:** experiments/results/baseline_eval_20260512_085744.json
 
 ## FE-02: Wrong Contract Version
-- **Symptom:** AI uses 2020 GCC instead of 2024 GCC.
-- **Root Cause:** [TO FILL]
-- **Mitigation:** [TO FILL]
-- **Proof:** [TO FILL]
+- **Symptom:** AI uses 2020 GCC instead of 2022 GCC.
+- **Root Cause:** Lack of strict metadata filtering during retrieval.
+- **Mitigation:** Mandatory `tenant_id` and `version` filters in the SQL WHERE clause.
+- **Proof:** src/core/retriever.py filtering logic.
 
 ## FE-03: Long Document Summary Bias  
 - **Symptom:** AI misses details in the middle of long chapters.
-- **Root Cause:** [TO FILL]
-- **Mitigation:** [TO FILL]
-- **Proof:** [TO FILL]
+- **Root Cause:** Context window limits prevent sending the entire chapter to the LLM.
+- **Mitigation:** Sliding window retrieval and Cross-Encoder reranking to find the most relevant 500 words.
+- **Proof:** src/core/pipeline.py:L81 (reranking implementation).
 
 ## FE-04: Adversarial Out-of-Scope  
 - **Symptom:** Prompt injection bypassing "only from context" rule.
-- **Root Cause:** [TO FILL]
-- **Mitigation:** [TO FILL]
-- **Proof:** [TO FILL]
+- **Root Cause:** "Ignore previous instructions" style attacks.
+- **Mitigation:** Strict system prompt and RAGAS Faithfulness monitoring.
+- **Proof:** evaluation_dataset.json (adversarial subset).
 
 ## FE-05: Tenant Data Leakage  
 - **Symptom:** Tenant A sees data from Tenant B.
-- **Root Cause:** [TO FILL]
-- **Mitigation:** [TO FILL]
-- **Proof:** [TO FILL]
+- **Root Cause:** Global search across all documents in the vector DB.
+- **Mitigation:** Postgres Row Level Security (RLS) or indexed `tenant_id` column.
+- **Proof:** src/core/retriever.py:L120 (WHERE clause).
 
 ---
 

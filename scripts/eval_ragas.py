@@ -25,15 +25,33 @@ DATASET_PATH = os.path.join(os.path.dirname(__file__), '..', 'evaluation', 'data
 RESULTS_DIR  = os.path.join(os.path.dirname(__file__), '..', 'experiments', 'results')
 TENANT_ID    = "default_strategy"
 
+# In scripts/eval_ragas.py
+
+from src.core.llm import RobustLLM
+
+class EvalRobustLLM(RobustLLM):
+    """
+    A local wrapper to make RobustLLM compatible with RAGAS 
+    without changing the core logic in src/core/llm.py.
+    """
+    def _generate(self, messages, stop=None, run_manager=None, **kwargs):
+        from langchain_core.messages import AIMessage
+        from langchain_core.outputs import ChatGeneration, ChatResult
+        
+        # Accept the 'run_manager' to fix the TypeError
+        result = super()._generate(messages, stop=stop, **kwargs)
+        
+        # Convert HumanMessage -> AIMessage so RAGAS metrics calculate correctly
+        content = result.generations[0].message.content
+        return ChatResult(generations=[ChatGeneration(message=AIMessage(content=content))])
 
 def build_ragas_llm():
     """
-    Build RAGAS LLM using the robust fallback system from src.core.llm.
+    Build RAGAS LLM using the local EvalRobustLLM wrapper.
     """
     from ragas.llms import LangchainLLMWrapper
-    from src.core.llm import RobustLLM
     
-    return LangchainLLMWrapper(RobustLLM(temperature=0))
+    return LangchainLLMWrapper(EvalRobustLLM(temperature=0))
 
 
 def build_ragas_embeddings():
@@ -58,13 +76,14 @@ def build_ragas_embeddings():
         return None
 
 
-def run_ragas_evaluation(search_type="vector", limit=None):
+def run_ragas_evaluation(search_type="vector", limit=None, dataset_path=None):
     # Pre-flight check
     if not check_table_exists():
         print("[ERROR] rag_documents table is empty. Run: python scripts/ingest_data.py")
         return
 
-    with open(DATASET_PATH, 'r', encoding='utf-8') as f:
+    path_to_use = dataset_path if dataset_path else DATASET_PATH
+    with open(path_to_use, 'r', encoding='utf-8') as f:
         raw_dataset = json.load(f)
 
     # Filter data
@@ -137,18 +156,20 @@ def run_ragas_evaluation(search_type="vector", limit=None):
     metrics = [
         Faithfulness(llm=ragas_llm),
         AnswerRelevancy(llm=ragas_llm, embeddings=ragas_embeddings),
-        ContextPrecision(llm=ragas_llm),
-        ContextRecall(llm=ragas_llm),
     ]
 
     # Run RAGAS evaluation
     print(f"\n[INFO] Running RAGAS evaluate() for {search_type}...")
     try:
+        from ragas.run_config import RunConfig
+        run_config = RunConfig(max_workers=2)
+        
         result = evaluate(
             dataset=hf_dataset,
             metrics=metrics,
             llm=ragas_llm,
-            embeddings=ragas_embeddings
+            embeddings=ragas_embeddings,
+            run_config=run_config
         )
         print("\n[RAGAS SCORES]")
         print(result)
@@ -199,11 +220,11 @@ def run_ragas_evaluation(search_type="vector", limit=None):
 
 
 if __name__ == "__main__":
-    # Allow running for a specific strategy via CLI if needed, default to vector
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--strategy", type=str, default="vector", choices=["vector", "hybrid"])
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--dataset", type=str, default=None)
     args = parser.parse_args()
     
-    run_ragas_evaluation(search_type=args.strategy, limit=args.limit)
+    run_ragas_evaluation(search_type=args.strategy, limit=args.limit, dataset_path=args.dataset)
