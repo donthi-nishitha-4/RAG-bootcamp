@@ -47,7 +47,17 @@ def chunk_text(text, strategy="semantic", max_chunk_size=800, overlap=100):
     elif strategy == "paragraph":
         return [p.strip() for p in text.split('\n\n') if len(p.strip()) > 20]
         
-    else: # semantic
+    elif strategy == "ncr":
+        # Split on "NCR No:" or "Non-Conformance"
+        pattern = r'\n(?=(?:NCR\s+(?:No|#)|Non-Conformance)\s+)'
+        return [p.strip() for p in re.split(pattern, text, flags=re.IGNORECASE) if p.strip()]
+        
+    elif strategy == "dpr":
+        # Split on "Date:" or "Daily Progress"
+        pattern = r'\n(?=(?:Date|Daily Progress|DPR)\s*:?\s+)'
+        return [p.strip() for p in re.split(pattern, text, flags=re.IGNORECASE) if p.strip()]
+
+    else: # semantic (contract focused)
         heading_pattern = r'\n(?=(?:CHAPTER|CLAUSE|SECTION|PART|\d+\.\d+)\s+)'
         sections = re.split(heading_pattern, text, flags=re.IGNORECASE)
         final_chunks = []
@@ -101,15 +111,24 @@ def run_ingestion(data_dir="data", tenant_id="default", init_db=True):
         file_name = os.path.basename(file_path)
         base_name = os.path.splitext(file_name)[0]
         entity_type = "contract"
+        if "ncr" in base_name.lower():
+            entity_type = "ncr"
+            strategy_to_use = "ncr"
+        elif "dpr" in base_name.lower():
+            entity_type = "dpr"
+            strategy_to_use = "dpr"
+        else:
+            strategy_to_use = tenant_id
+            
         contract_standard = "gcc" if "gcc" in base_name.lower() else "unknown"
         
-        print(f"\n[INFO] Processing {file_name} with strategy: {tenant_id}...")
+        print(f"\n[INFO] Processing {file_name} as {entity_type} with strategy: {strategy_to_use}...")
         
         chunks = []
         if file_name.endswith('.pdf'):
             raw_text = extract_text_from_pdf(file_path)
             if raw_text:
-                chunks = chunk_text(raw_text, strategy=tenant_id)
+                chunks = chunk_text(raw_text, strategy=strategy_to_use)
         elif file_name.endswith('.json'):
             try:
                 with open(file_path, 'r', encoding='utf-8') as f:
@@ -117,8 +136,9 @@ def run_ingestion(data_dir="data", tenant_id="default", init_db=True):
                     if isinstance(json_data, list):
                         for item in json_data:
                             if "text" in item and item["text"].strip():
-                                # In a real scenario we could also extract 'id', 'source', 'category' into metadata
                                 chunks.append(item["text"].strip())
+                            if "category" in item:
+                                entity_type = item["category"]
             except Exception as e:
                 print(f"[ERROR] JSON load failed for {file_name}: {e}")
                 

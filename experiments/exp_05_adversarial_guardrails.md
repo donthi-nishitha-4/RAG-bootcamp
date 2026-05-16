@@ -1,3 +1,29 @@
+# Experiment 05: Adversarial Guardrails
+**Date:** 2026-05-14
+**Objective:** Verify the system's ability to reject out-of-domain (OOD) queries using the RAG context.
+
+## Setup
+1. **Dataset:** Standard Project Dataset (No culinary/astronomy data).
+2. **Queries:** "What is the best recipe for baking a chocolate cake?", "How many planets are in the solar system?"
+3. **Config:** Top-K=5, Final-K=3 (Vector search).
+
+## Results
+| Query | Result | Faithfulness | Relevance |
+|---|---|---|---|
+| "Chocolate cake recipe" | PASSED (Negative Pass) | 1.0 | 1.0 |
+| "Planets in solar system" | PASSED (Negative Pass) | 1.0 | 1.0 |
+
+## Analysis
+The system correctly refused to answer both OOD queries. Even though the vector search returned irrelevant "adjacent" chunks (like OHE/DPR data), the LLM's strict adherence to the System Prompt ("Answer ONLY using context") prevented hallucination.
+
+## Root Cause Analysis
+The **LLM Reasoning** acts as the final guardrail. The RAG system's job is to provide context; if none is found, the LLM must refuse. In this test, the retriever failed to find relevant chunks, but the LLM successfully filtered the noise.
+
+## Production Implication
+While the LLM is a successful "safe filter," it is inefficient to fetch irrelevant vector chunks for OOD queries. A **Pre-Retrieval Intent Classifier** should be added to identify and reject OOD queries before they hit the database, saving latency and cost.
+
+
+
 # Experiment: exp_05_adversarial_guardrails
 - **Date:** 2026-05-14 15:07:00
 - **Dataset:** Golden Dataset (Adversarial Subset)
