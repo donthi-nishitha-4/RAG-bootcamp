@@ -10,6 +10,18 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.core.retriever import init_pgvector, load_documents
 from sentence_transformers import SentenceTransformer
+from src.core.llm import query_llm
+
+def generate_document_context(raw_text, file_name):
+    text_sample = raw_text[:4000]
+    prompt = [
+        {"role": "system", "content": "You are a helpful assistant. Write a 2-3 sentence summary of the following document to provide context for its individual chunks."},
+        {"role": "user", "content": f"Document Name: {file_name}\n\nDocument Text:\n{text_sample}"}
+    ]
+    summary = query_llm(prompt)
+    if summary and not summary.startswith("[ERROR]"):
+        return summary.strip()
+    return f"Context from document: {file_name}"
 
 def extract_text_from_pdf(pdf_path):
     try:
@@ -113,6 +125,18 @@ def run_ingestion(data_dir="data", tenant_id="default", init_db=True):
         if not chunks:
             continue
             
+        if tenant_id == "contextual":
+            doc_context = ""
+            if file_name.endswith('.pdf'):
+                doc_context = generate_document_context(raw_text, file_name)
+            else:
+                doc_context = generate_document_context(" ".join(chunks)[:4000], file_name)
+                
+            contextual_chunks = []
+            for c in chunks:
+                contextual_chunks.append(f"DOCUMENT CONTEXT: {doc_context}\n\nCHUNK CONTENT: {c}")
+            chunks = contextual_chunks
+
         print(f"[INFO] Generated {len(chunks)} chunks.")
         
         # Batch Embed & Load
@@ -134,4 +158,6 @@ def run_ingestion(data_dir="data", tenant_id="default", init_db=True):
         gc.collect()
 
 if __name__ == "__main__":
-    run_ingestion()
+    import sys
+    tenant = sys.argv[1] if len(sys.argv) > 1 else "default"
+    run_ingestion(tenant_id=tenant)
