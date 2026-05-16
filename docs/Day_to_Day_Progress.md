@@ -1,4 +1,4 @@
-# Preparation & Progress Report as of 15/05/2026
+# Preparation & Progress Report as of 16/05/2026
 
 **Name:** Donthi Nishitha
 **Report Type:** Work Progress / Proof of Learning & Setup
@@ -305,7 +305,28 @@ Ready to perform:
 *   **Documentation:** All deliverables (`Documentation.md`, `COMPARISON_REPORT.md`, `Day_to_Day_Progress.md`) are complete and fully populated.
 *   **Phase 2 Complete: Project is fully stable and ready for final branch commit (`Nishitha`).**
 
+---
 
+## 12. Advanced Retrieval Optimization & Trials to Week 1 Finalization (May 16, 2026)
 
+### Advanced Retrieval Implementation
+*   **Strategy Expansion:** Implemented and benchmarked 3 advanced retrieval strategies: **HyDE** (Hypothetical Document Embeddings), **Multi-Query** (Paraphrasing), and **Contextual Retrieval**.
+*   **Performance Breakthrough:** Discovered that **Contextual Retrieval** (prepending 2-sentence document summaries to every chunk) significantly improved Precision@5 from **0.26 to 0.39** (a 50% jump), outperforming even the best rerankers.
+*   **Reranker Benchmarking:** Conducted a head-to-head comparison between `ms-marco-MiniLM-L-12-v2` and `BAAI/bge-reranker-base`. Recorded both precision and latency (MS-MARCO: 231ms vs. BGE: 542ms).
 
+### Breaking Experiments & Failure Analysis
+*   **Failure Documentation:** Completed all 5 mandatory breaking experiments with full root cause analysis:
+    *   **Exp 06: Tenant Leakage**: Verified metadata isolation at the database layer.
+    *   **Exp 07: Long Document Summary Bias**: Proved Top-K retrieval misses 70% of long document content (Sampling Bias).
+    *   **Exp 08: Wrong Contract Version Confusion**: Documented the risk of mixing Red vs. Yellow book clauses without metadata filters.
+    *   **Exp 04 & 05**: Refined with \"Surprising Finding\" and \"Production Implication\" fields as per mentor review.
 
+### Domain-Specific Engineering
+*   **NCR/DPR Chunkers:** Developed custom regex-based chunking logic for **Non-Conformance Reports (NCR)** and **Daily Progress Reports (DPR)** in `scripts/ingest_data.py`.
+*   **Tiered Retrieval Architecture:** Proposed a dual-layer strategy: fast hybrid retrieval for general queries and high-precision reranking for executive decision-making.
+
+### Updated Current Status (May 16, 2026)
+*   **Mostly Week 1 Complete:** All 9 items from the mid-week review (30+ queries, 5 breaking experiments, reranker comparison, contextual retrieval, and domain chunkers) are 100% finished.
+*   **Metrics Recorded:** Final retrieval comparison matrix saved in `Final_Deliverables/retrieval_comparison.md`.
+*   **Final Commit:** Synchronized all progress to the `Nishitha` branch on GitHub.
+*   **Next Phase:** Ready to proceed with Week 2 tasks (GraphRAG, Agentic RAG, and Production Hardening) on approval.
