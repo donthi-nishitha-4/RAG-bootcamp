@@ -1,32 +1,28 @@
 # AI-PMS RAG Bootcamp — Production Refactor
 
-This repository has been fully refactored into a modular, production-ready RAG system, addressing all deficiencies identified in the **Day 0 Peer Review**.
+This repository has been fully refactored into a modular, production-ready RAG system, addressing all deficiencies identified in the **Day 0 Peer Review** and successfully completing the **Week 1 Bootcamp Deliverables** (Week 2 deliverables are currently in progress).
 
-## 🚀 System Status: PRODUCTION-READY
-- **Architecture**: Modular `src/` and `scripts/` structure.
-- **Vector Store**: PostgreSQL + `pgvector` (Migrated from ChromaDB).
-- **Dataset**: Real-world **Indian Railways GCC** (Contract Clauses).
-- **Environment**: Linux-native (Compatible with Ubuntu, WSL2, and Windows via Docker).
-- **Setup Guide**: [Detailed Multi-Platform Setup Guide](docs/guides/multi_platform_setup.md)
+## 🚀 System Status: ADVANCED EXPERIMENTATION (Nishitha Branch)
+- **Architecture**: Modular `src/core/` and `scripts/` structure.
+- **Vector Store**: PostgreSQL + `pgvector` with `pg_trgm` for hybrid search.
+- **Dataset**: Real-world **Indian Railways GCC**, Synthetic **DMRC Mega Metro** datasets.
+- **Team**: **Nishitha** (WSL/Ubuntu) & **K. Bala Chowdappa Sir** (Windows)
+- **Setup Guide**: [Detailed Pipeline Setup Guide](docs/guides/pipeline_setup.md)
 
 ---
 
-## ✅ Peer Review Fixes (DEF-01 to DEF-10)
+## ✅ Bootcamp Milestones Achieved
 
-| ID | Deficiency | Fix Description |
+| Milestone | Status | Description |
 | :--- | :--- | :--- |
-| **DEF-01** | Evaluation Bug | Refactored `ask_rag()` to return `{context, answer, chunk_ids}` separately. Evaluation now correctly compares answer vs retrieved context. |
-| **DEF-02** | Placeholder Data | Ingested **1,311 chunks** from real Indian Railways GCC PDF documents. |
-| **DEF-03** | Windows Environment | Migrated to **Linux environment** with a dedicated `pgvector` Docker container. |
-| **DEF-04** | Embedding Comparison| Conducted benchmark across `all-MiniLM-L6-v2`, `bge-large`, and `nomic-embed` using real GCC data. |
-| **DEF-05** | No Chunking | Implemented **Hierarchical Chunking** (Headings -> Paragraphs -> Sentences) with 100-char overlap. |
-| **DEF-06** | ChromaDB usage | Fully migrated to **pgvector** for production-standard vector operations. |
-| **DEF-07** | Incomplete Fallback | Expanded fallback chain: **Groq -> OpenRouter -> Cerebras -> Google (Gemini)**. |
-| **DEF-08** | No Exp Logs | Created `experiments/` folder with automated logging via `run_experiments.py`. |
-| **DEF-09** | .gitignore issues | Updated `.gitignore` to protect `data/`, models, and environment secrets. |
-| **DEF-10** | Documentation | README updated with real execution metrics and architectural evidence. |
-| **RAGAS** | Eval Framework | Integrated **Ragas** via `eval_ragas.py`. |
-| **Legacy** | Review Support | Restored neater root wrappers (`eval_baseline.py`, etc.) for reviewer navigation. |
+| **Working Pipeline** | ✅ Done | Modular `src/core/pipeline.py` returning `{context, answer, chunk_ids, sources}`. |
+| **Evaluation Bug Fixed**| ✅ Done | Tautological evaluation resolved. Context and answer are strictly separated. |
+| **UMAP Comparison** | ✅ Done | Benchmarked `all-MiniLM`, `bge-large`, `nomic-embed`. `bge-large` selected for best domain separation. |
+| **Metadata Filtering** | ✅ Done | Enforced `tenant_id`, `entity_type`, and `contract_standard` filtering. Tested via Tenant Leakage experiment. |
+| **Hybrid Search** | ✅ Done | Integrated BM25 via PostgreSQL `pg_trgm` + Vector search + Reciprocal Rank Fusion (RRF). |
+| **Breaking Experiments**| ✅ Done | **5 documented failure modes**: Entity Confusion, Adversarial Guardrails, Tenant Leakage, Long Doc Summary, Wrong Contract. |
+| **RAGAS Evaluation** | ✅ Done | Integrated **Ragas** metrics via `eval_ragas.py`. |
+| **Project Planning** | ✅ Done | Fully mapped deliverables and updated 2-week checklist for strict 2-person execution. |
 
 ---
 
@@ -34,32 +30,32 @@ This repository has been fully refactored into a modular, production-ready RAG s
 ```text
 aipms-rag-bootcamp/
 ├── src/
-│   ├── rag_pipeline.py    # Single source of truth (RAG Logic)
-│   ├── retriever.py       # pgvector & metadata filtering
-│   ├── llm.py             # Resilient fallback chain (4 providers)
-│   └── evaluator.py       # Faithfulness, Relevance, P@K, R@K
+│   └── core/
+│       ├── pipeline.py    # Single source of truth (RAG Logic)
+│       ├── retriever.py   # pgvector, pg_trgm & metadata filtering
+│       └── llm.py         # Resilient fallback chain
 ├── scripts/
-│   ├── ingest_data.py     # Hierarchical chunking & DB loading
 │   ├── run_experiments.py # Automated batch testing & logging
-│   └── compare_embeddings.py # Embedding model benchmarking
+│   └── ...
 ├── data/                  # Raw PDFs and processed JSON chunks
-├── experiments/           # Structured markdown logs for every run
+├── experiments/           # 8 structured markdown logs with root cause analysis
+│   └── results/           # Raw JSON/MD results of evaluations
 ├── docs/                  # Comparison reports and images
+│   ├── docs_for_planning/ # Updated 2-week plans and execution guides
 │   ├── guides/            # Setup and installation guides
-│   ├── reports/           # Completion and status reports
 │   └── images/            # Visualizations (UMAP, etc.)
 └── tests/                 # Unit and integration tests
 ```
 
 ---
 
-## 📊 Core Metrics (Baseline: exp_01)
-*Latest run on GCC Dataset:*
+## 📊 Core Metrics & Results
+*Latest evaluations across varied datasets:*
 
-- **Faithfulness**: 0.92 (Avg)
-- **Relevance**: 0.88 (Avg)
-- **Retrieval Latency**: <50ms (pgvector indexed)
-- **Fallback Success**: 100% (Sequential provider failover)
+- **Faithfulness**: ~1.00 on Baseline / Semantic evaluations (LLM rejects out-of-scope).
+- **Domain Term Separation**: `BAAI/bge-large-en-v1.5` identified as the winner for Metro-rail terms.
+- **Reranker Latency**: Identified significant CPU bottleneck with `bge-reranker-v2-m3` (~8s) vs `ms-marco` (~2.5s).
+- **Adversarial Resilience**: 100% negative pass rate for out-of-scope queries (LLM filter).
 
 ---
 
@@ -72,12 +68,7 @@ docker-compose up -d
 *Note: The database is exposed on port `5433` by default to avoid conflicts with local PostgreSQL instances. You can change this in the `.env` file.*
 
 ### 2. Configure Environment
-Rename `.env.example` to `.env` and fill in your API keys. The database settings are pre-configured for a smooth experience across **Ubuntu, WSL, and Windows**.
-
-### 3. Ingestion
-```bash
-python scripts/ingest_data.py
-```
+Rename `.env.example` to `.env` and fill in your API keys.
 
 ### 3. Run Experiments
 ```bash
@@ -87,11 +78,6 @@ python scripts/run_experiments.py
 ### 4. Advanced Evaluation (RAGAS)
 ```bash
 python eval_ragas.py
-```
-
-### 5. Baseline Evaluation (Legacy)
-```bash
-python eval_baseline.py
 ```
 
 ## 🧠 Graphify Knowledge Graph
@@ -111,12 +97,9 @@ graphify .
 - `AGENTS.md` and `.github/copilot-instructions.md` are included for AI assistant guidance.
 - Commit `graphify-out/GRAPH_REPORT.md` and `graphify-out/graph.json` for team-wide graph navigation.
 
-### Ignore local Graphify artifacts
-`graphify-out/cache/`, `graphify-out/manifest.json`, and `graphify-out/cost.json` are excluded from git.
-
 ---
 
 ## 🛡 Security & Resilience
 - **Secrets**: Managed via `.env`. Never committed to Git.
 - **Failover**: Sequential provider chain with timeouts and retries.
-- **Isolation**: Multi-tenant support via `tenant_id` metadata filtering.
+- **Isolation**: Multi-tenant support via `tenant_id` metadata filtering (Tested via `exp_06_tenant_leakage`).
