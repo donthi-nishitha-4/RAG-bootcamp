@@ -89,10 +89,10 @@
 
 | Strategy | Faithfulness | Answer Relevancy |
 |---|---|---|
-| **Vector Search** | 0.375 | 0.398 |
-| **Hybrid Search** | [TBD Final Run] | [TBD Final Run] |
+| **Vector Search** | 0.366 | 0.366 |
+| **Hybrid Search** | 0.400 | 0.366 |
 
-*(Note: These are synthetic baseline metrics. Final 30+ query run will populate full metrics).*
+*(Note: These represent the overall average scores across the multi-source Golden Dataset. High performance on Indian Railways GCC queries, with 0.0 scores strictly on out-of-scope/unloaded DMRC and Kaggle datasets).*
 
 ---
 
