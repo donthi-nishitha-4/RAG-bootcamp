@@ -1,0 +1,711 @@
+# Enterprise RAG Bootcamp
+
+## DELIVERABLES DOCUMENT
+
+##### Diagrams | Metrics | Observations | Architecture Decisions AI-PMS for DMRC — 2-Week Intensive
+
+|Team Lead|K. Bala Chowdappa (Balu Sir)|
+|---|---|
+|Team Members|Nishitha|
+|Environment|Nishitha (WSL), Balu Sir (Windows)|
+|Bootcamp Dates|[TO FILL]|
+|Document Version|v1.0 (Template) — Update as experiments are completed|
+|Git Repository|[TO FILL]|
+|Data Classification|SYNTHETIC DATA ONLY — DMRC Mega Metro (AI-generated, valid<br>for pipeline testing only)|
+
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+### D1. RAG Pipeline Architecture
+
+The complete end-to-end architecture of the AI-PMS RAG pipeline, from data ingestion through retrieval to
+answer generation.
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+#### D1.1 Architecture Decision Log
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Decision Point|Options Evaluated|Decision & Rationale|Evidence|
+|---|---|---|---|
+|Primary<br>Vector<br>Store|pgvector,<br>ChromaDB,<br>FAISS,<br>Weaviate|[TO FILL]|[TO FILL]|
+|Graph Store|Apache<br>AGE,<br>Neo4j, None|[TO FILL]|[TO FILL]|
+|Sparse Search|pg_trgm,<br>Elasticsearch,<br>OpenSearch|[TO FILL]|[TO FILL]|
+|LLM Serving|vLLM, Ollama, TGI|[TO FILL]|[TO FILL]|
+|Orchestration<br>Framework|LangGraph,<br>LlamaIndex,<br>Custom|[TO FILL]|[TO FILL]|
+|Fusion Strategy|RRF,<br>CombSUM,<br>CombMNZ|[TO FILL]|[TO FILL]|
+
+
+
+OBSERVATION: Overall Architecture Fitness
+
+What we expected: [TO FILL]
+What actually happened: [TO FILL]
+Why it happened (root cause): [TO FILL]
+Production implication for AI-PMS: [TO FILL]
+
+
+### D2. Embedding Model Comparison
+
+Side-by-side UMAP projections showing how each embedding model separates AI-PMS document types in
+vector space.
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+#### D2.1 Quantitative Comparison
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Metric|MiniLM<br>L6-v2|bge-large<br>en-v1.5|nomic<br>embed|Winner|Margin|Notes|
+|---|---|---|---|---|---|---|
+|Embedding<br>Dimension|384|1024|768|N/A|N/A|Affects<br>index size|
+|Index<br>Size<br>(1000<br>chunks)|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Embedding Latency<br>(p95)|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Domain<br>Term<br>Separation|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Contract<br>Clause<br>P@5|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|NCR P@5|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|DPR P@5|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Cross-Entity<br>Confusion Rate|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+
+
+#### D2.2 Domain-Specific Observations
+
+OBSERVATION: Metro-rail domain terms clustering (OHE, TBM, ballastless track)
+
+What we expected: [TO FILL]
+What actually happened: [TO FILL]
+Why it happened (root cause): [TO FILL]
+Production implication for AI-PMS: [TO FILL]
+
+
+OBSERVATION: Cross-entity separation quality (do contracts separate from NCRs?)
+
+What we expected: [TO FILL]
+What actually happened: [TO FILL]
+Why it happened (root cause): [TO FILL]
+Production implication for AI-PMS: [TO FILL]
+
+
+Recommended Model: [TO FILL — with justification based on above data]
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+### D3. Chunking Strategy Comparison
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+#### D3.1 Strategy-by-Document-Type Matrix
+
+
+
+
+
+
+
+
+
+|Strategy|Contract<br>P@5|NCR P@5|DPR P@5|Corresp.<br>P@5|Best For|
+|---|---|---|---|---|---|
+|Fixed 512 tokens|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Recursive character|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Semantic chunking|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Document-structure|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Parent-child|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+
+
+OBSERVATION: Which chunking strategy fails worst for FIDIC contracts, and why?
+
+What we expected: [TO FILL]
+What actually happened: [TO FILL]
+Why it happened (root cause): [TO FILL]
+Production implication for AI-PMS: [TO FILL]
+
+
+OBSERVATION: Does parent-child retrieval consistently outperform flat chunking?
+
+What we expected: [TO FILL]
+What actually happened: [TO FILL]
+Why it happened (root cause): [TO FILL]
+Production implication for AI-PMS: [TO FILL]
+
+
+### D4. Failure Experiment Results
+
+Each experiment is designed to expose a specific RAG failure mode. Document failures more carefully than
+successes.
+
+#### FE-01: Cross-Entity Confusion
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Query Used|[TO FILL]|
+|---|---|
+|Retrieved Chunks (Top<br>5)|[TO FILL]|
+|Generated Answer|[TO FILL]|
+|Expected<br>Correct<br>Answer|[TO FILL]|
+|Failure Mode Observed|[TO FILL]|
+|Root Cause|[TO FILL]|
+|Fix Applied (if any)|[TO FILL]|
+|Result After Fix|[TO FILL]|
+
+#### FE-02: Wrong Contract Version
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Query Used|[TO FILL]|
+|---|---|
+|Retrieved Chunks (Top<br>5)|[TO FILL]|
+|Generated Answer|[TO FILL]|
+|Expected<br>Correct<br>Answer|[TO FILL]|
+|Failure Mode Observed|[TO FILL]|
+|Root Cause|[TO FILL]|
+|Fix Applied (if any)|[TO FILL]|
+|Result After Fix|[TO FILL]|
+
+#### FE-03: Long Document Summary Bias
+
+Query Used [TO FILL]
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+|Retrieved Chunks (Top<br>5)|[TO FILL]|
+|---|---|
+|Generated Answer|[TO FILL]|
+|Expected<br>Correct<br>Answer|[TO FILL]|
+|Failure Mode Observed|[TO FILL]|
+|Root Cause|[TO FILL]|
+|Fix Applied (if any)|[TO FILL]|
+|Result After Fix|[TO FILL]|
+
+#### FE-04: Adversarial Out-of-Scope
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Query Used|[TO FILL]|
+|---|---|
+|Retrieved Chunks (Top<br>5)|[TO FILL]|
+|Generated Answer|[TO FILL]|
+|Expected<br>Correct<br>Answer|[TO FILL]|
+|Failure Mode Observed|[TO FILL]|
+|Root Cause|[TO FILL]|
+|Fix Applied (if any)|[TO FILL]|
+|Result After Fix|[TO FILL]|
+
+#### FE-05: Tenant Data Leakage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Query Used|[TO FILL]|
+|---|---|
+|Retrieved Chunks (Top<br>5)|[TO FILL]|
+|Generated Answer|[TO FILL]|
+|Expected<br>Correct<br>Answer|[TO FILL]|
+|Failure Mode Observed|[TO FILL]|
+|Root Cause|[TO FILL]|
+
+
+|Fix Applied (if any)|[TO FILL]|
+|---|---|
+|Result After Fix|[TO FILL]|
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+### D5. Retrieval Strategy Head-to-Head Comparison
+
+#### D5.1 Hybrid Search Architecture
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+#### D5.2 Consolidated Metrics
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+#### D5.3 Detailed Metrics Table
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Strategy|P@5|P@10|MRR|NDCG<br>@10|Latency<br>p95|LLM<br>Calls|Verdict|
+|---|---|---|---|---|---|---|---|
+|Naive Vector Only|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|1|[TO FILL]|
+|+ Metadata Filter|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|1|[TO FILL]|
+|Hybrid<br>(BM25+Vec+RRF)|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|1|[TO FILL]|
+|Hybrid<br>+<br>Rerank<br>(ms-marco)|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|1|[TO FILL]|
+|Hybrid<br>+<br>Rerank<br>(bge-v2-m3)|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|1|[TO FILL]|
+|HyDE|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|2|[TO FILL]|
+|Multi-Query|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|3–5|[TO FILL]|
+|Contextual<br>Retrieval|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|[TO<br>FILL]|0*|[TO FILL]|
+
+
+
+OBSERVATION: Which strategy gives the best precision-latency trade-off within the 5s NFR?
+
+What we expected: [TO FILL]
+What actually happened: [TO FILL]
+Why it happened (root cause): [TO FILL]
+Production implication for AI-PMS: [TO FILL]
+
+
+OBSERVATION: Does HyDE help or hurt on precise legal terminology queries?
+
+
+What we expected: [TO FILL]
+What actually happened: [TO FILL]
+Why it happened (root cause): [TO FILL]
+Production implication for AI-PMS: [TO FILL]
+
+
+### D6. Agentic RAG & Multi-Hop Retrieval
+
+#### D6.1 LangGraph Architecture
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+#### D6.2 Query Router
+
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+#### D6.3 Multi-Hop Query Trace Log
+
+For each multi-hop query, document the complete retrieval trace:
+
+##### MH-01: "Is the contractor at risk of a time-bar miss on Package CC-07?"
+
+
+
+
+
+
+
+
+
+
+|Step|Tool Called|Query/Params|Result<br>Summary|Agent<br>Decision|
+|---|---|---|---|---|
+|Step 1|[TO FILL]|[TO FILL]|[TO FILL]|[TO<br>FILL]|
+|Step 2|[TO FILL]|[TO FILL]|[TO FILL]|[TO<br>FILL]|
+|Step 3|[TO FILL]|[TO FILL]|[TO FILL]|[TO<br>FILL]|
+|Final<br>Answer|[TO FILL]|[TO FILL]|[TO FILL]|[TO<br>FILL]|
+
+
+##### MH-02: "What NCRs are linked to critical path activities?"
+
+
+
+
+
+
+
+
+
+
+|Step|Tool Called|Query/Params|Result<br>Summary|Agent<br>Decision|
+|---|---|---|---|---|
+|Step 1|[TO FILL]|[TO FILL]|[TO FILL]|[TO<br>FILL]|
+|Step 2|[TO FILL]|[TO FILL]|[TO FILL]|[TO<br>FILL]|
+|Step 3|[TO FILL]|[TO FILL]|[TO FILL]|[TO<br>FILL]|
+|Final<br>Answer|[TO FILL]|[TO FILL]|[TO FILL]|[TO<br>FILL]|
+
+
+##### MH-03: "Comparecivil works progress across all packages this month"
+
+
+
+
+
+|Step|Tool Called|Query/Params|Result<br>Summary|Agent<br>Decision|
+|---|---|---|---|---|
+|Step 1|[TO FILL]|[TO FILL]|[TO FILL]|[TO<br>FILL]|
+|Step 2|[TO FILL]|[TO FILL]|[TO FILL]|[TO<br>FILL]|
+|Step 3|[TO FILL]|[TO FILL]|[TO FILL]|[TO<br>FILL]|
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+#### D6.4 Router Accuracy
+
+
+
+
+
+
+
+
+
+|Query Type|Total<br>Queries|Correct<br>Route|Wrong<br>Route|Accuracy|Common<br>Misroute|
+|---|---|---|---|---|---|
+|Semantic / Conceptual|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Quantitative / SQL|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Relationship / Graph|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Legal / Contract|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Complex / Multi-Hop|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+
+
+OBSERVATION: Does the LLM-based router reliably distinguish SQL vs. vector queries?
+
+What we expected: [TO FILL]
+What actually happened: [TO FILL]
+Why it happened (root cause): [TO FILL]
+Production implication for AI-PMS: [TO FILL]
+
+
+### D7. RAGAS Evaluation Results
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+#### D7.1 Overall Metrics
+
+
+
+
+
+|Metric|Day 2<br>Baseline|Day 10 Final|Target|Met?|Notes|
+|---|---|---|---|---|---|
+|Faithfulness|[TO FILL]|[TO FILL]|> 0.85|[TO FILL]|[TO FILL]|
+|Answer Relevancy|[TO FILL]|[TO FILL]|> 0.80|[TO FILL]|[TO FILL]|
+|Context Precision|[TO FILL]|[TO FILL]|> 0.75|[TO FILL]|[TO FILL]|
+|Context Recall|[TO FILL]|[TO FILL]|> 0.70|[TO FILL]|[TO FILL]|
+
+#### D7.2 Metrics by Query Category
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Category<br>(n=queries)|Faithful-<br>ness|Answer<br>Relevancy|Context<br>Precision|Context<br>Recall|Weakest Area|
+|---|---|---|---|---|---|
+|Contract / Legal (n= )|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Multi-Hop (n= )|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Adversarial<br>/<br>OOS<br>(n= )|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|Metadata-Dependent<br>(n= )|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|General Factoid (n= )|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+
+
+REMINDER: These metrics are on SYNTHETIC data
+All RAGAS scores must be re-evaluated on real STAMP data once available post-DMRC engagement.
+Synthetic data metrics establish pipeline capability, not production accuracy.
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+### D8. Latency Analysis & NFR-04 Compliance
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+#### D8.1 Component-Level Latency
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Component|p50 (ms)|p95 (ms)|p99 (ms)|Budget|Status|
+|---|---|---|---|---|---|
+|Metadata Filtering|[TO FILL]|[TO FILL]|[TO FILL]|50ms|[TO FILL]|
+|Vector<br>Search<br>(pgvector)|[TO FILL]|[TO FILL]|[TO FILL]|300ms|[TO FILL]|
+|BM25 Search (pg_trgm)|[TO FILL]|[TO FILL]|[TO FILL]|200ms|[TO FILL]|
+|RRF Fusion|[TO FILL]|[TO FILL]|[TO FILL]|50ms|[TO FILL]|
+|Cross-Encoder Rerank|[TO FILL]|[TO FILL]|[TO FILL]|500ms|[TO FILL]|
+|LLM Generation (Llama<br>3.1)|[TO FILL]|[TO FILL]|[TO FILL]|3500ms|[TO FILL]|
+|Citation + Audit Log|[TO FILL]|[TO FILL]|[TO FILL]|100ms|[TO FILL]|
+|TOTAL END-TO-END|[TO FILL]|[TO FILL]|[TO FILL]|4700ms|[TO FILL]|
+
+
+OBSERVATION: Which component is the latency bottleneck? What can be optimized?
+
+What we expected: [TO FILL]
+What actually happened: [TO FILL]
+Why it happened (root cause): [TO FILL]
+Production implication for AI-PMS: [TO FILL]
+
+
+### D9. Tenant Isolation & Security Validation
+
+#### D9.1 Cross-Tenant Leakage Test Results
+
+
+
+
+
+
+
+
+
+|#|Test Query|Query As<br>Tenant|Chunks From<br>Wrong<br>Tenant?|Pass/Fail|Notes|
+|---|---|---|---|---|---|
+|1|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|2|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|3|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|4|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|5|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+
+
+Leakage Rate: [TO FILL] / [Total Tests] = [TO FILL]% — Target: 0%
+
+#### D9.2 Fallback Behavior Validation
+
+|#|Out-of-Scope Query|System Response|Hallucinated?|Pass/Fail|
+|---|---|---|---|---|
+|1|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|2|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|3|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|4|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+|5|[TO FILL]|[TO FILL]|[TO FILL]|[TO FILL]|
+
+
+
+Hallucination Rate on OOS Queries: [TO FILL]% — Target: 0%
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+### D10. Structured Experiment Log
+
+Minimum 15 experiment entries required across the bootcamp. Copy this template for each experiment.
+
+|Experiment EXP-00|01|
+|---|---|
+|Date|[TO FILL]|
+|Experimenter|[TO FILL]|
+|Hypothesis|[TO FILL]|
+|Strategy / Config|[TO FILL]|
+|Dataset Used|[TO FILL]|
+|Retrieval Metrics|P@5: [ ] P@10: [ ] MRR: [ ] NDCG@10: [ ]|
+|Answer Metrics|Faithfulness: [ ] Relevancy: [ ] Completeness: [ ]|
+|Latency|p50: [ ]ms p95: [ ]ms p99: [ ]ms|
+|Result (vs. baseline)|[TO FILL]|
+|Surprising Finding|[TO FILL]|
+|Production Implication|[TO FILL]|
+
+
+|Experiment EXP-00|02|
+|---|---|
+|Date|[TO FILL]|
+|Experimenter|[TO FILL]|
+|Hypothesis|[TO FILL]|
+|Strategy / Config|[TO FILL]|
+|Dataset Used|[TO FILL]|
+|Retrieval Metrics|P@5: [ ] P@10: [ ] MRR: [ ] NDCG@10: [ ]|
+|Answer Metrics|Faithfulness: [ ] Relevancy: [ ] Completeness: [ ]|
+|Latency|p50: [ ]ms p95: [ ]ms p99: [ ]ms|
+|Result (vs. baseline)|[TO FILL]|
+|Surprising Finding|[TO FILL]|
+|Production Implication|[TO FILL]|
+
+
+#### Experiment EXP-003
+
+
+|Date|[TO FILL]|
+|---|---|
+|Experimenter|[TO FILL]|
+|Hypothesis|[TO FILL]|
+|Strategy / Config|[TO FILL]|
+|Dataset Used|[TO FILL]|
+|Retrieval Metrics|P@5: [ ] P@10: [ ] MRR: [ ] NDCG@10: [ ]|
+|Answer Metrics|Faithfulness: [ ] Relevancy: [ ] Completeness: [ ]|
+|Latency|p50: [ ]ms p95: [ ]ms p99: [ ]ms|
+|Result (vs. baseline)|[TO FILL]|
+|Surprising Finding|[TO FILL]|
+|Production Implication|[TO FILL]|
+
+
+Kernex Microsystems / TEL — Confidential | Page
+
+
+### D11. Architecture Decision Summary
+
+Evidence-based recommendations for the AI-PMS production RAG pipeline. Every recommendation must cite
+specific experiment IDs.
+
+|Decision|Recommendation|Evidence (Exp IDs)|Trade-offs / Risks|
+|---|---|---|---|
+|Embedding Model|[TO FILL]|[TO FILL]|[TO FILL]|
+|Chunking: Contracts|[TO FILL]|[TO FILL]|[TO FILL]|
+|Chunking: NCRs|[TO FILL]|[TO FILL]|[TO FILL]|
+|Chunking: DPRs|[TO FILL]|[TO FILL]|[TO FILL]|
+|Retrieval Strategy|[TO FILL]|[TO FILL]|[TO FILL]|
+|Reranking Model|[TO FILL]|[TO FILL]|[TO FILL]|
+|Fusion Method|[TO FILL]|[TO FILL]|[TO FILL]|
+|GraphRAG Scope|[TO FILL]|[TO FILL]|[TO FILL]|
+|Query Routing|[TO FILL]|[TO FILL]|[TO FILL]|
+|LLM for Generation|[TO FILL]|[TO FILL]|[TO FILL]|
+
+
+#### D11.1 Open Questions & Deferred Items
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Open Question|Blocked By|When Resolvable|
+|---|---|---|
+|Real data evaluation accuracy|DMRC engagement / STAMP<br>data|Post-pilot kickoff|
+|Domain embedding fine-tuning|Sufficient real corpus|Phase 2 (Tier 1 maturity)|
+|Production load testing|Hardware provisioning + L40S<br>GPUs|Post-GPU procurement|
+|[TO FILL]|[TO FILL]|[TO FILL]|
+|[TO FILL]|[TO FILL]|[TO FILL]|
+
+
+End of Deliverables Document — All [TO FILL] fields must be completed by end of Day 10
+
+

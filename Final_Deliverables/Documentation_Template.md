@@ -9,7 +9,7 @@
 K. Bala Chowdappa, GPREC  
 
 ### Team Members  
-- Uday, Engineer  
+- Balu Sir, Engineer  
 - Nishitha, Engineer  
 
 ### Bootcamp Dates  

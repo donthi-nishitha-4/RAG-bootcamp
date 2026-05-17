@@ -18,7 +18,7 @@ def get_git_info():
     
     mapping = {
         "feature/balu/": "K. Bala Chowdappa",
-        "feature/uday/": "Uday",
+        "feature/balu/": "Balu Sir",
         "feature/nishitha/": "Nishitha",
         "feature/ai/": "AI Agent"
     }

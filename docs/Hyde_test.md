@@ -1,7 +1,7 @@
 Here is a complete summary of everything we accomplished today (16-05-2026) to finalize the "Integrating HyDE and Multi-Query" task:
 
 ### 1. Code Integration & Documentation
-* Verified that the logic for generating hypothetical documents (HyDE) and paraphrased queries (Multi-Query) from dev-uday branch PR #11 was successfully merged.
+* Verified that the logic for generating hypothetical documents (HyDE) and paraphrased queries (Multi-Query) from balu branch PR #11 was successfully merged.
 * Added standard documentation to `scripts/eval_retrievals.py` crediting the original author for their advanced retrieval implementations.
 
 ### 2. Debugging & Fixing the Evaluation Pipeline (The "0.00" Problem)
