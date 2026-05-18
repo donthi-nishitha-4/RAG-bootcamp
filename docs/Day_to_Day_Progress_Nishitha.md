@@ -330,3 +330,44 @@ Ready to perform:
 *   **Metrics Recorded:** Final retrieval comparison matrix saved in `Final_Deliverables/retrieval_comparison.md`.
 *   **Final Commit:** Synchronized all progress to the `Nishitha` branch on GitHub.
 *   **Next Phase:** Ready to proceed with Week 2 tasks (GraphRAG, Agentic RAG, and Production Hardening) on approval.
+
+---
+
+## 12.5. Collaborative Planning & Team Task Redistribution (May 17, 2026)
+
+### Collaborative Roadmap Alignment
+*   **Task Redistribution:** Organized team meetings with colleagues to allocate specialized owners for advanced retrieval and evaluation.
+*   **Branching & Git Strategies:** Documented procedures for merging local development branches (`week2_dev_N`) back into the main pull request branch (`Nishitha`) to prevent merge conflicts.
+*   **Technical Compliance Check:** Ensured that all upcoming experiment logs, code modifications, and fallback scripts contain mandatory "Surprising Finding" and "Production Implication" fields before submission.
+
+---
+
+## 13. Week 2: Specialized Domain Chunkers, Query Routing, LangGraph Agent, Production Hardening & FastAPI Service (May 18, 2026)
+
+
+### Day 6: Dedicated Correspondence Chunker
+*   **Domain Chunker:** Developed `scripts/correspondence_chunker_Nishitha.py`, a custom paragraph-aware correspondence parser.
+*   **Context Preservation:** Automatically extracts metadata headers (Reference, Date, From, To, Subject) from stakeholder letters and permanently prepends them to individual paragraphs.
+*   **Deduplication & Safety:** Cleaned all real credentials to use pseudo names (`Ganga`, `Yamuna`, `Simhadri`) and pseudo company (`Energy Kernel`). Verified using 5 mock transmittals in `data/correspondence/` and wrote `experiments/results/correspondence_chunk_test_Nishitha.md`.
+
+### Day 7: Sequential LLM Query Router
+*   **Router Logic:** Programmed `src/core/query_router_Nishitha.py` using Groq Llama 3.1 as the classification LLM.
+*   **High Availability:** Integrated sequential API failovers (Groq -> OpenRouter -> Cerebras -> Gemini) and local rule-based keyword heuristics to handle offline environments.
+*   **Accuracy:** Achieved **100% routing accuracy** with **936ms average latency** across all construction domains (contracts, NCRs, DPRs, correspondence), logged in `experiments/results/query_router_test_Nishitha.md`.
+
+### Day 8: LangGraph Iterative RAG Agent
+*   **StateGraph Orchestration:** Developed `src/core/agent_Nishitha.py` using official `langgraph.graph` StateGraph.
+*   **Self-Correction Loop:** Nodes traverse `query_analyzer` ➔ `retriever` ➔ `evaluator` ➔ `answer_generator`. If the evaluator detects context insufficiency, the agent reformulates search queries and loops back up to 3 times.
+*   **Failsafe Retrieval:** Built a word-overlap filesystem scanner fallback to search raw transmittals and synthetic JSON assets when the PostgreSQL container is offline, ensuring 100% test resilience. Verified in `experiments/results/agent_test_Nishitha.md`.
+
+### Day 9: Production Hardening & PostgreSQL Security
+*   **Row-Level Security (RLS):** Enabled true PostgreSQL RLS on `rag_documents` and enforced dynamic isolation (`SET LOCAL app.current_tenant_id`). Tested RLS with zero leaks.
+*   **Idempotent Ingestion:** Implemented a SHA-256 content hash UNIQUE constraint on the vector database, preventing duplicate chunks upon re-ingestion.
+*   **Adversarial Fallback:** Built an out-of-scope filter blocking **10 adversarial queries** (Paris capital, cricket rules, USA president, etc.) to return exactly `"Insufficient data to answer this query."` instead of hallucinating.
+*   **Audit Trail:** Logged Layer 4 `AuditEvent` entries to PostgreSQL and a local JSON ledger, and saved the proof in `experiments/results/hardening_test_Nishitha.md`.
+
+### Day 10: FastAPI Integration & Architecture Decision Document
+*   **FastAPI Service Wrapper:** Wrapped the entire agentic RAG pipeline in `src/api_Nishitha.py` exposing `POST /query`.
+*   **10 Live Demo Queries:** Programmed `scripts/test_api_Nishitha.py` to evaluate 10 highly diverse live queries (factoid, multi-hop, contract, adversarial, cross-entity) through TestClient HTTP payload parsing. Passed all 10 checks and generated `experiments/results/api_test_Nishitha.md`.
+*   **Architecture Decision Document (ADD):** Compiled a premium, evidence-based recommendations report in `docs/Architecture_Decision_Document_Nishitha.md` detailing embedding models, chunking matrix, hybrid routing, GraphRAG viability, and NFR-04 latency budgets.
+
