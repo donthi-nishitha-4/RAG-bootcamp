@@ -10,7 +10,7 @@ K. Bala Chowdappa, GPREC
 
 ### Team Members  
 - Balu Sir, Engineer  
-- Nishitha, Engineer  
+- Nishitha, Student Intern  
 
 ### Bootcamp Dates  
 2026-04-20 to 2026-05-02  

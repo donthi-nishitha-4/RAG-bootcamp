@@ -59,28 +59,50 @@ aipms-rag-bootcamp/
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started (WSL2 / Linux)
+
+For detailed, step-by-step instructions for WSL2 and Windows configuration, refer to the [🌍 Multi-Platform Setup Guide](docs/guides/multi_platform_setup.md).
 
 ### 1. Database Setup
+Spin up the PostgreSQL database container with the `pgvector` extension:
 ```bash
 docker-compose up -d
 ```
-*Note: The database is exposed on port `5433` by default to avoid conflicts with local PostgreSQL instances. You can change this in the `.env` file.*
+*Note: The database host port is bound to `5433` by default to avoid conflicts with local PostgreSQL daemons. You can customize this in the `.env` file.*
 
-### 2. Configure Environment
-Rename `.env.example` to `.env` and fill in your API keys.
-
-### 3. Run Experiments
+### 2. Configure Environment Variables
+Copy `.env.example` to `.env` and fill in your details:
 ```bash
+cp .env.example .env
+```
+Key required environment variables:
+- **`GROQ_API_KEY`**: Primary LLM API key (evaluations are done using `llama-3.3-70b-versatile`).
+- **`OPENROUTER_API_KEY`**: Recommended fallback LLM API key (helps prevent rate limits during evaluations).
+- **`DB_HOST`**: Set to `127.0.0.1` when executing python scripts from local terminal (WSL/cmd), or `db` when running inside Docker.
+- **`DB_PORT`**: Set to `5433` to match the PostgreSQL container exposure.
+
+### 3. Setup Virtual Environment & Dependencies
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 4. Populate Database & Run Experiments
+```bash
+# Ingest raw text chunks into pgvector database
+python scripts/ingest_data.py
+
+# Execute the primary experiment comparison suite (Baseline vs Hybrid Search vs Custom failures)
 python scripts/run_experiments.py
 ```
 
-### 4. Advanced Evaluation (RAGAS)
+### 5. Automated Ragas Evaluation
 ```bash
 python eval_ragas.py
 ```
 
-## 🧠 Graphify Knowledge Graph
+---
 Use Graphify to generate an architecture-aware knowledge graph for this repository.
 
 ### Install
