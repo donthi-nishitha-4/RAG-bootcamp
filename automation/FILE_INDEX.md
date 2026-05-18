@@ -10,7 +10,7 @@
 | [automation/QUICK_START_5_STEPS.md](file:///home/ecs/aipms-rag-bootcamp/automation/QUICK_START_5_STEPS.md) | Fast guide for day-to-day submissions | **HIGH** | ALL |
 | [automation/MASTER_SUBMISSION_PROMPT.md](file:///home/ecs/aipms-rag-bootcamp/automation/MASTER_SUBMISSION_PROMPT.md) | Claude prompt for auto-updating docs | **HIGH** | ALL |
 | [automation/BOOTCAMP_AUTOMATION_SYSTEM.md](file:///home/ecs/aipms-rag-bootcamp/automation/BOOTCAMP_AUTOMATION_SYSTEM.md) | Full system rules & role templates | **MEDIUM** | ALL |
-| [automation/EXAMPLE_UDAY_SUBMISSION_DAY3.md](file:///home/ecs/aipms-rag-bootcamp/automation/EXAMPLE_UDAY_SUBMISSION_DAY3.md) | Example submission for EXP-001 | **MEDIUM** | UDAY |
+| [automation/EXAMPLE_BALU_SUBMISSION_DAY3.md](file:///home/ecs/aipms-rag-bootcamp/automation/EXAMPLE_BALU_SUBMISSION_DAY3.md) | Example submission for EXP-001 | **MEDIUM** | BALU |
 | [automation/TEAM_QUICK_REFERENCE.md](file:///home/ecs/aipms-rag-bootcamp/automation/TEAM_QUICK_REFERENCE.md) | 1-page summary for team members | **MEDIUM** | ALL |
 
 ---
@@ -22,7 +22,7 @@
 | Role | Read This First | Then This | Then This |
 |------|---|---|---|
 | Balu | README.md | BOOTCAMP_AUTOMATION_SYSTEM.md (ROLE #1) | MASTER_SUBMISSION_PROMPT.md |
-| Uday | QUICK_START_5_STEPS.md | EXAMPLE_UDAY_SUBMISSION_DAY3.md | MASTER_SUBMISSION_PROMPT.md |
+| Balu Sir | QUICK_START_5_STEPS.md | EXAMPLE_BALU_SUBMISSION_DAY3.md | MASTER_SUBMISSION_PROMPT.md |
 | Nishitha | QUICK_START_5_STEPS.md | BOOTCAMP_AUTOMATION_SYSTEM.md (ROLE #3) | MASTER_SUBMISSION_PROMPT.md |
 | AI Agent | MASTER_SUBMISSION_PROMPT.md | CI/CD integration | — |
 
@@ -39,7 +39,7 @@
 ├── automation/
 │   ├── FILE_INDEX.md                      <- This file
 │   ├── QUICK_START_5_STEPS.md             <- Fast process (Start here!)
-│   ├── EXAMPLE_UDAY_SUBMISSION_DAY3.md    <- Real example
+│   ├── EXAMPLE_BALU_SUBMISSION_DAY3.md    <- Real example
 │   ├── BOOTCAMP_AUTOMATION_SYSTEM.md      <- Full role templates
 │   ├── MASTER_SUBMISSION_PROMPT.md        <- Claude prompt (Copy this!)
 │   └── TEAM_QUICK_REFERENCE.md            <- 1-page cheat sheet

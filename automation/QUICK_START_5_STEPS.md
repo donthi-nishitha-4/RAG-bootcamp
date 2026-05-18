@@ -12,7 +12,7 @@ YOUR WORK → YAML → CLAUDE PROMPT → UPDATED DOC → GIT COMMIT → DONE
 
 ## 📝 STEP 1: DO YOUR WORK
 
-### If you're Uday (Engineer)
+### If you're Balu Sir (Engineer)
 ```
 • Run EXP-001 (embedding comparison)
 • Measure metrics: P@5, latency, index size, etc.
@@ -42,7 +42,7 @@ YOUR WORK → YAML → CLAUDE PROMPT → UPDATED DOC → GIT COMMIT → DONE
 git checkout -b feature/[yourname]/[description]
 
 # Examples:
-# feature/uday/exp-001-embedding-comparison
+# feature/balu/exp-001-embedding-comparison
 # feature/balu/architecture-decisions-day-10
 # feature/nishitha/tenant-isolation-validation
 ```
@@ -54,7 +54,7 @@ git checkout -b feature/[yourname]/[description]
 Copy this template, fill in YOUR data:
 
 ```yaml
-branch_name: "feature/uday/exp-001-embedding-comparison"
+branch_name: "feature/balu/exp-001-embedding-comparison"
 date_submitted: "2026-05-03"
 
 updates:
@@ -96,11 +96,11 @@ Go to Claude chat, copy-paste this:
 Use the MASTER_SUBMISSION_PROMPT.md file and process my submission:
 
 **Branch Name:**
-feature/uday/exp-001-embedding-comparison
+feature/balu/exp-001-embedding-comparison
 
 **YAML Updates:**
 ```yaml
-branch_name: "feature/uday/exp-001-embedding-comparison"
+branch_name: "feature/balu/exp-001-embedding-comparison"
 date_submitted: "2026-05-03"
 
 updates:
@@ -122,7 +122,7 @@ updates:
 ```
 Auto-update Final_Deliverables/Documentation.md with these updates:
 
-Branch: feature/uday/exp-001-embedding
+Branch: feature/balu/exp-001-embedding
 Date: 2026-05-03
 
 Field: "Contract Clause P@5 — bge-large-en-v1.5"
@@ -155,7 +155,7 @@ Review it. If good:
 # Commit
 git add Final_Deliverables/Documentation.md
 git commit -m "EXP-001: Embedding metrics (D2.1, D8.1, D10)"
-git push origin feature/uday/exp-001-embedding-comparison
+git push origin feature/balu/exp-001-embedding-comparison
 
 # Done! ✅
 ```
@@ -164,7 +164,7 @@ git push origin feature/uday/exp-001-embedding-comparison
 
 # 🔥 REAL EXAMPLE: START TO FINISH
 
-## Uday's Submission (Day 3)
+## Balu Sir's Submission (Day 3)
 
 ### 1. Do Work
 ```
@@ -175,12 +175,12 @@ git push origin feature/uday/exp-001-embedding-comparison
 
 ### 2. Create Branch
 ```bash
-git checkout -b feature/uday/exp-001-embedding-comparison
+git checkout -b feature/balu/exp-001-embedding-comparison
 ```
 
 ### 3. Create YAML
 ```yaml
-branch_name: "feature/uday/exp-001-embedding-comparison"
+branch_name: "feature/balu/exp-001-embedding-comparison"
 date_submitted: "2026-05-03"
 
 updates:
@@ -198,7 +198,7 @@ updates:
   
   - section: "D10"
     field: "Experiment EXP-001 — Experimenter"
-    value: "Uday"
+    value: "Balu Sir"
     reasoning: "Person who ran the experiment"
     proof: "experiments/exp_001_hybrid_vs_vector.json"
 ```
@@ -206,7 +206,7 @@ updates:
 ### 4. Send to Claude
 ```
 [Copy MASTER_SUBMISSION_PROMPT.md text]
-[Add branch name: feature/uday/exp-001-embedding-comparison]
+[Add branch name: feature/balu/exp-001-embedding-comparison]
 [Paste YAML above]
 [Paste current Final_Deliverables/Documentation.md]
 [Send]
@@ -219,7 +219,7 @@ updates:
 
 git add Final_Deliverables/Documentation.md experiments/exp_001_hybrid_vs_vector.json
 git commit -m "EXP-001: Embedding comparison metrics (D2.1, D10)"
-git push origin feature/uday/exp-001-embedding-comparison
+git push origin feature/balu/exp-001-embedding-comparison
 
 # Done! ✅
 ```
@@ -247,7 +247,7 @@ git push origin feature/uday/exp-001-embedding-comparison
 | Proof: "experiments/exp_01.json" | Proof: "experiments/exp_01.json:L45" |
 | Value: "[TO FILL]" or "TBD" | Value: "0.91" (actual metric) |
 | Field: "Embedding Latency" | Field: "Embedding Latency (p95) — bge-large-en-v1.5" |
-| Branch: "exp-001" | Branch: "feature/uday/exp-001-embedding" |
+| Branch: "exp-001" | Branch: "feature/balu/exp-001-embedding" |
 | Reasoning: "This is a good embedding model" | Reasoning: "Semantic depth, legal terms" |
 
 ---
@@ -259,7 +259,7 @@ A: In Final_Deliverables/Documentation.md. Copy exact field names from there.
 
 **Q: What's my branch name?**  
 A: `feature/yourname/description`. Examples:
-- `feature/uday/exp-001-embedding`
+- `feature/balu/exp-001-embedding`
 - `feature/balu/architecture-decisions`
 - `feature/nishitha/tenant-isolation`
 
