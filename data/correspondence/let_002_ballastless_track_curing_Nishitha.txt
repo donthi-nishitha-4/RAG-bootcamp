@@ -1,0 +1,15 @@
+Ref: EK/TRACK/2026/102
+Date: 2026-05-12
+From: Yamuna, Senior Infrastructure Lead, Energy Kernel
+To: Ganga, Chief Project Engineer, Metro Project Authority
+Subject: Ballastless Track Slab Curing temperature and Moisture Control
+
+Dear Sir,
+
+With reference to the joint site inspection on 2026-05-11 regarding the grout separation in the ballastless track slab near the tunnel portal (NCR-0052), we have implemented strict moisture control measures.
+
+Hourly monitoring of the track slab concrete temperature is now active. The moist curing blanket will remain saturated for 14 continuous days as specified in the technical specification manual. Rework is not required as core compression tests confirm structural compliance.
+
+Warm regards,
+Yamuna
+Senior Infrastructure Lead, Energy Kernel
