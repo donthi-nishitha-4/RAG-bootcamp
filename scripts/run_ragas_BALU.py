@@ -36,7 +36,7 @@ def main():
     # Basic environment checks
     ds_path = ROOT / 'evaluation' / 'dataset' / 'evaluation_dataset.json'
     if not ds_path.exists():
-        print(f'[WARN] Canonical dataset not found at {ds_path}. Falling back to UDAY dataset.')
+        print(f'[WARN] Canonical dataset not found at {ds_path}. Falling back to BALU dataset.')
 
     # Forward args to eval_ragas.py
     cmd = [sys.executable, str(EVAL_SCRIPT)]
@@ -48,3 +48,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

@@ -1,4 +1,4 @@
-"""Reranker benchmarking harness (UDAY)
+"""Reranker benchmarking harness (BALU)
 
 Runs multi-trial reranking latency measurements and computes Precision@5.
 Saves results under `experiments/results/benchmarks/` as JSON.
@@ -124,7 +124,7 @@ if __name__ == '__main__':
     p.add_argument('--queries', type=str, default=DEFAULT_QUERIES)
     args = p.parse_args()
     sys.exit(run_benchmark(args.queries))
-"""Reranker benchmark stub (UDAY)
+"""Reranker benchmark stub (BALU)
 
 Measures candidate reranking improvement (Precision@5) and approximate CPU latency.
 Fill in the embedding/retrieval/reranker calls per your environment.
@@ -153,3 +153,4 @@ if __name__ == '__main__':
     # Example usage; replace with real retrieval pipeline
     sample_candidates = ['doc1', 'doc2', 'doc3', 'doc4', 'doc5', 'doc6']
     compare_rerankers(sample_candidates, 'What is the notice period for termination?')
+

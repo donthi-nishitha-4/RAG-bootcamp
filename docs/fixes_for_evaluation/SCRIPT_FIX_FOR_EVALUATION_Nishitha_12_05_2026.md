@@ -149,7 +149,7 @@ Added:
 - **Production Implication:** Need a pre-retrieval out-of-scope query guard to avoid wasting LLM calls
 
 ### exp_02, exp_03, exp_04
-Fields "Surprising Finding" and "Production Implication" were reviewed and filled where applicable; any remaining minor edits are tracked in the UDAY audit.
+Fields "Surprising Finding" and "Production Implication" were reviewed and filled where applicable; any remaining minor edits are tracked in the BALU audit.
 
 ---
 
@@ -191,3 +191,4 @@ From `baseline_eval_20260512_085744`:
 ---
 
 *Documented by D Nishitha session, 2026-05-12*
+

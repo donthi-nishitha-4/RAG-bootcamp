@@ -1,4 +1,4 @@
-"""NCR / DPR chunkers (UDAY) — improved heuristics
+"""NCR / DPR chunkers (BALU) — improved heuristics
 
 This module provides heuristics for chunking NCR (non-conformance reports)
 and DPR (daily progress reports) documents. The functions here are intended
@@ -150,3 +150,4 @@ def detect_and_chunk(path: str, doc_text: str) -> List[str]:
     for p in paras:
         out.extend(_word_chunks(p))
     return out
+

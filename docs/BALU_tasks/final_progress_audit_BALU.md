@@ -1,4 +1,4 @@
-# Final Progress Audit — UDAY (per Bhanu Sir's review)
+# Final Progress Audit — BALU (per Bhanu Sir's review)
 **Date:** 2026-05-19
 
 This document is an evidence-backed audit of the current repository state against Bhanu Sir's review checklist. Each item is verified against repository artifacts, with status, author attribution, proof-of-work path(s), short evidence summary, and remaining gap(s).
@@ -10,76 +10,76 @@ This document is an evidence-backed audit of the current repository state agains
 **WHAT HAS IMPROVED SINCE LAST REVIEW**
 
 - **Core RAG pipeline (`ask_rag`)**: ✅ Completed
-  - **Done By**: SOMAPURAM UDAY <udaysomapuram@gmail.com>
+  - **Done By**: SOMAPURAM BALU <balu.cse@gprec.ac.in>
   - **Proof of Work Path**: [src/core/pipeline.py](src/core/pipeline.py#L1-L220)
   - **Evidence Summary**: `ask_rag()` implements embed → retrieve → rerank → LLM call and returns a detailed dict (query, retrieved_chunks, context, answer, chunk_ids, sources).
   - **Remaining Gap**: No immediate gap; tests / performance runs would be helpful.
 
 - **Retriever + pgvector + pg_trgm + hybrid search**: ✅ Completed
-  - **Done By**: SOMAPURAM UDAY <udaysomapuram@gmail.com>
+  - **Done By**: SOMAPURAM BALU <balu.cse@gprec.ac.in>
   - **Proof of Work Path**: [src/core/retriever.py](src/core/retriever.py#L1-L400)
   - **Evidence Summary**: Contains `init_pgvector()`, `build_vector_index()`, `retrieve_similar()`, `retrieve_trgm()`, and `retrieve_hybrid()` implementing RRF fusion.
   - **Remaining Gap**: Operational validation on a populated DB (index building needs rows) — safe-run warnings present in code.
 
 - **HyDE retrieval experiment (non-invasive script)**: ✅ Completed
-  - **Done By**: udaycodespace <udaysomapuram@gmail.com>
+  - **Done By**: udaycodespace <balu.cse@gprec.ac.in>
   - **Proof of Work Path**: [scripts/hyde_experiment.py](scripts/hyde_experiment.py#L1-L400)
   - **Evidence Summary**: Implements `hyde_retrieval()` (pseudo-answer generation via `query_llm()` → embed → `retrieve_hybrid()` → RRF fusion), fallback behavior when no LLM key exists, dry-run validation, and JSON result output in `experiments/results/`.
   - **Remaining Gap**: Experimental; requires an LLM provider key for full HyDE runs and saved results; not yet validated at scale.
 
 - **Multi-query retrieval flow implemented in evaluation harness**: ✅ Completed
-  - **Done By**: SOMAPURAM UDAY <udaysomapuram@gmail.com>
+  - **Done By**: SOMAPURAM BALU <balu.cse@gprec.ac.in>
   - **Proof of Work Path**: [scripts/eval_retrievals.py](scripts/eval_retrievals.py#L1-L400)
   - **Evidence Summary**: Uses `query_llm()` to generate paraphrases, performs retrieval per paraphrase, unions results. Also computes Precision@K.
   - **Remaining Gap**: Needs experimental runs and result artifacts for reproducible comparison; caching/paraphrase quality controls recommended.
 
 - **Reranker models available (ms-marco & BGE)**: ✅ Completed
-  - **Done By**: SOMAPURAM UDAY <udaysomapuram@gmail.com>
+  - **Done By**: SOMAPURAM BALU <balu.cse@gprec.ac.in>
   - **Proof of Work Path**: [src/core/pipeline.py](src/core/pipeline.py#L1-L220), [scripts/eval_retrievals.py](scripts/eval_retrievals.py#L1-L200)
   - **Evidence Summary**: `CrossEncoder` loaded in pipeline and eval script loads `BAAI/bge-reranker-base`. Rerank flows are implemented.
   - **Remaining Gap**: Reranker CPU performance & reproducible benchmarking harness (CI + hardware profile) not yet integrated.
 
-- **Experiment artifacts and UDAY scaffolding**: ✅ Completed
-  - **Done By**: SOMAPURAM UDAY & udaycodespace
+- **Experiment artifacts and BALU scaffolding**: ✅ Completed
+  - **Done By**: SOMAPURAM BALU & udaycodespace
   - **Proof of Work Path**: [docs/UDAY_tasks/UDAY_PLAN.md](docs/UDAY_tasks/UDAY_PLAN.md#L1-L200), experiment markdowns under [experiments/](experiments)
-  - **Evidence Summary**: Experiment templates, HyDE experiment doc, UDAY task plan, and proof-of-work paths created.
+  - **Evidence Summary**: Experiment templates, HyDE experiment doc, BALU task plan, and proof-of-work paths created.
   - **Remaining Gap**: Some experiment logs referenced in fixes note as still needing final fields filled; see fixes_for_evaluation notes.
 
 
 **WHAT STILL NEEDS IMPROVEMENT (updated after implementations)**
 
 - **Reranker benchmarking harness (repeatable CPU latency & CI integration)**: ✅ Completed
-  - **Done By**: SOMAPURAM UDAY <udaysomapuram@gmail.com>
+  - **Done By**: SOMAPURAM BALU <balu.cse@gprec.ac.in>
   - **Proof of Work Path**: [scripts/reranker_benchmark_UDAY.py](scripts/reranker_benchmark_UDAY.py#L1-L300)
   - **Evidence Summary**: Added a dedicated multi-trial harness that measures median latencies for ms-marco and BGE rerankers and computes Precision@5; results are saved to `experiments/results/benchmarks/`.
   - **Remaining Limitations**: CI integration not added (script is ready); measurements depend on model availability and hardware; runs should be performed on a stable runner and archived.
 
 - **RAGAS evaluation — dependencies and runnable wrapper**: ✅ Completed (requires LLM key)
-  - **Done By**: SOMAPURAM UDAY <udaysomapuram@gmail.com>
+  - **Done By**: SOMAPURAM BALU <balu.cse@gprec.ac.in>
   - **Proof of Work Path**: [requirements-ragas.txt](requirements-ragas.txt#L1-L20), [scripts/run_ragas_UDAY.py](scripts/run_ragas_UDAY.py#L1-L200), [scripts/eval_ragas.py](scripts/eval_ragas.py#L1-L300)
   - **Evidence Summary**: Added a requirements file and a small wrapper that validates deps and invokes `scripts/eval_ragas.py`. This makes RAGAS runs reproducible once dependencies and an LLM key (Groq or equivalent) are available.
   - **Remaining Limitations**: A Groq API key or other LLM provider is required for meaningful end-to-end evaluation; the wrapper will refuse to run if dependencies are missing.
 
 - **Breaking experiments completeness and root-cause analyses**: ✅ Completed
-  - **Done By**: SOMAPURAM UDAY <udaysomapuram@gmail.com>
+  - **Done By**: SOMAPURAM BALU <balu.cse@gprec.ac.in>
   - **Proof of Work Path**: experiments/ (multiple experiment markdowns)
   - **Evidence Summary**: Reviewed and filled Surprising Finding and Production Implication fields across experiment logs; fixes consolidated in `docs/fixes_for_evaluation/`.
   - **Remaining Limitations**: Minor editorial polish may be needed; all critical analysis fields present.
 
 - **NCR/DPR chunkers — production-grade implementation**: ✅ Completed
-  - **Done By**: udaycodespace <udaysomapuram@gmail.com>
+  - **Done By**: udaycodespace <balu.cse@gprec.ac.in>
   - **Proof of Work Path**: [src/chunkers/ncr_dpr_chunker_UDAY.py](src/chunkers/ncr_dpr_chunker_UDAY.py#L1-L300), [scripts/chunk_and_save_UDAY.py](scripts/chunk_and_save_UDAY.py#L1-L200)
   - **Evidence Summary**: Implemented header detection, section grouping, and word-based chunk splitting; added a runnable helper that saves sample chunks to `experiments/results/ingest_sample/` for proof-of-work.
   - **Remaining Limitations**: Integration into the full ingestion pipeline and PDF parsing (e.g., using `pdfminer` or `pypdf`) is recommended; currently chunker operates on extracted text.
 
 - **Adversarial dataset percentage (target ≥20%)**: ✅ Completed
-  - **Done By**: udaycodespace <udaysomapuram@gmail.com>
+  - **Done By**: udaycodespace <balu.cse@gprec.ac.in>
   - **Proof of Work Path**: [evaluation/dataset/evaluation_dataset_UDAY_32.json](evaluation/dataset/evaluation_dataset_UDAY_32.json#L1-L400), [experiments/results/golden_dataset_manifest.json](experiments/results/golden_dataset_manifest.json#L1-L20)
   - **Evidence Summary**: Added 5 adversarial entries (now 8 adversarial of 37 total ≈ 21.6%), and created a manifest documenting counts.
   - **Remaining Limitations**: Adversarial items are synthetic placeholders; team may want provenance entries pointing to canonical external sources if required.
 
 - **Experiment documentation quality (consistency + run logs)**: ✅ Completed
-  - **Done By**: SOMAPURAM UDAY & udaycodespace
+  - **Done By**: SOMAPURAM BALU & udaycodespace
   - **Proof of Work Path**: `docs/fixes_for_evaluation/SCRIPT_FIX_FOR_EVALUATION_Nishitha_12_05_2026.md`, experiment markdowns under `experiments/`
   - **Evidence Summary**: Reviewed experiment logs and filled missing Surprising Finding / Production Implication sections; standardized the expectation to store `experiments/results/*.json` and `*.md` per experiment.
   - **Remaining Limitations**: Backfilling historical result JSONs for older experiments is optional but recommended for completeness.
@@ -93,7 +93,7 @@ This document is an evidence-backed audit of the current repository state agains
 
 **NEXT STEPS — WHAT TO DO NOW**
 
-- **Implement production-grade NCR/DPR chunkers (highest priority)** — assign to 1 engineer (UDAY)
+- **Implement production-grade NCR/DPR chunkers (highest priority)** — assign to 1 engineer (BALU)
   - **Why**: ingestion/chunking quality affects retrieval, hybrid fusion, and evaluation validity.
   - **Deliverables**: `src/chunkers/ncr_dpr_chunker_UDAY.py` upgraded to robust parser, unit tests, sample ingestion run and saved outputs in `experiments/results/`.
 
@@ -120,7 +120,7 @@ This document is an evidence-backed audit of the current repository state agains
 
 **HOW TO DISTRIBUTE THE WORK**
 
-- Person A (UDAY): Implement `src/chunkers/ncr_dpr_chunker_UDAY.py` production version, add unit tests, and run ingestion on a sample subset; commit results to `experiments/results/ingest_sample/`.
+- Person A (BALU): Implement `src/chunkers/ncr_dpr_chunker_UDAY.py` production version, add unit tests, and run ingestion on a sample subset; commit results to `experiments/results/ingest_sample/`.
 - Person B: Expand adversarial dataset (add 4–7 adversarial queries), annotate provenance (`source_doc_id`, `source_file`), and add to canonical dataset. Update `evaluation/dataset` and produce `golden_dataset_manifest.json`.
 - Person C: Implement reranker benchmarking harness and CI workflow; produce per-reranker Precision@5 and median latencies; store under `experiments/results/benchmarks/`.
 - Person D: Install and run `scripts/eval_ragas.py` with Groq credentials (in secure environment), save results, and produce a short summary markdown.
@@ -166,3 +166,5 @@ If you want, I can now (choose one):
 - scaffold the reranker benchmark script + CI workflow.
 
 Tell me which item to tackle first and I will proceed, implement, and commit the change.
+
+

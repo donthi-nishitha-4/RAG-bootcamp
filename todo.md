@@ -7,7 +7,7 @@ Purpose
 -------
 This file captures per-person ownership, focused TODOs, checklists, and DO/DON'T guidance for the Phase 1 work described in the project review. Keep changes small, focused, and on personal branches. Use the existing pipeline in `src/` and reuse `graphify-out/` for context.
 
-UDAY — Ownership
+BALU — Ownership
 -----------------
 - **Scope:** HyDE retrieval, multi-query retrieval, baseline comparison, short findings summary.
 - **TODO:**
@@ -69,3 +69,4 @@ Add brief progress updates in `Final_Deliverables/task_update.md` and link the b
 Contact
 -------
 For coordination: Bhanu (review) and team leads as listed above.
+

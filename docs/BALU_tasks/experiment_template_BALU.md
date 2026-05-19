@@ -1,12 +1,12 @@
-Experiment Log Template (UDAY)
+Experiment Log Template (BALU)
 
-Use this template for every experiment. Fill all fields and commit one file per experiment in a branch starting with `uday/`.
+Use this template for every experiment. Fill all fields and commit one file per experiment in a branch starting with `BALU/`.
 
 - Title: 
-- Author: UDAY
+- Author: BALU
 - Branch: 
 - Date: YYYY-MM-DD
-- Experiment ID: uday-<short-id>
+- Experiment ID: BALU-<short-id>
 - Purpose / Hypothesis:
 - Data used (paths):
 - Retrieval method(s):
@@ -19,4 +19,5 @@ Use this template for every experiment. Fill all fields and commit one file per 
 - Root cause analysis:  # REQUIRED for breaking experiments
 - Next steps:
 
-Commit example filename: `experiments/uday-experiment-<short-id>_UDAY.md`
+Commit example filename: `experiments/BALU-experiment-<short-id>_UDAY.md`
+

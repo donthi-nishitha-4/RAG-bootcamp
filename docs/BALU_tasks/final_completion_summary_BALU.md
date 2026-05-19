@@ -1,7 +1,7 @@
-# Final Completion Summary — UDAY
+# Final Completion Summary — BALU
 **Date:** 2026-05-19
 
-This document summarizes the concrete implementations completed from the UDAY audit, includes run commands, expected outputs, proof-of-work paths, reviewer notes, and known limitations.
+This document summarizes the concrete implementations completed from the BALU audit, includes run commands, expected outputs, proof-of-work paths, reviewer notes, and known limitations.
 
 ---
 
@@ -170,3 +170,4 @@ If you want, I'll now (pick one):
 - integrate the chunker into `scripts/ingest_data.py` and run a small ingestion sample, or
 - run the reranker benchmark locally and commit the produced `experiments/results/benchmarks/*.json` (if you want me to run it here, confirm you want model downloads), or
 - add a GitHub Actions workflow template to run the reranker benchmark on a labelled runner.
+

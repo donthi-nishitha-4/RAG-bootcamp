@@ -1,4 +1,4 @@
-RAGAS Evaluation Pipeline Setup (UDAY)
+RAGAS Evaluation Pipeline Setup (BALU)
 
 Goal: configure and run the RAGAS automated evaluation pipeline using Groq as the evaluation LLM.
 
@@ -12,3 +12,4 @@ Steps (high-level)
 Notes
 - If Groq is unavailable, fallback to OpenAI or a local LLM for development runs.
 - Record the `Surprising Finding` and `Production Implication` fields in experiment logs for every run.
+

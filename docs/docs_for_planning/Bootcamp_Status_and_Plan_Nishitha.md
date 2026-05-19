@@ -26,7 +26,7 @@ Here is exactly what was requested in the mentor's email, mapped against the cur
 - ✅ Fill in "Surprising Finding" in logs
 
 **What is Pending from Email (❌)**
-- ❌ **Independent Branch Ownership:** The mentor checks git commits. Balu Sir needs to officially own the `dev-uday` work on his `balu` branch.
+- ❌ **Independent Branch Ownership:** The mentor checks git commits. Balu Sir needs to officially own the `dev-BALU` work on his `balu` branch.
 - ❌ **Final Execution & Reports:** Run the final RAGAS metrics against the 30+ dataset to fill out the `D11 Architecture Decision Summary` in the Deliverables Guide.
 
 ### 1.2 Work Division for Email Items (Strictly 2 People)
@@ -37,7 +37,7 @@ Here is exactly what was requested in the mentor's email, mapped against the cur
 - **Architecture Documentation (D11):** Fill out the final `Architecture Decision Summary` in the `Deliverables_guide`.
 
 **👨‍💻 K. Bala Chowdappa / Balu Sir (Environment: Windows)**
-- **Take Official Code Ownership:** Merge `dev-uday` code into the `balu` branch.
+- **Take Official Code Ownership:** Merge `dev-BALU` code into the `balu` branch.
 - **Consolidate Comparison Report:** Finalize the `COMPARISON_REPORT.md` combining insights from all breaking experiments.
 
 ---
@@ -67,3 +67,4 @@ Looking strictly at the **Full 2-Week Plan (Days 7-10)**, the following advanced
 - **Query Router & Data Expansion:** Build the LLM Query Router and expand the golden dataset from 30+ to 80+ queries.
 - **Remaining Chunkers & Contextual Retrieval:** Finish the Correspondence chunker and test contextual retrieval.
 - **Windows Pipeline Verification:** Run the chunkers and cross-encoder reranking scripts on Windows to verify CPU latency.
+

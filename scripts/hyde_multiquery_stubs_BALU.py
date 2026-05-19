@@ -1,4 +1,4 @@
-"""HyDE and multi-query retrieval stubs (UDAY)
+"""HyDE and multi-query retrieval stubs (BALU)
 
 Run as a quick harness: `python scripts/hyde_multiquery_stubs_UDAY.py --queries evaluation/queries_30_UDAY.csv`
 This file contains skeletons for HyDE (generate hypothetical doc embeddings) and multi-query retrieval.
@@ -37,3 +37,4 @@ if __name__ == '__main__':
     # Minimal llm_fn for placeholder
     llm_fn = lambda prompt: "[HYPO] " + prompt[:200]
     run_on_queries(args.queries, llm_fn, run_hyde=args.hyde)
+
