@@ -49,24 +49,73 @@ To avoid context diluting and maximize retrieval precision, we recommend a **spe
 To secure 100% reliability and solve multi-hop questions, the system implements a **hybrid search + reranking architecture** controlled by a sequential LLM-based query router.
 
 ```mermaid
-graph TD
-    UserQuery[User Query] --> Router{LLM Query Router}
-    Router -- Contract Clause --> DB_Contract[PGVector Contract Index]
-    Router -- Quality Defect (NCR) --> DB_NCR[PGVector NCR Index]
-    Router -- Operational (DPR) --> DB_DPR[PGVector DPR Index]
-    Router -- Stakeholder (Letters) --> DB_Corr[PGVector Correspondence Index]
+graph TB
+    subgraph Client & Interface Layer
+        ClientAPI[Client API Call / TestClient] -->|POST /query payload| API_Service[FastAPI api_Nishitha.py]
+    end
+
+    subgraph Security & Hardening Layer [hardening_Nishitha.py]
+        API_Service -->|Query Text| OutOfScopeFilter{Adversarial & OOD Filter}
+        OutOfScopeFilter -->|Match OOD Heuristics / Off-scope| Block[Fast Intercept: Refusal Answer]
+        OutOfScopeFilter -->|Safe In-Scope Query| RouterCall[Route Intent Classifier]
+    end
+
+    subgraph Orchestration & StateGraph Layer [agent_Nishitha.py]
+        RouterCall -->|Initialize StateGraph| AgentAgent{LangGraph StateGraph}
+        AgentAgent -->|Node 1: query_analyzer| Router[LLM Query Router query_router_Nishitha.py]
+        Router -->|Sequential API Failover Classifier| RouteSelection{Route Intent}
+    end
+
+    subgraph Dynamic Data Retrieval Layer [retriever.py]
+        RouteSelection -->|Contract Route| RRF_Contract[Hybrid Vector + GIN Trigram Search]
+        RouteSelection -->|Quality Defect / NCR| RRF_NCR[Hybrid Search + NCR Chunker metadata]
+        RouteSelection -->|Operational / DPR| RRF_DPR[Hybrid Search + DPR Chunker metadata]
+        RouteSelection -->|Correspondence / Letter| RRF_Corr[Hybrid Search + Date/Ref metadata]
+        
+        RRF_Contract --> pgvector[PostgreSQL pgvector Store]
+        RRF_NCR --> pgvector
+        RRF_DPR --> pgvector
+        RRF_Corr --> pgvector
+        
+        pgvector -->|Tenant-Specific Session Transaction| RLS_Enforce{PostgreSQL RLS Enforcer}
+        RLS_Enforce -->|SET LOCAL app.current_tenant_id| ResultFilter[Multi-Tenancy Isolated Chunks]
+    end
+
+    subgraph Failsafe & Graph Fallback Layer [retriever.py / agent_Nishitha.py]
+        ResultFilter -->|PostgreSQL Self-Join Traversal| GraphTraverse[Mock Graph retrieve_graph]
+        GraphTraverse --> SiblingNodes[Retrieve Connected Subsystem Nodes]
+        
+        ResultFilter -->|Offline DB Container Fallback| FileScanner[Word-Overlap Filesystem Scanner]
+        FileScanner --> OfflineChunks[Local raw document Chunks]
+    end
+
+    subgraph Evaluator & Reformulation Loop [agent_Nishitha.py]
+        SiblingNodes --> Reranker[ms-marco / bge CPU Reranker]
+        OfflineChunks --> Reranker
+        Reranker -->|Merged Top-K| ContextEval{Context Sufficiency Evaluator}
+        
+        ContextEval -->|Sufficient - Iteration <= 3| AnsGen[Answer Generator node]
+        ContextEval -->|Insufficient Context| Reformulator[Query Reformulator node]
+        Reformulator -->|Loop Back & Reformulate| AgentAgent
+    end
+
+    subgraph Output & Compliance Audit Layer
+        AnsGen --> APIResponse[POST /query JSON Output]
+        AnsGen -->|Audit Record| DB_Audit[Layer 4 Audit Ledger]
+        AnsGen -->|Audit Record| LocalAudit[JSON File audit_events_ledger_Nishitha.json]
+    end
+
+    classDef api fill:#4a69bd,stroke:#1e3c72,stroke-width:2px,color:#fff;
+    classDef security fill:#e55039,stroke:#b33921,stroke-width:2px,color:#fff;
+    classDef agent fill:#78e08f,stroke:#388e3c,stroke-width:2px,color:#000;
+    classDef db fill:#f6b93b,stroke:#d35400,stroke-width:2px,color:#000;
+    classDef fallback fill:#60a3bc,stroke:#0a3d62,stroke-width:2px,color:#fff;
     
-    DB_Contract --> Hybrid[Hybrid Vector + Trigram Search]
-    DB_NCR --> Hybrid
-    DB_DPR --> Hybrid
-    DB_Corr --> Hybrid
-    
-    Hybrid --> RRF[Reciprocal Rank Fusion - RRF]
-    RRF --> Rerank[Cross-Encoder Reranker]
-    Rerank --> StateGraph{LangGraph Sufficiency Evaluator}
-    StateGraph -- Sufficient --> Answer[Answer Generator]
-    StateGraph -- Insufficient --> Reformulate[Query Reformulation Loop]
-    Reformulate --> Router
+    class ClientAPI,API_Service api;
+    class OutOfScopeFilter,Block,RLS_Enforce security;
+    class AgentAgent,Router,RouteSelection,ContextEval,AnsGen,Reformulator agent;
+    class pgvector,RRF_Contract,RRF_NCR,RRF_DPR,RRF_Corr db;
+    class GraphTraverse,FileScanner fallback;
 ```
 
 ### Key Design Decisons
