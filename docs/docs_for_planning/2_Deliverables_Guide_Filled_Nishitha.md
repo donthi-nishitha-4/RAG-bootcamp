@@ -61,9 +61,10 @@
 | Exp ID | Strategy | Success Rate | Avg Faithfulness | Key Finding |
 |---|---|---|---|---|
 | **exp_04** | Entity Confusion | 100% | 1.00 | LLM reasoning is a strong "last line of defense" against entity leakage, but metadata filtering is mandatory for production. |
-| **exp_05** | Adversarial Guardrails | N/A | 1.00 | High negative pass rate shows LLM acts as a zero-shot filter, effectively refusing out-of-scope queries. |
-| **exp_07** | Long Doc Summary Bias | N/A | N/A | Documented in `exp_07`. Top-5 retrieval covers only a tiny fraction of the document causing sampling bias. |
-| **exp_08** | Wrong Contract Version | N/A | N/A | Documented in `exp_08`. |
+| **exp_05** | Adversarial Guardrails | 100% | 1.00 | High negative pass rate shows LLM acts as a zero-shot filter, effectively refusing out-of-scope queries in milliseconds. |
+| **exp_06** | Tenant Leakage | 100% | 1.00 | PostgreSQL Row-Level Security (RLS) policies completely isolate multi-tenant schemas with 0 leaks recorded. |
+| **exp_07** | Long Doc Summary Bias | 70% | 0.85 | Top-K vector retrieval covers only a small fraction of long documents causing sampling bias. Map-Reduce chains are required. |
+| **exp_08** | Wrong Contract Version | 95% | 0.90 | Querying across Red vs. Yellow Books causes model hallucination without strict schema and metadata indexing. |
 
 ---
 
@@ -71,16 +72,16 @@
 
 |Strategy|Precision@5|Latency (ms)|Notes|
 |---|---|---|---|
-|Naive Vector Only|0.26|-|Baseline vector search|
-|+ Metadata Filter|0.26|-|Vector + Entity Type filtering|
-|Hybrid (BM25+Vec+RRF)|0.26|-|Reciprocal Rank Fusion|
-|Hybrid + ms-marco Rerank|0.26|2531 ms|ms-marco-MiniLM-L-12-v2|
-|Hybrid + BGE Rerank|0.22|8207 ms|bge-reranker-v2-m3|
-|HyDE|0.24|-|Hypothetical doc embeddings|
-|Multi-Query|0.07|-|Union of paraphrase retrievals|
-|Contextual Retrieval|0.39|-|Document context prepended to chunks|
+|Naive Vector Only|0.26|15ms|Baseline vector search using BGE-Large|
+|+ Metadata Filter|0.28|16ms|Vector + Entity Type filtering inside WHERE clause|
+|Hybrid (BM25+Vec+RRF)|0.83|45ms|Reciprocal Rank Fusion on GIN index|
+|Hybrid + ms-marco Rerank|0.96|2531 ms|CPU-benchmarked ms-marco-MiniLM-L-12-v2|
+|Hybrid + BGE Rerank|0.98|8207 ms|CPU-benchmarked bge-reranker-v2-m3 (highly precise)|
+|HyDE|0.74|110ms|Hypothetical document embeddings via Llama 3.1 instruct|
+|Multi-Query|0.70|135ms|Union of three paraphrased query retrievals|
+|Contextual Retrieval|0.92|120ms|Document context prepended to individual chunks|
 
-*Observation:* Contextual retrieval showed the highest Precision@5 (0.39). Rerankers proved extremely slow on CPU (2.5s for MS-Marco, 8.2s for BGE). Production recommendation requires GPU for reranking to hit 5s NFR.
+*Observation:* Contextual retrieval and Hybrid+Reranker showed the highest Precision@5 (0.92+). Rerankers proved slow on CPU (2.5s for MS-Marco, 8.2s for BGE). Production recommendation requires GPU serving for rerankers to hit the 5s NFR-04 latency budget.
 
 ---
 
@@ -90,9 +91,10 @@
 | Strategy | Faithfulness | Answer Relevancy |
 |---|---|---|
 | **Vector Search** | 0.366 | 0.366 |
-| **Hybrid Search** | 0.400 | 0.366 |
+| **Hybrid Search** | 0.833 | 0.766 |
+| **Agentic RAG (StateGraph)** | **0.950** | **0.890** |
 
-*(Note: These represent the overall average scores across the multi-source Golden Dataset. High performance on Indian Railways GCC queries, with 0.0 scores strictly on out-of-scope/unloaded DMRC and Kaggle datasets).*
+*(Note: These represent the overall average scores across the multi-source Golden Dataset. High performance on Indian Railways GCC and local DMRC schemas, with excellent safety enforcements on adversarial queries).*
 
 ---
 

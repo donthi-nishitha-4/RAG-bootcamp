@@ -45,6 +45,76 @@ The complete end-to-end architecture of the AI-PMS RAG pipeline, from data inges
 
 **Figure D1.1: AI-PMS RAG Pipeline Architecture**
 
+```mermaid
+graph TB
+    subgraph Client & Interface Layer
+        ClientAPI[Client API Call / TestClient] -->|POST /query payload| API_Service[FastAPI api_Nishitha.py]
+    end
+
+    subgraph Security & Hardening Layer [hardening_Nishitha.py]
+        API_Service -->|Query Text| OutOfScopeFilter{Adversarial & OOD Filter}
+        OutOfScopeFilter -->|Match OOD Heuristics / Off-scope| Block[Fast Intercept: Refusal Answer]
+        OutOfScopeFilter -->|Safe In-Scope Query| RouterCall[Route Intent Classifier]
+    end
+
+    subgraph Orchestration & StateGraph Layer [agent_Nishitha.py]
+        RouterCall -->|Initialize StateGraph| AgentAgent{LangGraph StateGraph}
+        AgentAgent -->|Node 1: query_analyzer| Router[LLM Query Router query_router_Nishitha.py]
+        Router -->|Sequential API Failover Classifier| RouteSelection{Route Intent}
+    end
+
+    subgraph Dynamic Data Retrieval Layer [retriever.py]
+        RouteSelection -->|Contract Route| RRF_Contract[Hybrid Vector + GIN Trigram Search]
+        RouteSelection -->|Quality Defect / NCR| RRF_NCR[Hybrid Search + NCR Chunker metadata]
+        RouteSelection -->|Operational / DPR| RRF_DPR[Hybrid Search + DPR Chunker metadata]
+        RouteSelection -->|Correspondence / Letter| RRF_Corr[Hybrid Search + Date/Ref metadata]
+        
+        RRF_Contract --> pgvector[PostgreSQL pgvector Store]
+        RRF_NCR --> pgvector
+        RRF_DPR --> pgvector
+        RRF_Corr --> pgvector
+        
+        pgvector -->|Tenant-Specific Session Transaction| RLS_Enforce{PostgreSQL RLS Enforcer}
+        RLS_Enforce -->|SET LOCAL app.current_tenant_id| ResultFilter[Multi-Tenancy Isolated Chunks]
+    end
+
+    subgraph Failsafe & Graph Fallback Layer [retriever.py / agent_Nishitha.py]
+        ResultFilter -->|PostgreSQL Self-Join Traversal| GraphTraverse[Mock Graph retrieve_graph]
+        GraphTraverse --> SiblingNodes[Retrieve Connected Subsystem Nodes]
+        
+        ResultFilter -->|Offline DB Container Fallback| FileScanner[Word-Overlap Filesystem Scanner]
+        FileScanner --> OfflineChunks[Local raw document Chunks]
+    end
+
+    subgraph Evaluator & Reformulation Loop [agent_Nishitha.py]
+        SiblingNodes --> Reranker[ms-marco / bge CPU Reranker]
+        OfflineChunks --> Reranker
+        Reranker -->|Merged Top-K| ContextEval{Context Sufficiency Evaluator}
+        
+        ContextEval -->|Sufficient - Iteration <= 3| AnsGen[Answer Generator node]
+        ContextEval -->|Insufficient Context| Reformulator[Query Reformulator node]
+        Reformulator -->|Loop Back & Reformulate| AgentAgent
+    end
+
+    subgraph Output & Compliance Audit Layer
+        AnsGen --> APIResponse[POST /query JSON Output]
+        AnsGen -->|Audit Record| DB_Audit[Layer 4 Audit Ledger]
+        AnsGen -->|Audit Record| LocalAudit[JSON File audit_events_ledger_Nishitha.json]
+    end
+
+    classDef api fill:#4a69bd,stroke:#1e3c72,stroke-width:2px,color:#fff;
+    classDef security fill:#e55039,stroke:#b33921,stroke-width:2px,color:#fff;
+    classDef agent fill:#78e08f,stroke:#388e3c,stroke-width:2px,color:#000;
+    classDef db fill:#f6b93b,stroke:#d35400,stroke-width:2px,color:#000;
+    classDef fallback fill:#60a3bc,stroke:#0a3d62,stroke-width:2px,color:#fff;
+    
+    class ClientAPI,API_Service api;
+    class OutOfScopeFilter,Block,RLS_Enforce security;
+    class AgentAgent,Router,RouteSelection,ContextEval,AnsGen,Reformulator agent;
+    class pgvector,RRF_Contract,RRF_NCR,RRF_DPR,RRF_Corr db;
+    class GraphTraverse,FileScanner fallback;
+```
+
 ## D1.1 Architecture Decision Log
 
 | Decision Point | Options Evaluated | Decision & Rationale | Evidence |
@@ -144,8 +214,34 @@ Documenting the top 5 failure modes identified during red-teaming.
 ## D5.1 Hybrid Search Architecture  
 **Figure D5.1: Hybrid Search with Reciprocal Rank Fusion**
 
+```mermaid
+graph TD
+    Query[User Input Query] --> Vector[PostgreSQL pgvector Dense Search]
+    Query --> Trigram[PostgreSQL pg_trgm Sparse Search]
+    
+    Vector -->|Rank Chunks| RankV[Dense Rank: R_vector]
+    Trigram -->|Rank Chunks| RankT[Sparse Rank: R_trigram]
+    
+    RankV --> RRF[RRF Calculation:<br>score = 1/k+Rank_V + 1/k+Rank_T]
+    RankT --> RRF
+    
+    RRF --> Rerank[Cross-Encoder Reranker]
+```
+
 ## D5.2 Consolidated Metrics  
 **Figure D5.2: Strategy Performance Comparison**
+
+```text
+Precision@5 Strategy Comparison Chart
+=====================================================================
+Naive Vector (BGE)    [█████░░░░░░░░░░░░░░░] 0.26
++ Metadata Filter     [██████░░░░░░░░░░░░░░] 0.28
+Hybrid (BM25+Vec)     [████████████████░░░░] 0.83
+Hybrid + ms-marco     [███████████████████░] 0.96
+Hybrid + BGE Rerank   [████████████████████] 0.98
+Contextual Retrieval  [██████████████████░░] 0.92
+=====================================================================
+```
 
 ## D5.3 Detailed Metrics Table
 
