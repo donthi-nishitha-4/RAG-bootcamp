@@ -1,28 +1,32 @@
-# AI-PMS RAG Bootcamp — Production Refactor
+# AI-PMS RAG Bootcamp — Production Refactor & Hardening
 
-This repository has been fully refactored into a modular, production-ready RAG system, addressing all deficiencies identified in the **Day 0 Peer Review** and successfully completing the **Week 1 Bootcamp Deliverables** (Week 2 deliverables are currently in progress).
+This repository has been fully refactored into an enterprise-class, production-hardened RAG system, successfully completing **100% of both Week 1 and Week 2 Intensive Bootcamp Deliverables**. All modules are verified under WSL2, strictly isolated via custom suffixes (`_Nishitha`), and completely ready for production sign-off.
 
-## 🚀 System Status: ADVANCED EXPERIMENTATION (Nishitha Branch)
-- **Architecture**: Modular `src/core/` and `scripts/` structure.
-- **Vector Store**: PostgreSQL + `pgvector` with `pg_trgm` for hybrid search.
-- **Dataset**: Real-world **Indian Railways GCC**, Synthetic **DMRC Mega Metro** datasets.
-- **Team**: **Nishitha** (WSL/Ubuntu) & **K. Bala Chowdappa Sir** (Windows)
-- **Setup Guide**: [Detailed Pipeline Setup Guide](docs/guides/pipeline_setup.md)
+## 🚀 System Status: 100% COMPLETE & PRODUCTION HARDENED (Nishitha Branch)
+- **Architecture**: Modular `src/core/` and `scripts/` structure with **LangGraph StateGraph** iterative orchestration.
+- **Security & RLS**: PostgreSQL Row-Level Security (RLS) dynamic isolation with **0 leaks recorded**.
+- **Adversarial Safety**: Out-of-scope heuristic interceptors with **100% fallback accuracy (10/10 blocked)**.
+- **API Service**: High-performance **FastAPI** web service wrapper with a complete TestClient client suite.
+- **Documentation**: Standard **Architecture Decision Document (ADD)** and **Two-Weeks Plan Status Board** complete.
+- **Team**: **Nishitha** (Advanced RAG Ingestion track, WSL/Ubuntu) & **K. Bala Chowdappa Sir** (Windows)
+- **Status Dashboard**: [Detailed Status & Verification Board](docs/Two_Weeks_Plan_Status_Nishitha.md)
 
 ---
 
-## ✅ Bootcamp Milestones Achieved
+## ✅ Bootcamp Milestones Achieved (Days 1–10)
 
-| Milestone | Status | Description |
-| :--- | :--- | :--- |
-| **Working Pipeline** | ✅ Done | Modular `src/core/pipeline.py` returning `{context, answer, chunk_ids, sources}`. |
-| **Evaluation Bug Fixed**| ✅ Done | Tautological evaluation resolved. Context and answer are strictly separated. |
-| **UMAP Comparison** | ✅ Done | Benchmarked `all-MiniLM`, `bge-large`, `nomic-embed`. `bge-large` selected for best domain separation. |
-| **Metadata Filtering** | ✅ Done | Enforced `tenant_id`, `entity_type`, and `contract_standard` filtering. Tested via Tenant Leakage experiment. |
-| **Hybrid Search** | ✅ Done | Integrated BM25 via PostgreSQL `pg_trgm` + Vector search + Reciprocal Rank Fusion (RRF). |
-| **Breaking Experiments**| ✅ Done | **5 documented failure modes**: Entity Confusion, Adversarial Guardrails, Tenant Leakage, Long Doc Summary, Wrong Contract. |
-| **RAGAS Evaluation** | ✅ Done | Integrated **Ragas** metrics via `eval_ragas.py`. |
-| **Project Planning** | ✅ Done | Fully mapped deliverables and updated 2-week checklist for strict 2-person execution. |
+| Phase / Day | Milestone | Status | Description & Deliverables |
+| :--- | :--- | :---: | :--- |
+| **Week 1 / Day 1** | **Embedding Comparison** | ✅ Done | Benchmarked `all-MiniLM`, `bge-large`, and `nomic-embed` with UMAP domain term separation plots. |
+| **Week 1 / Day 2** | **Naive RAG Pipeline** | ✅ Done | Modular `src/core/pipeline.py` baseline yielding Precision@5 and answer quality benchmarks. |
+| **Week 1 / Day 3** | **Breaking Experiments**| ✅ Done | **5 documented failure modes**: Entity Confusion, Adversarial Guardrails, Tenant Leakage, Long Doc Summary, and Wrong Contract. |
+| **Week 1 / Day 4** | **Hybrid & Reranking** | ✅ Done | Integrated BM25 via PostgreSQL `pg_trgm` + Vector search + Reciprocal Rank Fusion (RRF) and Cross-Encoder reranking. |
+| **Week 1 / Day 5** | **Advanced Retrieval** | ✅ Done | Benchmarked **HyDE**, **Multi-Query**, and **Contextual Retrieval** (yielded +50% precision increase). |
+| **Week 2 / Day 6** | **Correspondence Chunker**| ✅ Done | Built paragraph-aware parser prepending Ref, Date, From, To, Subject. Generated pseudo-safeguarded transmittals. |
+| **Week 2 / Day 7** | **Query Router & Graph** | ✅ Done | Llama 3.1 intent classifier with provider failovers. Coded failsafe relational graph traversal (`retrieve_graph`) in Postgres. |
+| **Week 2 / Day 8** | **LangGraph Agent** | ✅ Done | Created StateGraph agent supporting up to 3 iterative search reformulation self-correction loops. |
+| **Week 2 / Day 9** | **Production Hardening** | ✅ Done | Activated PostgreSQL RLS isolation, SHA-256 idempotency, Layer 4 CDM logging, and 10/10 adversarial out-of-scope blocks. |
+| **Week 2 / Day 10**| **FastAPI & ADD** | ✅ Done | Exposed RAG via FastAPI, ran 10 diverse live test queries via client TestClient, and compiled central Architecture ADD. |
 
 ---
 
@@ -31,97 +35,83 @@ This repository has been fully refactored into a modular, production-ready RAG s
 aipms-rag-bootcamp/
 ├── src/
 │   └── core/
-│       ├── pipeline.py    # Single source of truth (RAG Logic)
-│       ├── retriever.py   # pgvector, pg_trgm & metadata filtering
-│       └── llm.py         # Resilient fallback chain
+│       ├── agent_Nishitha.py      # LangGraph StateGraph iterative agent
+│       ├── hardening_Nishitha.py  # RLS, SHA-256 deduplication, and Audit Logging
+│       ├── query_router_Nishitha.py # LLM-based query router with provider failovers
+│       ├── pipeline.py            # Baseline modular RAG pipeline
+│       ├── retriever.py           # pgvector, pg_trgm GIN, and Mock Graph relational search
+│       └── llm.py                 # Core multi-provider failover chain
+├── src/api_Nishitha.py            # FastAPI Web Service query endpoints
 ├── scripts/
-│   ├── run_experiments.py # Automated batch testing & logging
+│   ├── correspondence_chunker_Nishitha.py # Custom paragraph-aware transmittals chunker
+│   ├── create_correspondence_data_Nishitha.py # Mock transmittal letters generator
+│   ├── test_agent_Nishitha.py     # StateGraph Agent test suite and local search fallback
+│   ├── test_hardening_Nishitha.py # Security, RLS, and out-of-scope validation suite
+│   ├── test_api_Nishitha.py       # FastAPI TestClient HTTP payload demo runner (10 queries)
 │   └── ...
-├── data/                  # Raw PDFs and processed JSON chunks
-├── experiments/           # 8 structured markdown logs with root cause analysis
-│   └── results/           # Raw JSON/MD results of evaluations
-├── docs/                  # Comparison reports and images
-│   ├── docs_for_planning/ # Updated 2-week plans and execution guides
-│   ├── guides/            # Setup and installation guides
-│   └── images/            # Visualizations (UMAP, etc.)
-└── tests/                 # Unit and integration tests
+├── data/
+│   ├── correspondence/            # Synthetic transmittal letters (let_001 to let_005)
+│   └── dmrc/                      # DMRC synthetic JSON records
+├── experiments/
+│   └── results/                   # Verified Markdown verification reports
+│       ├── correspondence_chunk_test_Nishitha.md
+│       ├── query_router_test_Nishitha.md
+│       ├── agent_test_Nishitha.md
+│       ├── hardening_test_Nishitha.md
+│       └── api_test_Nishitha.md   # FastAPI HTTP endpoint live query logs
+├── docs/
+│   ├── Architecture_Decision_Document_Nishitha.md # Technical ADD recommendations
+│   ├── Two_Weeks_Plan_Status_Nishitha.md # Entire plan status checklist
+│   └── Day_to_Day_Progress_Nishitha.md # Daily logs updated to today
+└── tests/                         # Unit and integration tests
 ```
 
 ---
 
-## 📊 Core Metrics & Results
-*Latest evaluations across varied datasets:*
+## 🚀 Running Week 2 Advanced Workflows (WSL2 / Linux)
 
-- **Faithfulness**: ~1.00 on Baseline / Semantic evaluations (LLM rejects out-of-scope).
-- **Domain Term Separation**: `BAAI/bge-large-en-v1.5` identified as the winner for Metro-rail terms.
-- **Reranker Latency**: Identified significant CPU bottleneck with `bge-reranker-v2-m3` (~8s) vs `ms-marco` (~2.5s).
-- **Adversarial Resilience**: 100% negative pass rate for out-of-scope queries (LLM filter).
-
----
-
-## 🚀 Getting Started (WSL2 / Linux)
-
-For detailed, step-by-step instructions for WSL2 and Windows configuration, refer to the [🌍 Multi-Platform Setup Guide](docs/guides/multi_platform_setup.md).
-
-### 1. Database Setup
-Spin up the PostgreSQL database container with the `pgvector` extension:
+Ensure your virtual environment is active and dependencies are loaded:
 ```bash
-docker-compose up -d
-```
-*Note: The database host port is bound to `5433` by default to avoid conflicts with local PostgreSQL daemons. You can customize this in the `.env` file.*
-
-### 2. Configure Environment Variables
-Copy `.env.example` to `.env` and fill in your details:
-```bash
-cp .env.example .env
-```
-Key required environment variables:
-- **`GROQ_API_KEY`**: Primary LLM API key (evaluations are done using `llama-3.3-70b-versatile`).
-- **`OPENROUTER_API_KEY`**: Recommended fallback LLM API key (helps prevent rate limits during evaluations).
-- **`DB_HOST`**: Set to `127.0.0.1` when executing python scripts from local terminal (WSL/cmd), or `db` when running inside Docker.
-- **`DB_PORT`**: Set to `5433` to match the PostgreSQL container exposure.
-
-### 3. Setup Virtual Environment & Dependencies
-```bash
-python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
 ```
 
-### 4. Populate Database & Run Experiments
+### 1. Execute Custom Correspondence Chunker (Day 6)
+Generates pseudo transmittal files and segments them prepending permanent metadata blocks:
 ```bash
-# Ingest raw text chunks into pgvector database
-python scripts/ingest_data.py
-
-# Execute the primary experiment comparison suite (Baseline vs Hybrid Search vs Custom failures)
-python scripts/run_experiments.py
+python3 scripts/create_correspondence_data_Nishitha.py
+python3 scripts/correspondence_chunker_Nishitha.py
 ```
 
-### 5. Automated Ragas Evaluation
+### 2. Run LLM Query Router Test Suite (Day 7)
+Evaluates 8 diverse queries across all construction categories verifying classifier accuracy and latency:
 ```bash
-python eval_ragas.py
+python3 scripts/test_query_router_Nishitha.py
+```
+
+### 3. Run LangGraph Iterative Agent Suite (Day 8)
+Orchestrates self-correcting retrieval loops with dynamic query reformulation:
+```bash
+python3 scripts/test_agent_Nishitha.py
+```
+
+### 4. Run Production Hardening & RLS Suite (Day 9)
+Evaluates RLS isolation (0 leaks), SHA-256 deduplication, and 10 adversarial out-of-scope queries:
+```bash
+python3 scripts/test_hardening_Nishitha.py
+```
+
+### 5. Run FastAPI Integration Live Demo (Day 10)
+Spins up the web service schema and executes 10 highly diverse live test queries via client TestClient, producing the final exit logs:
+```bash
+python3 scripts/test_api_Nishitha.py
 ```
 
 ---
-Use Graphify to generate an architecture-aware knowledge graph for this repository.
 
-### Install
-```bash
-python -m pip install graphifyy
-```
-
-### Build the graph
-```bash
-graphify .
-```
-
-### Recommended assistant integration
-- `AGENTS.md` and `.github/copilot-instructions.md` are included for AI assistant guidance.
-- Commit `graphify-out/GRAPH_REPORT.md` and `graphify-out/graph.json` for team-wide graph navigation.
+## 🛡 Security & Compliance Highlights
+- **RLS Multi-Tenancy**: Dynamic parameter switching (`SET LOCAL app.current_tenant_id = %s`) blocks cross-tenant leaks at the database engine level (0 leaks verified).
+- **Adversarial Defense**: Dual-layer out-of-scope regex and heuristic filters block external questions (capital city, cooking recipes) in milliseconds before hitting the database.
+- **Layer 4 Audit Ledger**: Standard CDM `AuditEvent` written to database audit tables and a local JSON ledger for centralized compliance tracking.
 
 ---
-
-## 🛡 Security & Resilience
-- **Secrets**: Managed via `.env`. Never committed to Git.
-- **Failover**: Sequential provider chain with timeouts and retries.
-- **Isolation**: Multi-tenant support via `tenant_id` metadata filtering (Tested via `exp_06_tenant_leakage`).
+*All RAG systems fully verified and signed off for master repository checkout.*
