@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 DB_CONFIG = {
-    "host": os.getenv("DB_HOST", "127.0.0.1"),
+    "host": os.getenv("DB_HOST", "localhost"),
     "port": int(os.getenv("DB_PORT", "5432")),
     "user": os.getenv("DB_USER", "rag_user"),
     "password": os.getenv("DB_PASSWORD", "rag_password"),
@@ -20,8 +20,40 @@ def get_connection():
         print(f"[ERROR] DB Connection failed: {e}")
         return None
 
+def check_table_exists():
+    """Returns True if rag_documents table exists and has rows."""
+    conn = get_connection()
+    if not conn:
+        return False
+    try:
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT EXISTS (
+                SELECT FROM information_schema.tables
+                WHERE table_name = 'rag_documents'
+            );
+        """)
+        table_exists = cur.fetchone()[0]
+        if not table_exists:
+            print("[WARN] Table 'rag_documents' does not exist. Run ingest_data.py first.")
+            return False
+        cur.execute("SELECT COUNT(*) FROM rag_documents;")
+        count = cur.fetchone()[0]
+        print(f"[INFO] rag_documents has {count} rows.")
+        return count > 0
+    except Exception as e:
+        print(f"[ERROR] Table check failed: {e}")
+        return False
+    finally:
+        cur.close()
+        conn.close()
+
 def init_pgvector():
-    """Initialize pgvector and pg_trgm table with schema"""
+    """Initialize pgvector and pg_trgm extensions and table schema.
+    Uses CREATE TABLE IF NOT EXISTS — safe to call multiple times.
+    The ivfflat vector index is deferred to build_vector_index() which
+    must be called AFTER data is loaded (ivfflat requires rows to exist).
+    """
     conn = get_connection()
     if not conn:
         return False
@@ -33,10 +65,9 @@ def init_pgvector():
         cur.execute("CREATE EXTENSION IF NOT EXISTS vector;")
         cur.execute("CREATE EXTENSION IF NOT EXISTS pg_trgm;")
         
-        # Create embeddings table with metadata
+        # Create table only if it does not already exist (safe re-run)
         cur.execute("""
-            DROP TABLE IF EXISTS rag_documents CASCADE;
-            CREATE TABLE rag_documents (
+            CREATE TABLE IF NOT EXISTS rag_documents (
                 id SERIAL PRIMARY KEY,
                 tenant_id VARCHAR(255) DEFAULT 'default',
                 entity_type VARCHAR(100),
@@ -50,25 +81,50 @@ def init_pgvector():
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         """)
-        
-        # Create vector index
-        cur.execute("""
-            CREATE INDEX IF NOT EXISTS rag_embedding_idx 
-            ON rag_documents USING ivfflat (embedding vector_cosine_ops)
-            WITH (lists = 100);
-        """)
 
-        # Create GIN index for pg_trgm (BM25-like search)
+        # GIN index for pg_trgm is safe to create on empty tables
         cur.execute("""
             CREATE INDEX IF NOT EXISTS rag_content_trgm_idx 
             ON rag_documents USING gin (content gin_trgm_ops);
         """)
         
-        print("[INFO] pgvector and pg_trgm initialized.")
+        print("[INFO] pgvector schema initialized (table + trgm index ready).")
         conn.commit()
         return True
     except Exception as e:
         print(f"[ERROR] Init failed: {e}")
+        conn.rollback()
+        return False
+    finally:
+        cur.close()
+        conn.close()
+
+def build_vector_index():
+    """Build ivfflat vector index. MUST be called after data is loaded.
+    ivfflat requires at least 1 row to exist before index creation.
+    """
+    conn = get_connection()
+    if not conn:
+        return False
+    try:
+        cur = conn.cursor()
+        cur.execute("SELECT COUNT(*) FROM rag_documents;")
+        count = cur.fetchone()[0]
+        if count == 0:
+            print("[WARN] Cannot build ivfflat index on empty table. Load data first.")
+            return False
+        # Lists = min(count/2, 100) to avoid ivfflat error on small datasets
+        lists = max(1, min(count // 2, 100))
+        cur.execute(f"""
+            CREATE INDEX IF NOT EXISTS rag_embedding_idx 
+            ON rag_documents USING ivfflat (embedding vector_cosine_ops)
+            WITH (lists = {lists});
+        """)
+        conn.commit()
+        print(f"[INFO] ivfflat vector index built (lists={lists}, rows={count}).")
+        return True
+    except Exception as e:
+        print(f"[ERROR] Vector index build failed: {e}")
         conn.rollback()
         return False
     finally:
@@ -167,7 +223,7 @@ def retrieve_similar(query_embedding, tenant_id="default", entity_type=None, con
         cur.close()
         conn.close()
 
-def retrieve_trgm(query_text, tenant_id="default", k=3):
+def retrieve_trgm(query_text, tenant_id="default", entity_type=None, contract_standard=None, k=3):
     """
     Retrieve similar documents using pg_trgm (text-based).
     """
@@ -176,14 +232,22 @@ def retrieve_trgm(query_text, tenant_id="default", k=3):
         return []
     try:
         cur = conn.cursor()
-        query_sql = """
-            SELECT id, content, similarity(content, %s) as distance
-            FROM rag_documents 
-            WHERE tenant_id = %s AND content %% %s
-            ORDER BY distance DESC 
-            LIMIT %s;
-        """
-        cur.execute(query_sql, (query_text, tenant_id, query_text, k))
+        
+        query_sql = "SELECT id, content, similarity(content, %s) as distance FROM rag_documents WHERE tenant_id = %s AND content %% %s"
+        params = [query_text, tenant_id, query_text]
+        
+        if entity_type:
+            query_sql += " AND entity_type = %s"
+            params.append(entity_type)
+            
+        if contract_standard:
+            query_sql += " AND contract_standard = %s"
+            params.append(contract_standard)
+            
+        query_sql += " ORDER BY distance DESC LIMIT %s;"
+        params.append(k)
+        
+        cur.execute(query_sql, tuple(params))
         return cur.fetchall()
     except Exception as e:
         print(f"[ERROR] Trgm retrieval failed: {e}")
@@ -192,26 +256,30 @@ def retrieve_trgm(query_text, tenant_id="default", k=3):
         cur.close()
         conn.close()
 
-def retrieve_hybrid(query_text, query_embedding, tenant_id="default", k=5):
+def retrieve_hybrid(query_text, query_embedding, tenant_id="default", entity_type=None, contract_standard=None, k=5, rrf_k=60):
     """
-    Simple Hybrid Search: Combine Vector and Trigram results.
+    Hybrid Search: Combine Vector and Trigram results using Reciprocal Rank Fusion (RRF).
     """
-    vec_results = retrieve_similar(query_embedding, tenant_id, k=k)
-    trgm_results = retrieve_trgm(query_text, tenant_id, k=k)
+    vec_results = retrieve_similar(query_embedding, tenant_id, entity_type, contract_standard, k=k)
+    trgm_results = retrieve_trgm(query_text, tenant_id, entity_type, contract_standard, k=k)
     
-    # Combine results by ID
     combined = {}
-    for r in vec_results:
-        combined[r[0]] = {"content": r[1], "vec_score": r[2], "trgm_score": 0}
-    for r in trgm_results:
-        if r[0] in combined:
-            combined[r[0]]["trgm_score"] = r[2]
-        else:
-            combined[r[0]] = {"content": r[1], "vec_score": 1.0, "trgm_score": r[2]} # 1.0 is max distance
-            
-    # Simple RRF-like sorting (just adding scores for now)
-    sorted_res = sorted(combined.items(), key=lambda x: (1-x[1]["trgm_score"]) + x[1]["vec_score"])
-    return [(id, data["content"], 0.0) for id, data in sorted_res[:k]]
+    
+    # Rank vectors
+    for rank, (doc_id, content, distance) in enumerate(vec_results):
+        if doc_id not in combined:
+            combined[doc_id] = {"content": content, "rrf_score": 0}
+        combined[doc_id]["rrf_score"] += 1.0 / (rrf_k + rank + 1)
+        
+    # Rank trgm
+    for rank, (doc_id, content, similarity) in enumerate(trgm_results):
+        if doc_id not in combined:
+            combined[doc_id] = {"content": content, "rrf_score": 0}
+        combined[doc_id]["rrf_score"] += 1.0 / (rrf_k + rank + 1)
+        
+    # Sort by descending RRF score
+    sorted_res = sorted(combined.items(), key=lambda x: x[1]["rrf_score"], reverse=True)
+    return [(doc_id, data["content"], data["rrf_score"]) for doc_id, data in sorted_res[:k]]
 
 def retrieve_graph(chunk_id):
     """

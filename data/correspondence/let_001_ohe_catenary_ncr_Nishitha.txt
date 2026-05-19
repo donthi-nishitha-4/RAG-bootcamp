@@ -1,0 +1,15 @@
+Ref: EK/OHE/2026/089
+Date: 2026-05-10
+From: Ganga, Chief Project Engineer, Metro Project Authority
+To: Yamuna, Senior Infrastructure Lead, Energy Kernel
+Subject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage
+
+Dear Yamuna,
+
+Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.
+
+Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.
+
+Sincerely,
+Ganga
+Chief Project Engineer

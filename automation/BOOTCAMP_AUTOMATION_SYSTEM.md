@@ -8,7 +8,7 @@
 
 **Three Roles:**
 1. **Balu (Lead)** — Architecture decisions, final sign-offs
-2. **Uday (Engineer)** — Experimental results, latency benchmarks, code proofs
+2. **Balu Sir (Engineer)** — Experimental results, latency benchmarks, code proofs
 3. **Nishitha (Engineer)** — Security testing, adversarial cases, hallucination checks
 
 **How it works:**
@@ -123,7 +123,7 @@ updates:
 
 ---
 
-## ROLE #2: UDAY (ENGINEER) — Metrics & Implementation
+## ROLE #2: BALU (ENGINEER) — Metrics & Implementation
 
 ### YOUR MISSION
 - Run experiments: embedding comparisons, chunking, retrieval strategies, latency benchmarks
@@ -131,12 +131,12 @@ updates:
 - Prove your code with function signatures and file paths
 - Document failures as thoroughly as successes
 
-### TEMPLATE: UDAY'S EXPERIMENT SUBMISSION
+### TEMPLATE: BALU'S EXPERIMENT SUBMISSION
 
 ```
-# UDAY'S EXPERIMENT REPORT
+# BALU'S EXPERIMENT REPORT
 Date: YYYY-MM-DD
-Experimenter: Uday
+Experimenter: Balu Sir
 Experiment ID: EXP-###
 
 ## HYPOTHESIS
@@ -258,7 +258,7 @@ updates:
   - section: "D10"
     field: "Experiment EXP-### — Hypothesis"
     value: "[Your hypothesis exactly]"
-    contributor: "Uday"
+    contributor: "Balu Sir"
     date: "YYYY-MM-DD"
     reasoning: "Experimental justification"
     proof: "experiments/exp_XX_XXXXX.json"
@@ -267,7 +267,7 @@ updates:
 ---
 ```
 
-### UDAY'S CHECKLIST
+### BALU'S CHECKLIST
 - [ ] All metrics come from actual experimental runs (not estimates)
 - [ ] Each metric has a proof file with line number reference
 - [ ] Code implementation cited with function name + line range
@@ -387,7 +387,7 @@ Balu:
   • Decides on embedding model (e.g., "bge-large-en-v1.5")
   • Documents why (metrics from EXP-01, EXP-02)
 
-Uday:
+Balu Sir:
   • Runs experiment: Embedding comparison
   • Measures: P@5, latency, index size, etc.
   • Saves results to experiments/exp_01_embeddings.json
@@ -428,7 +428,7 @@ You are Claude, serving as the automation agent for the DMRC AI-PMS RAG Bootcamp
 6. **OUTPUT**: Return updated DELIVERABLES + summary of changes
 
 ## ROLE SUBMITTING
-[Pick one: BALU (Architecture) | UDAY (Experiments) | NISHITHA (Testing)]
+[Pick one: BALU (Architecture) | BALU (Experiments) | NISHITHA (Testing)]
 
 ## CONTRIBUTOR INFO
 **Name**: [Full Name]
@@ -592,7 +592,7 @@ updates:
 | Role | Primary Sections | Key Responsibilities | Proof Sources |
 |------|------------------|----------------------|---------------|
 | **Balu** | D1, D11 | Architecture decisions, final recommendations | Experiment IDs, design docs, docker-compose.yml |
-| **Uday** | D2, D3, D5, D7, D8, D10 | Metrics, latency, experiment logs | experiments/, scripts/, src/ with line numbers |
+| **Balu Sir** | D2, D3, D5, D7, D8, D10 | Metrics, latency, experiment logs | experiments/, scripts/, src/ with line numbers |
 | **Nishitha** | D4, D6, D9, D10 | Failure modes, security, testing, multi-hop | Test logs, adversarial queries, RAGAS output |
 
 ---
