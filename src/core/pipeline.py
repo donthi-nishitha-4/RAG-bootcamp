@@ -3,8 +3,8 @@ from sentence_transformers import SentenceTransformer, CrossEncoder
 from .retriever import retrieve_similar, init_pgvector, retrieve_hybrid
 from .llm import query_llm
 
-TOP_K = 5
-FINAL_K = 3
+TOP_K = 20
+FINAL_K = 5
 
 # ---- SETUP MODELS ----
 try:

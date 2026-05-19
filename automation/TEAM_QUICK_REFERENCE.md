@@ -4,7 +4,7 @@
 
 ## 📌 THE 5-MINUTE PROCESS
 
-### YOU (Uday / Balu / Nishitha)
+### YOU (Balu Sir / Balu / Nishitha)
 1. **Run your experiment or make your decision**
 2. **Fill the template** (BOOTCAMP_AUTOMATION_SYSTEM.md, your role)
 3. **Get the YAML updates** (copy from examples or your filled template)
@@ -15,7 +15,7 @@
 
 ## 📋 TEMPLATES BY ROLE
 
-### If you're UDAY (Engineer/Experiments)
+### If you're BALU (Engineer/Experiments)
 
 ```
 Copy from: BOOTCAMP_AUTOMATION_SYSTEM.md → ROLE #2
@@ -98,7 +98,7 @@ Generate YAML:
 [START]
 
 Use the BOOTCAMP_AUTOMATION_SYSTEM.md file.
-I am submitting updates as [ROLE: UDAY / BALU / NISHITHA].
+I am submitting updates as [ROLE: BALU / BALU / NISHITHA].
 
 [PASTE YOUR FILLED TEMPLATE HERE]
 
@@ -128,7 +128,7 @@ updates:
   - section: "D2.1"
     field: "Index Size (1000 chunks) — MiniLM L6-v2"
     value: "~2.1 MB"
-    contributor: "Uday"
+    contributor: "Balu Sir"
     date: "2026-05-03"
     reasoning: "384-dim embeddings, GiST index"
     proof: "experiments/exp_001.json:L12"

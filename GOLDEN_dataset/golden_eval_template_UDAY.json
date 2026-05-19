@@ -1,0 +1,19 @@
+[
+  {
+    "id": "gld-001",
+    "entity_type": "contract",
+    "question": "What is the notice period for termination?",
+    "context_doc": "data/gcc/contract_001.pdf",
+    "expected_answer": "30 days; see clause 12.1",
+    "notes": "example entry — replace with canonical phrasing"
+  },
+  {
+    "id": "gld-002",
+    "entity_type": "NCR",
+    "question": "What corrective actions were applied to NCR-123?",
+    "context_doc": "data/correspondence/ncr_123.json",
+    "expected_answer": "Rework by supplier; 2-week verification; see NCR-123/attachments",
+    "notes": "placeholder"
+  }
+  /* Add up to 30 entries; ensure at least 20% adversarial/out-of-scope */
+]

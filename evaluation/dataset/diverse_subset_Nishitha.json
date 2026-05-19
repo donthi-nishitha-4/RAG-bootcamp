@@ -1,0 +1,52 @@
+[
+  {
+    "query": "What clause governs contractor claims in GCC?",
+    "expected_answer": "Clause 20.1 governs contractor claims.",
+    "contexts": [
+      "Clause 20.1 outlines contractor claim procedures.",
+      "It includes timelines and documentation requirements."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What happens if disputes are not resolved amicably in GCC contracts?",
+    "expected_answer": "They are referred to arbitration.",
+    "contexts": [
+      "Disputes are first attempted to be resolved amicably.",
+      "Unresolved disputes are referred to arbitration."
+    ],
+    "category": "multi-hop",
+    "source": "gcc"
+  },
+  {
+    "query": "Which contractor shows highest rejection rate in DMRC data?",
+    "expected_answer": "Contractor ABC has highest rejection rate.",
+    "contexts": [
+      "Contractor ABC shows 45% rejection rate.",
+      "Other contractors show lower rejection values."
+    ],
+    "category": "analytical",
+    "source": "dmrc"
+  },
+  {
+    "query": "What are common NCR defects in DMRC reports?",
+    "expected_answer": "Welding misalignment and joint failure are common NCR defects.",
+    "contexts": [
+      "NCR reports frequently mention welding issues.",
+      "Alignment problems are also common."
+    ],
+    "category": "summary",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which segment contributes highest revenue in the enterprise dataset?",
+    "expected_answer": "The cloud services segment contributes the highest revenue.",
+    "contexts": [
+      "Cloud services dominate revenue share.",
+      "Other segments contribute less."
+    ],
+    "category": "analytical",
+    "source": "kaggle"
+  }
+]
