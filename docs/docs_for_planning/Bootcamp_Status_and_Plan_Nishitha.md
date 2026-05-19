@@ -67,3 +67,4 @@ Looking strictly at the **Full 2-Week Plan (Days 7-10)**, the following advanced
 - **Query Router & Data Expansion:** Build the LLM Query Router and expand the golden dataset from 30+ to 80+ queries.
 - **Remaining Chunkers & Contextual Retrieval:** Finish the Correspondence chunker and test contextual retrieval.
 - **Windows Pipeline Verification:** Run the chunkers and cross-encoder reranking scripts on Windows to verify CPU latency.
+

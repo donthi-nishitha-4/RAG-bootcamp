@@ -1,0 +1,8 @@
+{
+  "dataset_file": "evaluation/dataset/evaluation_dataset_UDAY_32.json",
+  "total_entries": 37,
+  "adversarial_entries": 8,
+  "adversarial_fraction": 0.21621621621621623,
+  "generated_by": "udaycodespace",
+  "generated_at": "2026-05-19T00:00:00Z"
+}
