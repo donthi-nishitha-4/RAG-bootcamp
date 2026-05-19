@@ -34,21 +34,61 @@ def ask_rag(query, tenant_id="default", entity_type=None, contract_standard=None
     query = query.strip()
     
     try:
-        # 2. Embed query
+        # 2. Embed query or generate retrieval signals depending on search_type
+        # Default: embed the query itself
         query_embedding = embed_model.encode([query])[0].tolist()
-        
+
         # 3. Retrieve
         from .retriever import retrieve_similar, retrieve_hybrid
-        
+
         if search_type == "hybrid":
-            results = retrieve_hybrid(
-                query,
-                query_embedding,
-                tenant_id=tenant_id,
-                entity_type=entity_type,
-                contract_standard=contract_standard,
-                k=TOP_K
-)
+            results = retrieve_hybrid(query, query_embedding, tenant_id=tenant_id, k=TOP_K)
+        elif search_type == "hyde":
+            # HyDE: generate hypothetical document, embed THAT, then retrieve
+            prompt = [
+                {"role": "system", "content": "You are a helpful assistant that writes a short hypothetical document that would answer the user's question. Keep it focused and factual."},
+                {"role": "user", "content": f"Generate a concise hypothetical document that directly answers: {query}"}
+            ]
+            hyde_doc = query_llm(prompt)
+            if not hyde_doc or hyde_doc.startswith("[ERROR]"):
+                return {
+                    "query": query,
+                    "retrieved_chunks": [],
+                    "context": "",
+                    "answer": "[ERROR] HyDE generation failed",
+                    "chunk_ids": [],
+                    "sources": []
+                }
+            hyde_emb = embed_model.encode([hyde_doc])[0].tolist()
+            results = retrieve_similar(hyde_emb, tenant_id=tenant_id, entity_type=entity_type, contract_standard=contract_standard, k=TOP_K)
+        elif search_type == "multi":
+            # Multi-query: generate N paraphrases, retrieve per paraphrase, union results
+            # Ask LLM for 3 paraphrases by default
+            prompt = [
+                {"role": "system", "content": "You are a concise paraphraser. Produce 3 diverse rephrasings of the user's question, each on its own line."},
+                {"role": "user", "content": f"Rephrase: {query}"}
+            ]
+            resp = query_llm(prompt)
+            paraphrases = []
+            if resp and not resp.startswith("[ERROR]"):
+                for line in resp.splitlines():
+                    line = line.strip()
+                    if line:
+                        paraphrases.append(line)
+            # Fallback: simple variants if LLM unavailable
+            if not paraphrases:
+                paraphrases = [query, query + "?", query]
+
+            # Retrieve for each paraphrase and union by id
+            combined = {}
+            for p in paraphrases:
+                emb = embed_model.encode([p])[0].tolist()
+                res = retrieve_similar(emb, tenant_id=tenant_id, entity_type=entity_type, contract_standard=contract_standard, k=TOP_K)
+                for r in res:
+                    combined[r[0]] = (r[1], r[2])
+
+            # Produce a list similar to other retrieve functions: (id, content, score)
+            results = [(cid, data[0], data[1]) for cid, data in combined.items()][:TOP_K]
         else:
             results = retrieve_similar(
                 query_embedding, 
