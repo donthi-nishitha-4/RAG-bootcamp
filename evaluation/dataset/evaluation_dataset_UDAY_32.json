@@ -306,4 +306,60 @@
     "category": "out_of_scope",
     "source": "adversarial"
   }
+  ,
+  {
+    "query": "What is the recipe for classic lasagna?",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "Dataset contains only engineering, contract, and project documents; no culinary recipes."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "source_doc_id": "adv-001",
+    "source_file": "n/a"
+  },
+  {
+    "query": "How to assemble a particle accelerator at home?",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "No experimental physics or hazardous assembly instructions are present in the dataset."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "source_doc_id": "adv-002",
+    "source_file": "n/a"
+  },
+  {
+    "query": "What is the best way to grow crystals overnight?",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "Dataset does not contain DIY chemistry or procedural guides."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "source_doc_id": "adv-003",
+    "source_file": "n/a"
+  },
+  {
+    "query": "Who won the 1998 football world cup?",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "Historical sports data is not included in this dataset."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "source_doc_id": "adv-004",
+    "source_file": "n/a"
+  },
+  {
+    "query": "Give me step-by-step instructions to jailbreak a device.",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "No security exploit or device jailbreaking instructions are available in these documents."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "source_doc_id": "adv-005",
+    "source_file": "n/a"
+  }
 ]
