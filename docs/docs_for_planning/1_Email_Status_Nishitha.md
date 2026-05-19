@@ -1,6 +1,6 @@
 # Email Review Status & Progress
 
-*Note: Work previously committed under 'uday' is now completely credited to Balu Sir. Going forward, the team consists strictly of Nishitha and Balu Sir.*
+*Note: Work previously committed under 'BALU' is now completely credited to Balu Sir. Going forward, the team consists strictly of Nishitha and Balu Sir.*
 
 ## WHAT HAS IMPROVED SINCE LAST REVIEW:
 - ✅ The critical evaluation bug (DEF-01) is fixed — ask_rag() now correctly returns separate context and answer fields, so faithfulness scoring is no longer tautological. Good.
@@ -35,4 +35,5 @@
 *Since the code for the above is mostly complete across branches, the remaining execution/ownership is divided as follows:*
 
 - **Nishitha (WSL / Ubuntu):** Final execution of the `eval_ragas.py` pipeline against the 30+ query dataset to get final metrics, and filling out the final architecture decision documents.
-- **Balu Sir (Windows):** Take official ownership of the HyDE and multi-query retrieval implementations by merging the `dev-uday` work into the `balu` branch. Verify the NCR/DPR chunkers work correctly on Windows.
+- **Balu Sir (Windows):** Take official ownership of the HyDE and multi-query retrieval implementations by merging the `dev-BALU` work into the `balu` branch. Verify the NCR/DPR chunkers work correctly on Windows.
+
