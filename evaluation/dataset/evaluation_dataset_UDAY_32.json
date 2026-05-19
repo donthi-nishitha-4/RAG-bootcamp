@@ -1,0 +1,309 @@
+[
+  {
+    "query": "What clause governs contractor claims in GCC?",
+    "expected_answer": "Clause 20.1 governs contractor claims.",
+    "contexts": [
+      "Clause 20.1 outlines contractor claim procedures.",
+      "It includes timelines and documentation requirements."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What happens if disputes are not resolved amicably in GCC contracts?",
+    "expected_answer": "They are referred to arbitration.",
+    "contexts": [
+      "Disputes are first attempted to be resolved amicably.",
+      "Unresolved disputes are referred to arbitration."
+    ],
+    "category": "multi-hop",
+    "source": "gcc"
+  },
+  {
+    "query": "Which clause allows termination of contract?",
+    "expected_answer": "Clause 16 deals with termination.",
+    "contexts": [
+      "Clause 16 specifies termination conditions.",
+      "Termination may occur due to breach or agreement."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What causes TBM delays in GCC projects?",
+    "expected_answer": "Breakdowns and maintenance issues cause TBM delays.",
+    "contexts": [
+      "TBM breakdown causes delays.",
+      "Claims for delay due to TBM breakdown must be submitted with manufacturer diagnostic reports."
+    ],
+    "category": "multi-hop",
+    "source": "gcc"
+  },
+  {
+    "query": "Which GCC clause handles contractor claims and documentation?",
+    "expected_answer": "Clause 20.1 handles claims and requires documentation.",
+    "contexts": [
+      "Clause 20.1 defines claims procedure.",
+      "It includes documentation rules."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What is the role of the engineer in GCC contract execution?",
+    "expected_answer": "The engineer supervises project execution and ensures contract compliance.",
+    "contexts": [
+      "The engineer will review NCR resolutions related to station cavern fire safety provisions.",
+      "The engineer may instruct design variation for tunnel boring machine alignment before Stage 2 execution."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "What is the impact of TBM breakdown on project timeline?",
+    "expected_answer": "TBM breakdown causes delays and requires claim submissions with diagnostic reports.",
+    "contexts": [
+      "Claims for delay due to TBM breakdown must be submitted with manufacturer diagnostic reports.",
+      "The employer may postpone TBM launch if site conditions are deemed unsafe."
+    ],
+    "category": "analytical",
+    "source": "gcc"
+  },
+  {
+    "query": "What are the OHE catenary responsibilities of the contractor during commissioning?",
+    "expected_answer": "The contractor is responsible for maintaining the temporary OHE catenary support system during commissioning.",
+    "contexts": [
+      "The contractor is responsible for maintaining the temporary OHE catenary support system during commissioning.",
+      "The contractor shall prepare a detailed OHE catenary risk assessment before energization."
+    ],
+    "category": "factual",
+    "source": "gcc"
+  },
+  {
+    "query": "Which contractor shows highest rejection rate in DMRC data?",
+    "expected_answer": "Contractor ABC has highest rejection rate.",
+    "contexts": [
+      "Contractor ABC shows 45% rejection rate.",
+      "Other contractors show lower rejection values."
+    ],
+    "category": "analytical",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which subsystem causes most delays in DMRC projects?",
+    "expected_answer": "Structural subsystem causes most delays.",
+    "contexts": [
+      "Structural subsystem issues cause repeated delays.",
+      "Electrical and signaling show fewer delays."
+    ],
+    "category": "multi-hop",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which station has highest number of RFIs?",
+    "expected_answer": "Station A has the highest number of RFIs.",
+    "contexts": [
+      "Station A recorded maximum RFIs.",
+      "Other stations have fewer RFIs."
+    ],
+    "category": "analytical",
+    "source": "dmrc"
+  },
+  {
+    "query": "What are common NCR defects in DMRC reports?",
+    "expected_answer": "Welding misalignment and joint failure are common NCR defects.",
+    "contexts": [
+      "NCR reports frequently mention welding issues.",
+      "Alignment problems are also common."
+    ],
+    "category": "summary",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which contractor shows both high rejection and low closure rate?",
+    "expected_answer": "Contractor ABC shows poor performance with high rejection and low closure rate.",
+    "contexts": [
+      "ABC has high rejection rates.",
+      "ABC closure rate is below 50%."
+    ],
+    "category": "multi-hop",
+    "source": "dmrc"
+  },
+  {
+    "query": "Identify RFIs open beyond SLA in DMRC system.",
+    "expected_answer": "Several RFIs remain open beyond the SLA and are marked as delayed.",
+    "contexts": [
+      "RFIs remain open beyond SLA.",
+      "These are marked as delayed."
+    ],
+    "category": "anomaly",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which contractor shows abnormal rejection trend?",
+    "expected_answer": "Contractor ABC shows an irregular and fluctuating rejection pattern.",
+    "contexts": [
+      "ABC has fluctuating rejection rate.",
+      "Pattern differs from other contractors."
+    ],
+    "category": "anomaly",
+    "source": "dmrc"
+  },
+  {
+    "query": "What is a common defect type in DMRC welding NCRs?",
+    "expected_answer": "Welding misalignment and joint failure are the most common defects.",
+    "contexts": [
+      "Welding defects appear frequently in NCR reports.",
+      "Joint alignment issues are common."
+    ],
+    "category": "factual",
+    "source": "dmrc"
+  },
+  {
+    "query": "Which subsystem has highest NCR escalation in DMRC?",
+    "expected_answer": "The structural subsystem generates the most NCRs and escalations.",
+    "contexts": [
+      "Structural subsystem generates most NCRs.",
+      "Other subsystems show fewer issues."
+    ],
+    "category": "multi-hop",
+    "source": "dmrc"
+  },
+  {
+    "query": "What NCR was raised for OHE catenary hanger damage?",
+    "expected_answer": "An NCR was issued for damaged OHE catenary hanger at the platform edge.",
+    "contexts": [
+      "NCR issued for damaged OHE catenary hanger at the platform edge.",
+      "NCR issued for missing insulation on OHE catenary conductor clamps."
+    ],
+    "category": "factual",
+    "source": "dmrc"
+  },
+  {
+    "query": "What does the DPR say about TBM advance progress?",
+    "expected_answer": "DPR reports TBM advance of 32 meters and successful segmental lining installation.",
+    "contexts": [
+      "DPR reports tunnel boring machine advance of 32 meters and successful segmental lining installation.",
+      "DPR documents TBM cutterhead replacement and debris removal from the launch shaft."
+    ],
+    "category": "factual",
+    "source": "dmrc"
+  },
+  {
+    "query": "What is total revenue reported in the enterprise dataset?",
+    "expected_answer": "Total revenue for FY2023 is $12.4 billion.",
+    "contexts": [
+      "Total revenue for FY2023 is $12.4 billion.",
+      "Revenue increased by 10% YoY."
+    ],
+    "category": "factual",
+    "source": "kaggle"
+  },
+  {
+    "query": "Which segment contributes highest revenue in the enterprise dataset?",
+    "expected_answer": "The cloud services segment contributes the highest revenue.",
+    "contexts": [
+      "Cloud services dominate revenue share.",
+      "Other segments contribute less."
+    ],
+    "category": "analytical",
+    "source": "kaggle"
+  },
+  {
+    "query": "Which region shows highest growth but declining trend?",
+    "expected_answer": "Europe shows high revenue but a declining growth rate.",
+    "contexts": [
+      "Europe has high revenue share.",
+      "Growth rate is declining in Europe."
+    ],
+    "category": "multi-hop",
+    "source": "kaggle"
+  },
+  {
+    "query": "What are key risks in the enterprise report?",
+    "expected_answer": "Supply chain disruption and regulatory challenges are the key risks.",
+    "contexts": [
+      "Supply chain disruption is a major risk.",
+      "Regulatory challenges also noted."
+    ],
+    "category": "summary",
+    "source": "kaggle"
+  },
+  {
+    "query": "What is the enterprise RAG dataset used for?",
+    "expected_answer": "The Kaggle enterprise dataset is used for benchmarking RAG systems on business reports.",
+    "contexts": [
+      "Kaggle dataset contains enterprise reports.",
+      "Used for RAG benchmarking."
+    ],
+    "category": "factual",
+    "source": "kaggle"
+  },
+  {
+    "query": "What is the YoY revenue growth rate in the enterprise dataset?",
+    "expected_answer": "Revenue increased by 10% year-over-year.",
+    "contexts": [
+      "Total revenue for FY2023 is $12.4 billion.",
+      "Revenue increased by 10% YoY."
+    ],
+    "category": "factual",
+    "source": "kaggle"
+  },
+  {
+    "query": "Who raised the safety NCR about scaffolding on 2024-11-05?",
+    "expected_answer": "Site inspector raised the scaffolding safety NCR on 2024-11-05.",
+    "contexts": [
+      "NCR entry: scaffolding safety, raised by site inspector, date 2024-11-05.",
+      "Action: immediate temporary dismantle and re-inspect."
+    ],
+    "category": "factual",
+    "source": "correspondence"
+  },
+  {
+    "query": "Action items from the 2025-02-10 project meeting regarding TBM alignment?",
+    "expected_answer": "Conduct laser survey and submit alignment report within 2 weeks.",
+    "contexts": [
+      "Meeting minutes: laser survey requested for TBM alignment.",
+      "Owner: Design team; due: 2 weeks."
+    ],
+    "category": "minutes",
+    "source": "minutes"
+  },
+  {
+    "query": "Summarize the contractor's immediate requirement after NCR-321 was issued.",
+    "expected_answer": "Contractor must rework the joint and submit verification within 14 days.",
+    "contexts": [
+      "NCR-321: joint failure; rework required.",
+      "Verification by QA within 14 days."
+    ],
+    "category": "summary",
+    "source": "dmrc"
+  },
+  {
+    "query": "Is the question about quantum entanglement answerable from these documents?",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "Dataset contains only infrastructure, contract, and enterprise documents. No physics content."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "Who is the CEO of Google?",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "No corporate leadership data available in the dataset."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  },
+  {
+    "query": "Translate 'Hello' to Japanese.",
+    "expected_answer": "Not found in context",
+    "contexts": [
+      "No linguistic or translation data available in the dataset."
+    ],
+    "category": "out_of_scope",
+    "source": "adversarial"
+  }
+]
