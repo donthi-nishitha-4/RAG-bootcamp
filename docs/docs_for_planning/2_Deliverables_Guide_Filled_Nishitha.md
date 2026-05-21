@@ -50,8 +50,9 @@
 |Fixed 512 tokens|Poor|Generic text|
 |Semantic chunking|0.66 (Faithfulness 1.0)|Legal/Contract docs (GCC)|
 |Document-structure|N/A|Hierarchical docs|
-|NCR Regex Parser|Testing|NCR Forms|
-|DPR Regex Parser|Testing|DPR Reports|
+|NCR Regex Parser|Completed (`src/chunkers/ncr_dpr_chunker_BALU.py`)|NCR Forms|
+|DPR Regex Parser|Completed (`src/chunkers/ncr_dpr_chunker_BALU.py`)|DPR Reports|
+|Correspondence Parser|Completed (`scripts/correspondence_chunker_Nishitha.py`)|Transmittal Letters|
 
 *Observation:* Semantic chunking was correctly identified as best for legal/contract documents compared to naive/simple splitters. Heading-based chunking fails when answers span multiple clauses.
 

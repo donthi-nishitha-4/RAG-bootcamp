@@ -173,7 +173,7 @@ This README documents a **complete bootcamp journey** from naive RAG to producti
 | | 4 | **Hybrid Retrieval** | ✅ | Integrated BM25 + pgvector + Reciprocal Rank Fusion |
 | | 5 | **Advanced Techniques** | ✅ | HyDE, Multi-Query, Contextual Retrieval (+50% precision) |
 | **Week 2** | 6 | **Custom Chunker** | ✅ | Correspondence parser with metadata prepending (Ref, Date, From, To, Subject) |
-| | 7 | **Query Router** | ✅ | LLM-based intent classifier with Llama 3.1 provider failovers |
+| | 7 | **GraphRAG & Query Router** | ✅ | PostgreSQL self-join hierarchical Graph traversal & LLM-based intent classifier |
 | | 8 | **LangGraph Agent** | ✅ | StateGraph iterative orchestration (3 self-correction loops) |
 | | 9 | **Production Hardening** | ✅ | RLS isolation, SHA-256 dedup, CDM audit logging, adversarial blocks |
 | | 10 | **FastAPI & Sign-Off** | ✅ | Web service wrapper + 10 live test queries + Architecture Decision Document |
@@ -190,6 +190,7 @@ aipms-rag-bootcamp/
 │       ├── agent_Nishitha.py          # LangGraph StateGraph with 3-loop self-correction
 │       ├── hardening_Nishitha.py      # RLS, SHA-256 dedup, audit logging, adversarial blocker
 │       ├── query_router_Nishitha.py   # LLM intent classifier + provider failovers
+│       ├── graph_rag.py               # PostgreSQL self-join hierarchical Graph retrieval
 │       ├── pipeline.py                # Baseline modular RAG (embedding → retrieval → generation)
 │       ├── retriever.py               # Hybrid search: pgvector + pg_trgm + RRF
 │       └── llm.py                     # Multi-provider LLM chain with fallbacks
@@ -203,6 +204,8 @@ aipms-rag-bootcamp/
 │   ├── test_hardening_Nishitha.py                # Day 9: RLS + adversarial testing
 │   ├── test_api_Nishitha.py                      # Day 10: FastAPI live query suite
 │   ├── test_query_router_Nishitha.py             # Day 7: Router accuracy verification
+│   ├── demo_graph_rag.py                         # Day 7: GraphRAG prototype & Matrix Ingestion
+│   ├── ingest_taxonomy.py                        # Day 7: Systems Taxonomy ingestion
 │   └── benchmark_retrieval.py                    # Precision@5, NDCG scoring
 │
 ├── data/
@@ -213,6 +216,7 @@ aipms-rag-bootcamp/
 │   └── results/
 │       ├── correspondence_chunk_test_Nishitha.md
 │       ├── query_router_test_Nishitha.md
+│       ├── graph_rag_test_Nishitha.md
 │       ├── agent_test_Nishitha.md
 │       ├── hardening_test_Nishitha.md
 │       └── api_test_Nishitha.md       # FastAPI live query logs
@@ -304,7 +308,8 @@ uvicorn src.api_Nishitha:app --reload
 # Day 6: Custom chunker
 python scripts/correspondence_chunker_Nishitha.py
 
-# Day 7: Query router
+# Day 7: GraphRAG & Query router
+python scripts/demo_graph_rag.py
 python scripts/test_query_router_Nishitha.py
 
 # Day 8: Agent loops
@@ -364,6 +369,7 @@ python scripts/test_api_Nishitha.py
 │  PostgreSQL Retrieval Layer              │
 │  ├─ pgvector: Dense vector search        │
 │  ├─ pg_trgm: Full-text BM25              │
+│  ├─ GraphRAG: Relational self-joins      │
 │  └─ RLS: Multi-tenant isolation          │
 └────────────┬──────────────────────────────┘
              │
