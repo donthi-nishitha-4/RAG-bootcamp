@@ -36,6 +36,7 @@ v1.4 (Final | 2026-05-18)
 | 2026-05-13 | Nishitha | D4, docs/fixes_for_evaluation | Implemented dynamic LLM sequential failover (Groq -> OpenRouter -> Cerebras -> Gemini) and fixed Ragas NaN scoring bug |
 | 2026-05-15 | Nishitha | D5.3, retriever.py, pipeline.py | Built PostgreSQL pg_trgm + pgvector hybrid search and Reciprocal Rank Fusion (RRF) with metadata filtering |
 | 2026-05-17 | Nishitha | D4, experiments/ | Documented and executed 5 advanced red-teaming failure mode experiments and generated golden dataset evaluation logs |
+| 2026-05-20 | Nishitha | D7 (Syllabus Target), graph_rag.py | Ingested 336 DMRC systems taxonomy nodes and 221 directed edges into PostgreSQL. Created GraphRAG traversal engine utilizing recursive CTEs and indexed JOINs, evaluated with 10 graph vs. 10 non-graph queries (report in experiments/results/graph_rag_test_Nishitha.md). |
 
 ---
 
@@ -120,7 +121,7 @@ graph TB
 | Decision Point | Options Evaluated | Decision & Rationale | Evidence |
 |---------------|------------------|---------------------|----------|
 | Primary Vector Store | pgvector, ChromaDB, FAISS, Weaviate | pgvector (Production target for AI-PMS; superior portability (WSL/Ubuntu)) | docker-compose.yml, scripts/init_db.sql |
-| Graph Store | Apache AGE, Neo4j, None | Apache AGE (Integrated with Postgres to support structural taxonomy queries) | src/core/retriever.py |
+| Graph Store | Apache AGE, Neo4j, PostgreSQL Native (Recursive CTEs + pgvector) | PostgreSQL Native (Recursive CTEs + pgvector) (Bypasses heavy graph database infrastructure, ensuring sub-20ms traversal latency and 100% relational native mapping) | src/core/graph_rag.py, scripts/demo_graph_rag.py |
 | Sparse Search | pg_trgm, Elasticsearch, OpenSearch | pg_trgm (Integrated Postgres extension; eliminates dual-backend overhead) | src/core/retriever.py |
 | LLM Serving | vLLM, Ollama, TGI | Groq (Llama 3.3 70B) with Robust Failover (High-speed inference with failover to OpenRouter/Cerebras) | src/core/llm.py |
 | Orchestration Framework | LangGraph, LlamaIndex, Custom | Custom (Maximum control over multi-stage reranking and hybrid logic) | src/core/pipeline.py |
@@ -264,13 +265,27 @@ Contextual Retrieval  [██████████████████░
 
 ---
 
-# D7. Vector DB Indexing & Performance
+# D7. Vector DB Indexing & Performance & GraphRAG
+
+## D7.1 Indexing Type Comparison
 
 | Index Type | Build Time | Query Latency | Accuracy Impact |
 |------------|------------|---------------|-----------------|
 | Flat (Exact) | Instant | 8ms | 1.0 |
 | HNSW (Approx) | 14s | 2ms | 0.98 |
 | GiST (Postgres) | 2s | 5ms | 0.94 |
+
+## D7.2 GraphRAG Systems Taxonomy Prototype Results
+We successfully ingested **336 taxonomy nodes** and **221 directed edges** from the consolidate Excel sheet `data/Metro_Rail_Consolidated_Systems_Taxonomy.xlsx` into PostgreSQL `taxonomy_nodes` and `taxonomy_edges` tables. We generated 384-dimensional vector embeddings for all nodes using `all-MiniLM-L6-v2`.
+
+To verify performance, we executed a 20-query benchmark comparing GraphRAG (semantic node mapping + recursive CTE paths) against a Naive Vector Search baseline:
+
+- **Average Graph Traversal Latency:** `16.72ms`
+- **Average Semantic Node Lookup Latency:** `10.47s` *(including SentenceTransformer initialization & LLM API calls)*
+- **Graph-Traversal Queries Verdict:** **10/10 GraphRAG PASSED | 0/10 Naive PASSED**. Naive search failed with "Insufficient context" on all structural dependency queries (e.g. tracing paths or analyzing interface impacts), while GraphRAG resolved all.
+- **Factoid Queries Verdict:** **10/10 PASSED by Both**. GraphRAG performed semantic search on nodes and successfully cited exact node IDs (e.g. `[CVL-ES-PL-02]`).
+
+Full verification report available at `experiments/results/graph_rag_test_Nishitha.md`.
 
 ---
 

@@ -20,6 +20,7 @@
 |Decision Point|Options Evaluated|Decision & Rationale|Evidence|
 |---|---|---|---|
 |Primary Vector Store|pgvector, ChromaDB, FAISS|**pgvector** - Native PostgreSQL extension allows strict RLS and advanced metadata filtering (tenant_id).|Integration tested and working with full schema.|
+|Graph Store|Apache AGE, Neo4j, PostgreSQL Native|**PostgreSQL Native (Recursive CTEs + pgvector)** - Native implementation resolves structural path backtrace queries under 20ms and completely eliminates separate Graph DB infrastructure overhead.|Tested and verified via systems taxonomy ingestion (`scripts/ingest_taxonomy.py`) and custom traversal module (`src/core/graph_rag.py`).|
 |Sparse Search|pg_trgm, Elasticsearch|**pg_trgm** - Built into Postgres, zero extra infrastructure, successfully implemented hybrid search.|`exp_03_hybrid_search` results.|
 |LLM Serving|vLLM, Ollama|**vLLM** - Fast API serving for Llama models.|Tested locally with Llama 3.1 8B.|
 |Orchestration Framework|LangGraph, LlamaIndex, Custom|**Custom Pipeline** (Transitioning to LangGraph) - Needed for explicit control before agentic deployment.|`src/core/pipeline.py` modularization.|
@@ -107,7 +108,8 @@
 |Retrieval Strategy|Hybrid (BM25 + Vector) + Contextual Retrieval|Contextual provides best precision, hybrid catches exact term matches.|
 |Reranking Model|`ms-marco-MiniLM-L-12-v2` (if CPU bound)|BGE reranker is too slow on CPU (8s latency). MS-Marco is faster (2.5s).|
 |Query Routing|Mandatory Pre-Retrieval Classifier|Need lightweight router to block adversarial queries before DB hit.|
+|Graph Store|PostgreSQL Native self-referential graph model|Low-latency, natively scales inside relational ecosystem; fully operational for Systems Taxonomy.|
 
 **Open Questions:**
 - Production load testing blocked by GPU provisioning.
-- GraphRAG evaluation deferred to final phase.
+- Dynamic auto-ingestion pipeline for unstructured stakeholder correspondence into the systems taxonomy graph.

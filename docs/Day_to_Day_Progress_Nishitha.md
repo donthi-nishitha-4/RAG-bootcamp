@@ -371,3 +371,14 @@ Ready to perform:
 *   **10 Live Demo Queries:** Programmed `scripts/test_api_Nishitha.py` to evaluate 10 highly diverse live queries (factoid, multi-hop, contract, adversarial, cross-entity) through TestClient HTTP payload parsing. Passed all 10 checks and generated `experiments/results/api_test_Nishitha.md`.
 *   **Architecture Decision Document (ADD):** Compiled a premium, evidence-based recommendations report in `docs/Architecture_Decision_Document_Nishitha.md` detailing embedding models, chunking matrix, hybrid routing, GraphRAG viability, and NFR-04 latency budgets.
 
+### Day 11: GraphRAG Systems Taxonomy Ingestion & Head-to-Head Benchmark (May 20, 2026)
+*   **Systems Taxonomy Ingestion:** Developed and ran `scripts/ingest_taxonomy.py` to parse the DMRC consolidate taxonomy spreadsheet `data/Metro_Rail_Consolidated_Systems_Taxonomy.xlsx`. Ingested **336 systems taxonomy hierarchy nodes** and **221 directed edges** (interfaces) into PostgreSQL database tables (`taxonomy_nodes` and `taxonomy_edges`). Created 384d semantic vector embeddings for all nodes using `all-MiniLM-L6-v2`.
+*   **Graph Traversal Engine:** Programmed `src/core/graph_rag.py` using Native PostgreSQL recursive SQL Common Table Expressions (CTEs) for L4 $\rightarrow$ L3 $\rightarrow$ L2 $\rightarrow$ L1 category backtracing, and indexed SQL `JOIN`s for tracing neighbor interfaces and safety-critical dependency impact trees.
+*   **Head-to-Head Comparison Benchmark:** Created and executed `scripts/demo_graph_rag.py` comparing GraphRAG against a Naive Vector Search baseline using 10 graph-traversal queries (G1-G10) and 10 non-graph factoid queries (N1-N10).
+*   **Results & Highlights:** 
+    *   **Average Graph Traversal Latency:** `16.72ms` (extremely fast, well within NFR-04 latency budget).
+    *   **Graph Queries (10/10 Passed by GraphRAG | 0/10 Passed by Naive):** Naive search failed with "Insufficient context" on all relational queries, whereas GraphRAG successfully resolved all topological paths and safety impacts.
+    *   **Factoid Queries (10/10 Passed by Both):** GraphRAG successfully routed and answered concept questions, citing exact taxonomy node IDs (e.g. `[CVL-ES-PL-02]`).
+    *   **Report & Deliverables:** Generated premium markdown verification report at `experiments/results/graph_rag_test_Nishitha.md` and updated all exit criteria audits and ADD files.
+
+

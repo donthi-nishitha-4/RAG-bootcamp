@@ -125,7 +125,7 @@ graph TB
 ---
 
 ## 5. GraphRAG Viability Assessment
-Ingesting hierarchical structural trees (like the **383-entry Metro Rail Systems Taxonomy**) into an Apache AGE graph provides a graph-augmented context layer.
+Ingesting hierarchical structural trees (like the **336-entry Metro Rail Systems Taxonomy** and **221 directed interfaces**) into a relational graph framework provides a highly context-rich layer for structural query execution.
 
 ### ⚖️ GraphRAG Viability Matrix
 
@@ -134,6 +134,12 @@ Ingesting hierarchical structural trees (like the **383-entry Metro Rail Systems
 | **Multi-Hop Dependency Tracing**: Checking if an OHE catenary hanger damage (NCR) affects tunnel boring adjacent sectors (TBM). | **Simple Factoid Retrieval**: "What is the concrete curing duration for track slabs?" (Highly localized - simple vector search is better). |
 | **Systemic Impact Analysis**: Analyzing how water seepage on Station B ceiling affects station waterproofing subcontractors globally. | **Contract Clause Lookups**: "What does Chapter 14 say about delay damages?" (Vector index lookup is faster and 100% accurate). |
 | **Taxonomical Inheritance**: Querying specifications for "Structural concrete" and inheriting requirements of parent "Materials". | **Low-latency operations**: Simple keyword queries that must complete in under 500ms. |
+
+### 💡 Architectural Recommendation: Native PostgreSQL Graph Framework
+Rather than introducing heavy external graph database overlays like **Apache AGE** or **Neo4j** (which introduce high operational overhead, deployment complexities on offline HPC nodes, and extra network serialization costs), we recommend a **Native PostgreSQL Graph Strategy**:
+1. **Schema Design:** Use self-referential parent-child relationships and cross-table directed edge matrices directly inside `taxonomy_nodes` and `taxonomy_edges` tables.
+2. **Recursive Traversals:** Use SQL **Recursive Common Table Expressions (CTEs)** and indexed multi-table `JOIN`s to trace complete taxonomy paths (L4 $\rightarrow$ L3 $\rightarrow$ L2 $\rightarrow$ L1) and neighbor-impact circles.
+3. **Outcome:** Sub-20ms average traversal query latency, 100% relational integrity, zero dependency overhead, and fully offline-compatible WSL deployment.
 
 ---
 
@@ -146,8 +152,9 @@ NFR-04 dictates that the end-to-end P95 latency must be **under 5.0 seconds**. B
 | :--- | :---: | :---: | :--- |
 | **1. Query Routing** | < 100ms | 0.01ms (Heuristic fallback) | Use lightweight local classifier or prompt-cached LLM calls. |
 | **2. Retrieval (Hybrid)** | < 150ms | 0.02ms | pgvector cosine indexing (`ivfflat`) and pg_trgm GIN indexing. |
-| **3. Context Reranking** | < 250ms | 0.00ms (Bypassed) | Restrict reranker input pool to top 15 retrieved candidates. |
-| **4. LLM Generation** | < 4500ms | ~13000ms (API Dependent) | Enable token streaming and implement sequential provider failovers. |
+| **3. Graph Traversal** | < 150ms | **16.7ms (PostgreSQL CTE)** | Native PostgreSQL recursive query execution with foreign key indexing. |
+| **4. Context Reranking** | < 250ms | 0.00ms (Bypassed) | Restrict reranker input pool to top 15 retrieved candidates. |
+| **5. LLM Generation** | < 4500ms | ~13000ms (API Dependent) | Enable token streaming and implement sequential provider failovers. |
 | **Total Pipeline** | **< 5.0 seconds** | **~13.7 seconds (Network Bottleneck)** | Stream tokens immediately to UI; utilize high-speed local inference. |
 
 ---
@@ -155,7 +162,7 @@ NFR-04 dictates that the end-to-end P95 latency must be **under 5.0 seconds**. B
 ## 7. Open Questions & Deferred Items
 1.  **Scale-Out RLS Degradation**: How does PostgreSQL Row-Level Security (RLS) scale when the database contains millions of chunks across 50+ distinct subcontractor tenants?
 2.  **Cross-Encoder Reranker Sizing**: Should we host a local `bge-reranker-large` on DMRC on-premise servers or depend on API reranking?
-3.  **Dynamic Graph Auto-Ingestion**: Can we automate the conversion of weekly correspondence letters into entity-relation nodes in Apache AGE without manual review?
+3.  **Dynamic Graph Auto-Ingestion**: Can we automate the conversion of weekly correspondence letters into entity-relation nodes in PostgreSQL graph tables without manual review?
 
 ---
 Document compiled and finalized. Design decisions are signed off and ready for deployment integrations.
