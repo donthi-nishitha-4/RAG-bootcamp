@@ -6,9 +6,7 @@
 
 ---
 
-# Work Completed Till Date(07-05-2026)
-
-> **Note:** Insert the corresponding screenshots below each section using the provided placeholders.
+# Work Completed Till Date(07-05-2026).
 
 ## 1. Domain Understanding & Documentation
 
@@ -179,11 +177,6 @@ Understood:
 
 *Figure : Basic Naive RAG implementation using FAISS and Cross-Encoder reranking*
 
-![FAISS Retrieval Output](images/faiss_retrieval_output.png)
-
-*Figure : Retrieval and reranking execution output*
-
----
 
 ## 7. Repository Setup & Configuration
 
