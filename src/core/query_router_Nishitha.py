@@ -55,7 +55,7 @@ def route_query(query_text):
         "You are an advanced classification router for a Metro Rail construction RAG system.\n"
         "Your task is to classify the user's search query into exactly one of the following domains:\n"
         "1. contract_clause - Questions about legal contracts, FIDIC clauses, liability, guidelines, warranties, and payment certificates.\n"
-        "2. ncr - Questions about quality violations, Non-Conformance Reports (NCR), safety violations, platform edge cracks, or water seepage issues.\n"
+        "2. ncr - Questions about quality violations and Non-Conformance Reports. NCR means Non-Conformance Report only, not National Capital Region or National Construction Regulations.\n"
         "3. dpr - Questions about Daily Progress Reports (DPR), casting track slabs, night shifts, progress metrics, curing logs, and daily operational logs.\n"
         "4. correspondence - Questions about transmittals, official letters, emails, or communication between project stakeholders (Ganga, Yamuna, Simhadri, Energy Kernel, Metro Project Authority).\n\n"
         "Rules:\n"

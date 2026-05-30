@@ -19,7 +19,6 @@ from pydantic import BaseModel, Field
 try:
     from fastapi import FastAPI, HTTPException
 except ImportError:
-    # Failsafe mock class if FastAPI isn't installed, to allow offline boot
     class FastAPI:
         def __init__(self, **kwargs): self.routes = []
         def post(self, path): return lambda func: func
@@ -36,6 +35,9 @@ from src.core.hardening_Nishitha import (
     retrieve_with_rls
 )
 
+# ==================== LATENCY CONFIG ====================
+MAX_LATENCY_MS = 5000  # 5 seconds budget
+
 # Initialize FastAPI App
 app = FastAPI(
     title="DMRC Metro Project: Agentic RAG API",
@@ -48,8 +50,10 @@ app = FastAPI(
 # --------------------------------------------------------------------------
 class QueryRequest(BaseModel):
     query: str = Field(..., description="The user's search query.")
-    tenant_id: str = Field("metro_tenant", description="Unique tenant isolation identifier (e.g. metro_tenant, dfcc_tenant).")
-    entity_type_filter: Optional[str] = Field(None, description="Optional domain constraint (contract_clause | ncr | dpr | correspondence).")
+    tenant_id: str = Field("metro_tenant", description="Tenant isolation identifier.")
+    entity_type_filter: Optional[str] = Field(
+        None, description="Optional domain constraint (contract_clause | ncr | dpr | correspondence)."
+    )
 
 class QueryResponse(BaseModel):
     query: str
@@ -59,6 +63,8 @@ class QueryResponse(BaseModel):
     confidence: str
     retrieval_trace: List[Dict[str, Any]]
     latency_ms: float
+    latency_status: str           # ✅ NEW
+    latency_budget_ms: int        # ✅ NEW
 
 # --------------------------------------------------------------------------
 # API Route handler
@@ -67,24 +73,24 @@ class QueryResponse(BaseModel):
 def execute_query(request: QueryRequest):
     """
     Executes a production-hardened RAG query.
-    1. Runs out-of-scope fallback checking.
-    2. Invokes the LangGraph StateGraph pipeline.
-    3. Formats deterministic citation chains.
-    4. Generates CDM Layer 4 AuditEvent entries.
     """
     start_time = time.time()
+
     query = request.query
     tenant = request.tenant_id
     domain_filter = request.entity_type_filter
-    
-    # 1. Out-of-Scope Fallback check
+
+    # ----------------------------------------------------------------------
+    # 1. Out-of-Scope Check
+    # ----------------------------------------------------------------------
     if check_query_out_of_scope(query):
         fallback_answer = "Insufficient data to answer this query."
-        latency = (time.time() - start_time) * 1000
-        
-        # Log audit even for fallback query
-        write_audit_log(tenant, query, [], fallback_answer, latency)
-        
+        latency_ms = (time.time() - start_time) * 1000
+
+        latency_status = "PASSED" if latency_ms <= MAX_LATENCY_MS else "FAILED"
+
+        write_audit_log(tenant, query, [], fallback_answer, latency_ms)
+
         return QueryResponse(
             query=query,
             tenant_id=tenant,
@@ -92,33 +98,43 @@ def execute_query(request: QueryRequest):
             citations="None (Out-of-Scope Intercepted)",
             confidence="low",
             retrieval_trace=[{"action": "adversarial_fallback_intercept"}],
-            latency_ms=latency
+            latency_ms=latency_ms,
+            latency_status=latency_status,
+            latency_budget_ms=MAX_LATENCY_MS
         )
-        
-    # 2. Invoke LangGraph StateGraph
+
+    # ----------------------------------------------------------------------
+    # 2. Run Agentic Pipeline
+    # ----------------------------------------------------------------------
     try:
-        output = run_agentic_query(query)
+        output = run_agentic_query(query, tenant_id=tenant)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"RAG Execution Failed: {str(e)}")
-        
-    # Apply optional domain filter override if requested
-    routed = domain_filter if domain_filter else output.get("routed_domain", "general")
-    
-    # 3. Generate Traceable Citation Chain
-    # Map history to citations
-    mock_chunks = [
-        {"id": 84, "tenant_id": tenant, "entity_type": routed, "content": "NCR issued for water seepage in station cavern ceiling platform edge.", "distance": 0.1245},
-        {"id": 105, "tenant_id": tenant, "entity_type": "correspondence", "content": "File: let_004_station_cavern_seepage_Nishitha.txt - Chunk 3: Active ingress detected at concrete joints.", "distance": 0.2874}
-    ]
-    citation_block = generate_hardened_citation_chain(mock_chunks)
-    
+
+    # ----------------------------------------------------------------------
+    # 3. Generate Citations
+    # ----------------------------------------------------------------------
+    retrieval_trace = output.get("retrieval_trace", [])
+    citation_block = generate_hardened_citation_chain(retrieval_trace)
+
+    # ----------------------------------------------------------------------
+    # 4. Compute Latency
+    # ----------------------------------------------------------------------
     latency_ms = (time.time() - start_time) * 1000
-    
-    # Append citation block to the final response
-    cited_answer = output["answer"] + "\n" + citation_block
-    
-    # 4. Write CDM Layer 4 Audit Logging
-    chunk_ids = [str(c["id"]) for c in mock_chunks]
+    latency_status = "PASSED" if latency_ms <= MAX_LATENCY_MS else "FAILED"
+
+    # ----------------------------------------------------------------------
+    # 5. Attach Citations to Answer
+    # ----------------------------------------------------------------------
+    cited_answer = output["answer"]
+    if citation_block:
+        cited_answer += "\n" + citation_block
+
+    # ----------------------------------------------------------------------
+    # 6. Audit Logging
+    # ----------------------------------------------------------------------
+    chunk_ids = [str(c["id"]) for c in retrieval_trace if "id" in c]
+
     write_audit_log(
         tenant_id=tenant,
         query=query,
@@ -126,18 +142,18 @@ def execute_query(request: QueryRequest):
         answer=output["answer"],
         latency_ms=latency_ms
     )
-    
-    # Compile trace history
-    trace_history = []
-    for entry in output.get("retrieval_history", []):
-        trace_history.append(entry)
-        
+
+    # ----------------------------------------------------------------------
+    # 7. Final Response
+    # ----------------------------------------------------------------------
     return QueryResponse(
         query=query,
         tenant_id=tenant,
         answer=cited_answer,
         citations=citation_block.strip(),
         confidence=output.get("confidence", "high"),
-        retrieval_trace=trace_history,
-        latency_ms=latency_ms
+        retrieval_trace=retrieval_trace,
+        latency_ms=latency_ms,
+        latency_status=latency_status,
+        latency_budget_ms=MAX_LATENCY_MS
     )

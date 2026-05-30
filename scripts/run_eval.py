@@ -44,6 +44,7 @@ def run_eval(dataset, search_type="vector"):
         rag_result = ask_rag(query, tenant_id=TENANT_ID, search_type=search_type)
         answer  = rag_result.get("answer", "")
         context = rag_result.get("context", "")
+        retrieved_chunks = rag_result.get("retrieved_chunks", [])
 
         # --- Metric scoring ---
         scores = evaluate_generation(query, context, answer)
@@ -70,6 +71,7 @@ def run_eval(dataset, search_type="vector"):
             "source":         source,
             "answer":         answer,
             "context":        context,
+            "retrieved_chunks": retrieved_chunks,
             "expected_answer":expected_answer,
             "expected_match": expected_match,
             "faithfulness":   faithfulness,

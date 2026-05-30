@@ -190,19 +190,46 @@ def retrieve_with_rls(query_embedding: List[float], tenant_id: str, k: int = 3) 
 # ==============================================================================
 # 4. Out-of-Scope Fallback & Citation Chain Generator
 # ==============================================================================
+from sentence_transformers import SentenceTransformer, util
+import os
+
 OUT_OF_SCOPE_WORDS = [
-    "france", "paris", "canada", "cricket", "football", "weather", 
+    "france", "paris", "canada", "cricket", "football", "weather",
     "recipe", "movie", "celebrity", "song", "joke", "politics",
     "president", "japan", "tokyo", "capital", "united states", "america", "usa"
 ]
 
-def check_query_out_of_scope(query: str) -> bool:
-    """
-    Simple check to identify completely out-of-scope adversarial questions.
-    """
-    q_lower = query.lower()
-    return any(word in q_lower for word in OUT_OF_SCOPE_WORDS)
+# Lazy-loaded model and centroid
+_oos_model = None
+_domain_centroid = None
 
+def _get_oos_model_and_centroid():
+    global _oos_model, _domain_centroid
+    if _oos_model is None:
+        _oos_model = SentenceTransformer('all-MiniLM-L6-v2')
+        # Compute domain centroid from gold standard on-scope queries
+        on_scope_queries = [
+            "What are corrective actions for NCR violations?",
+            "How does tunnel boring machine TBM-001 operate?",
+            "What are contract liability clauses in GCC?",
+            "What is the weather impact on tunnel boring operations?",
+            "How do general site conditions affect project timeline?",
+            "What are the reporting requirements for daily progress?",
+            "Show me the latest correspondence regarding station cavern seepage."
+        ]
+        domain_embeddings = _oos_model.encode(on_scope_queries)
+        _domain_centroid = domain_embeddings.mean(axis=0)
+    return _oos_model, _domain_centroid
+
+def check_query_out_of_scope(query: str, threshold: float = 0.3) -> bool:
+    """
+    Checks if a query is completely out-of-scope using embedding similarity against a domain centroid.
+    Returns True if the query is out of scope (similarity < threshold).
+    """
+    model, centroid = _get_oos_model_and_centroid()
+    query_embedding = model.encode(query)
+    similarity = util.pytorch_cos_sim(query_embedding, centroid)[0][0].item()
+    return similarity < threshold
 def generate_hardened_citation_chain(retrieved_chunks: List[Dict[str, Any]]) -> str:
     """
     Constructs a deterministic, 100% accurate, un-hallucinated citation block.
@@ -215,10 +242,14 @@ def generate_hardened_citation_chain(retrieved_chunks: List[Dict[str, Any]]) -> 
         chunk_id = chunk.get("id", "N/A")
         tenant = chunk.get("tenant_id", "default")
         domain = chunk.get("entity_type", "general")
-        score = chunk.get("distance", 0.0)
+        score = chunk.get("distance")
+        if score is None:
+            score_str= "N/A"
+        else:
+            score_str = f"{score:.4f}"
         
         citation_lines.append(
-            f"- **Chunk ID**: `{chunk_id}` | **Tenant Domain**: `{tenant.upper()}` | **Domain**: `{domain.upper()}` | **Cosine Distance**: `{score:.4f}`"
+            f"- **Chunk ID**: `{chunk_id}` | **Tenant Domain**: `{tenant.upper()}` | **Domain**: `{domain.upper()}` | **Cosine Distance**: `{score_str}`"
         )
     return "\n".join(citation_lines)
 
