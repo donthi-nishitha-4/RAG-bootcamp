@@ -10,16 +10,16 @@ The DMRC Metro agentic RAG has been fully wrapped in an enterprise-class **FastA
 ## 📊 Live Demo Query Evaluation Table
 | ID | Query Category | Query Text | Confidence | Latency (ms) | Status |
 | :--- | :--- | :--- | :---: | :---: | :---: |
-| 1 | **Factoid (NCR)** | *"What is the corrective action for catenary hanger NCR-0051?"* | `LOW` | `26.7ms` | FAILED ❌ (HTTP 403) |
-| 2 | **Multi-Hop (OHE & TBM)** | *"Why cannot we authorize Stage 2 tunnel boring machine operations adjacent to Station C sector?"* | `LOW` | `10.3ms` | FAILED ❌ (HTTP 403) |
-| 3 | **Contract Legal (GCC/FIDIC)** | *"What does Chapter 14 say about OHE contractor delay liability?"* | `LOW` | `9.1ms` | FAILED ❌ (HTTP 403) |
-| 4 | **Adversarial (Out-of-Scope)** | *"What is the capital city of France?"* | `LOW` | `10.0ms` | FAILED ❌ (HTTP 403) |
-| 5 | **Cross-Entity (Grout & Moisture)** | *"What moist curing slab temperature monitoring measures did Yamuna implement?"* | `LOW` | `8.3ms` | FAILED ❌ (HTTP 403) |
-| 6 | **Factoid (TBM Hydraulic)** | *"What hydraulic logs are requested for the cutterhead hydraulics notice?"* | `LOW` | `7.5ms` | FAILED ❌ (HTTP 403) |
-| 7 | **Multi-Hop (Waterproofing Segment)** | *"Why are waterproof subcontractor payment certificates withheld and who sent the notice?"* | `LOW` | `8.9ms` | FAILED ❌ (HTTP 403) |
-| 8 | **Contract Clause (Warranty)** | *"Is the contractor responsible for warranties on concrete slab surfacing?"* | `LOW` | `9.0ms` | FAILED ❌ (HTTP 403) |
-| 9 | **Adversarial (Out-of-Scope)** | *"Explain the basic rules of cricket."* | `LOW` | `9.4ms` | FAILED ❌ (HTTP 403) |
-| 10 | **Cross-Entity (Anchor Bolts)** | *"Has the grout joint alignment at depot portal been corrected?"* | `LOW` | `9.5ms` | FAILED ❌ (HTTP 403) |
+| 1 | **Factoid (NCR)** | *"What is the corrective action for catenary hanger NCR-0051?"* | `LOW` | `9692.0ms` | SUCCESS ✅ |
+| 2 | **Multi-Hop (OHE & TBM)** | *"Why cannot we authorize Stage 2 tunnel boring machine operations adjacent to Station C sector?"* | `LOW` | `3912.4ms` | SUCCESS ✅ |
+| 3 | **Contract Legal (GCC/FIDIC)** | *"What does Chapter 14 say about OHE contractor delay liability?"* | `HIGH` | `2322.8ms` | SUCCESS ✅ |
+| 4 | **Adversarial (Out-of-Scope)** | *"What is the capital city of France?"* | `LOW` | `180.5ms` | SUCCESS ✅ |
+| 5 | **Cross-Entity (Grout & Moisture)** | *"What moist curing slab temperature monitoring measures did Yamuna implement?"* | `LOW` | `96.0ms` | SUCCESS ✅ |
+| 6 | **Factoid (TBM Hydraulic)** | *"What hydraulic logs are requested for the cutterhead hydraulics notice?"* | `LOW` | `3511.9ms` | SUCCESS ✅ |
+| 7 | **Multi-Hop (Waterproofing Segment)** | *"Why are waterproof subcontractor payment certificates withheld and who sent the notice?"* | `LOW` | `215.8ms` | SUCCESS ✅ |
+| 8 | **Contract Clause (Warranty)** | *"Is the contractor responsible for warranties on concrete slab surfacing?"* | `LOW` | `2641.7ms` | SUCCESS ✅ |
+| 9 | **Adversarial (Out-of-Scope)** | *"Explain the basic rules of cricket."* | `LOW` | `164.3ms` | SUCCESS ✅ |
+| 10 | **Cross-Entity (Anchor Bolts)** | *"Has the grout joint alignment at depot portal been corrected?"* | `LOW` | `58.5ms` | SUCCESS ✅ |
 
 ## 🔎 Detailed Query Traces & Hardened Citations
 Below are the complete outputs for each of the 10 diverse demo queries, showing the final answer, exact traceable citation chains, and latency breakdowns:
@@ -27,100 +27,114 @@ Below are the complete outputs for each of the 10 diverse demo queries, showing 
 ### 📦 Demo Query 1: Factoid (NCR)
 - **User Query:** *"What is the corrective action for catenary hanger NCR-0051?"*
 - **Confidence Level:** `LOW`
-- **Execution Time:** `26.72ms`
+- **Execution Time:** `9691.99ms`
 
 #### ✍️ Response Payload:
-Execution Failed
+Insufficient data to answer this query.
 
 ---
 
 ### 📦 Demo Query 2: Multi-Hop (OHE & TBM)
 - **User Query:** *"Why cannot we authorize Stage 2 tunnel boring machine operations adjacent to Station C sector?"*
 - **Confidence Level:** `LOW`
-- **Execution Time:** `10.31ms`
+- **Execution Time:** `3912.37ms`
 
 #### ✍️ Response Payload:
-Execution Failed
+I cannot answer this question as it is not provided in the context.
+
+### 🔗 Hardened Citation Chain (Traceable back to CDM):
+- **Chunk ID**: `3375` | **Tenant Domain**: `METRO_TENANT` | **Domain**: `CONTRACT` | **Cosine Distance**: `1.3979`
 
 ---
 
 ### 📦 Demo Query 3: Contract Legal (GCC/FIDIC)
 - **User Query:** *"What does Chapter 14 say about OHE contractor delay liability?"*
-- **Confidence Level:** `LOW`
-- **Execution Time:** `9.11ms`
+- **Confidence Level:** `HIGH`
+- **Execution Time:** `2322.79ms`
 
 #### ✍️ Response Payload:
-Execution Failed
+According to DMRC [REDACTED_NAME] Clause 14.2, all OHE contractors are liable for project delays exceeding 30 calendar days.
+
+### 🔗 Hardened Citation Chain (Traceable back to CDM):
+- **Chunk ID**: `3375` | **Tenant Domain**: `METRO_TENANT` | **Domain**: `CONTRACT` | **Cosine Distance**: `1.3982`
 
 ---
 
 ### 📦 Demo Query 4: Adversarial (Out-of-Scope)
 - **User Query:** *"What is the capital city of France?"*
 - **Confidence Level:** `LOW`
-- **Execution Time:** `10.00ms`
+- **Execution Time:** `180.54ms`
 
 #### ✍️ Response Payload:
-Execution Failed
+Insufficient data to answer this query.
 
 ---
 
 ### 📦 Demo Query 5: Cross-Entity (Grout & Moisture)
 - **User Query:** *"What moist curing slab temperature monitoring measures did Yamuna implement?"*
 - **Confidence Level:** `LOW`
-- **Execution Time:** `8.32ms`
+- **Execution Time:** `95.99ms`
 
 #### ✍️ Response Payload:
-Execution Failed
+Insufficient data to answer this query.
 
 ---
 
 ### 📦 Demo Query 6: Factoid (TBM Hydraulic)
 - **User Query:** *"What hydraulic logs are requested for the cutterhead hydraulics notice?"*
 - **Confidence Level:** `LOW`
-- **Execution Time:** `7.50ms`
+- **Execution Time:** `3511.90ms`
 
 #### ✍️ Response Payload:
-Execution Failed
+There is no information provided about the cutterhead hydraulics notice or the hydraulic logs requested. The context only mentions the DPR documents TBM cutterhead replacement and debris removal from the launch shaft, but it does not provide any details about the hydraulic logs.
+
+### 🔗 Hardened Citation Chain (Traceable back to CDM):
+- **Chunk ID**: `json_DMRC-0082` | **Tenant Domain**: `DEFAULT` | **Domain**: `GENERAL` | **Cosine Distance**: `N/A`
+- **Chunk ID**: `json_DMRC-0084` | **Tenant Domain**: `DEFAULT` | **Domain**: `GENERAL` | **Cosine Distance**: `N/A`
+- **Chunk ID**: `json_DMRC-0077` | **Tenant Domain**: `DEFAULT` | **Domain**: `GENERAL` | **Cosine Distance**: `N/A`
 
 ---
 
 ### 📦 Demo Query 7: Multi-Hop (Waterproofing Segment)
 - **User Query:** *"Why are waterproof subcontractor payment certificates withheld and who sent the notice?"*
 - **Confidence Level:** `LOW`
-- **Execution Time:** `8.91ms`
+- **Execution Time:** `215.83ms`
 
 #### ✍️ Response Payload:
-Execution Failed
+Insufficient data to answer this query.
 
 ---
 
 ### 📦 Demo Query 8: Contract Clause (Warranty)
 - **User Query:** *"Is the contractor responsible for warranties on concrete slab surfacing?"*
 - **Confidence Level:** `LOW`
-- **Execution Time:** `9.01ms`
+- **Execution Time:** `2641.69ms`
 
 #### ✍️ Response Payload:
-Execution Failed
+There is no information in the provided context about the contractor's responsibility for warranties on concrete slab surfacing. The context only mentions liability for project delays exceeding 30 calendar days.
+
+### 🔗 Hardened Citation Chain (Traceable back to CDM):
+- **Chunk ID**: `3375` | **Tenant Domain**: `METRO_TENANT` | **Domain**: `CONTRACT` | **Cosine Distance**: `1.4076`
 
 ---
 
 ### 📦 Demo Query 9: Adversarial (Out-of-Scope)
 - **User Query:** *"Explain the basic rules of cricket."*
 - **Confidence Level:** `LOW`
-- **Execution Time:** `9.42ms`
+- **Execution Time:** `164.32ms`
 
 #### ✍️ Response Payload:
-Execution Failed
+Insufficient data to answer this query.
 
 ---
 
 ### 📦 Demo Query 10: Cross-Entity (Anchor Bolts)
 - **User Query:** *"Has the grout joint alignment at depot portal been corrected?"*
 - **Confidence Level:** `LOW`
-- **Execution Time:** `9.52ms`
+- **Execution Time:** `58.51ms`
 
 #### ✍️ Response Payload:
-Execution Failed
+Insufficient data to answer this query.
 
 ---
 

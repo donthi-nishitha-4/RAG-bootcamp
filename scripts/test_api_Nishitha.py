@@ -111,7 +111,8 @@ def run_integration_demo():
             json={
                 "query": query,
                 "tenant_id": tenant
-            }
+            },
+            headers={"X-API-Key": "super_secret_key_123"}
         )
         
         latency = (time.time() - start_time) * 1000
