@@ -11,7 +11,7 @@ from sentence_transformers import SentenceTransformer
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.core.llm import query_llm
-from src.core.query_router_Nishitha import route_query
+from src.agents.query_router import route_query
 from src.core.retriever import retrieve_similar
 from src.core.entity_mapper import resolve_entity_types
 from src.core.hardening_Nishitha import redact_pii

@@ -1,6 +1,6 @@
 import sys
 from sentence_transformers import SentenceTransformer, CrossEncoder
-from .retriever import retrieve_similar, init_pgvector, retrieve_hybrid
+from src.core.database.connection import retrieve_similar, init_pgvector, retrieve_hybrid
 from .llm import query_llm
 
 TOP_K = 20

@@ -1,13 +1,11 @@
 import os
 import psycopg2
 from psycopg2.extras import execute_values
-from dotenv import load_dotenv
-
-load_dotenv()
+from src.utils.config import settings
 
 DB_CONFIG = {
-    "host": os.getenv("DB_HOST", "localhost"),
-    "port": int(os.getenv("DB_PORT", "5432")),
+    "host": settings.DB_HOST,
+    "port": settings.DB_PORT,
     "user": os.getenv("DB_USER", "rag_user"),
     "password": os.getenv("DB_PASSWORD", "rag_password"),
     "database": os.getenv("DB_NAME", "rag_bootcamp")
