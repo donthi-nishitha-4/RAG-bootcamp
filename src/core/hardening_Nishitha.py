@@ -192,12 +192,44 @@ def retrieve_with_rls(query_embedding: List[float], tenant_id: str, k: int = 3) 
 # ==============================================================================
 from sentence_transformers import SentenceTransformer, util
 import os
+import re
 
 OUT_OF_SCOPE_WORDS = [
     "france", "paris", "canada", "cricket", "football", "weather",
     "recipe", "movie", "celebrity", "song", "joke", "politics",
     "president", "japan", "tokyo", "capital", "united states", "america", "usa"
 ]
+
+def sanitize_query(query: str) -> str:
+    """
+    Sanitizes user input to prevent prompt injection.
+    Aligned with Issue22.md specifications.
+    """
+    dangerous_patterns = [
+        r"ignore.*instruction",
+        r"you are now",
+        r"override.*prompt",
+        r"bypass.*filter",
+    ]
+    for pattern in dangerous_patterns:
+        if re.search(pattern, query, re.IGNORECASE):
+            raise ValueError(f"Potentially malicious query detected: {pattern}")
+    return query.strip()
+
+PII_PATTERNS = {
+    "email": r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b',
+    "phone": r'\b\d{3}[-.]?\d{3}[-.]?\d{4}\b',
+    "ssn": r'\b\d{3}-\d{2}-\d{4}\b',
+    "name": r'\b[A-Z][a-z]+\s[A-Z][a-z]+\b'  # Simple pattern for 2-word capitalized names
+}
+
+def redact_pii(text: str) -> str:
+    """
+    Redacts sensitive PII from text.
+    """
+    for pii_type, pattern in PII_PATTERNS.items():
+        text = re.sub(pattern, f"[REDACTED_{pii_type.upper()}]", text)
+    return text
 
 # Lazy-loaded model and centroid
 _oos_model = None
@@ -261,6 +293,10 @@ def write_audit_log(tenant_id: str, query: str, chunk_ids: List[str], answer: st
     Saves RAG queries and metadata following the CDM Layer 4 AuditEvent schema.
     Falls back to a local JSON audit ledger when the database is offline.
     """
+    # Privacy: hash queries and responses
+    query_hash = hashlib.sha256(query.encode('utf-8')).hexdigest()
+    answer_hash = hashlib.sha256(answer.encode('utf-8')).hexdigest()
+
     # 1. Attempt Database audit insert
     conn = get_connection()
     if conn:
@@ -269,7 +305,7 @@ def write_audit_log(tenant_id: str, query: str, chunk_ids: List[str], answer: st
             cur.execute("""
                 INSERT INTO audit_events (tenant_id, query, retrieved_chunk_ids, final_answer, latency_ms)
                 VALUES (%s, %s, %s, %s, %s);
-            """, (tenant_id, query, chunk_ids, answer, latency_ms))
+            """, (tenant_id, query_hash, chunk_ids, answer_hash, latency_ms))
             conn.commit()
             cur.close()
             conn.close()
@@ -284,9 +320,9 @@ def write_audit_log(tenant_id: str, query: str, chunk_ids: List[str], answer: st
         "event_type": "AuditEvent",
         "timestamp": datetime.utcnow().isoformat() + "Z",
         "tenant_id": tenant_id,
-        "query": query,
+        "query_hash": query_hash,
         "retrieved_chunk_ids": chunk_ids,
-        "final_answer": answer,
+        "response_hash": answer_hash,
         "latency_ms": latency_ms
     }
     

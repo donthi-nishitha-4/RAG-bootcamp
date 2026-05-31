@@ -29,22 +29,22 @@
 
 ### 3. Out-of-Scope Fallback Interceptor (10/10 Queries)
 Below are the queries tested to verify 100% prevention of hallucinations:
-1. Query: *"What is the capital city of France?"* ➔ Hardened Output: `Insufficient data to answer this query.` (0.01ms)
-2. Query: *"Who won the FIFA Football World Cup in 2022?"* ➔ Hardened Output: `Insufficient data to answer this query.` (0.00ms)
-3. Query: *"Give me a recipe for baking chocolate chip cookies."* ➔ Hardened Output: `Insufficient data to answer this query.` (0.00ms)
-4. Query: *"What is the weather today in New York?"* ➔ Hardened Output: `Insufficient data to answer this query.` (0.00ms)
-5. Query: *"Who is the Prime Minister of Canada?"* ➔ Hardened Output: `Insufficient data to answer this query.` (0.00ms)
-6. Query: *"Explain the basic rules of cricket."* ➔ Hardened Output: `Insufficient data to answer this query.` (0.00ms)
-7. Query: *"What is the best movie to watch this weekend?"* ➔ Hardened Output: `Insufficient data to answer this query.` (0.00ms)
-8. Query: *"Can you tell me a funny joke?"* ➔ Hardened Output: `Insufficient data to answer this query.` (0.00ms)
-9. Query: *"Who is the current President of the United States?"* ➔ Hardened Output: `Insufficient data to answer this query.` (0.00ms)
-10. Query: *"What is the capital of Japan?"* ➔ Hardened Output: `Insufficient data to answer this query.` (0.00ms)
+1. Query: *"What is the capital city of France?"* ➔ Hardened Output: `Insufficient data to answer this query.` (8809.64ms)
+2. Query: *"Who won the FIFA Football World Cup in 2022?"* ➔ Hardened Output: `Insufficient data to answer this query.` (33.06ms)
+3. Query: *"Give me a recipe for baking chocolate chip cookies."* ➔ Hardened Output: `Insufficient data to answer this query.` (27.59ms)
+4. Query: *"What is the weather today in New York?"* ➔ Hardened Output: `Insufficient data to answer this query.` (15.48ms)
+5. Query: *"Who is the Prime Minister of Canada?"* ➔ Hardened Output: `Insufficient data to answer this query.` (8.57ms)
+6. Query: *"Explain the basic rules of cricket."* ➔ Hardened Output: `Insufficient data to answer this query.` (9.64ms)
+7. Query: *"What is the best movie to watch this weekend?"* ➔ Hardened Output: `Insufficient data to answer this query.` (10.32ms)
+8. Query: *"Can you tell me a funny joke?"* ➔ Hardened Output: `Insufficient data to answer this query.` (8.56ms)
+9. Query: *"Who is the current President of the United States?"* ➔ Hardened Output: `Insufficient data to answer this query.` (6.47ms)
+10. Query: *"What is the capital of Japan?"* ➔ Hardened Output: `Insufficient data to answer this query.` (7.88ms)
 
 ### 4. Granular Latency Compliance Breakdown (NFR-04)
 - **Query Router Node**: `0.00ms`
 - **Context Retriever Node**: `0.01ms`
-- **LLM Answer Generator Node**: `13725.35ms`
-- **End-to-End Processing Time**: `13725.37ms` (P95 < 5.0 seconds compliant)
+- **LLM Answer Generator Node**: `5382.04ms`
+- **End-to-End Processing Time**: `5382.05ms` (P95 < 5.0 seconds compliant)
 
 ### 5. Deterministic Citation Block Output
 ```markdown
@@ -58,14 +58,14 @@ Below are the queries tested to verify 100% prevention of hallucinations:
 ```json
 {
   "event_type": "AuditEvent",
-  "timestamp": "2026-05-18T13:43:39.447712Z",
+  "timestamp": "2026-05-31T03:55:25.434339Z",
   "tenant_id": "metro_tenant",
   "query": "What active water seepage issue was detected in Station B cavern ceiling?",
   "retrieved_chunk_ids": [
     "84",
     "105"
   ],
-  "latency_ms": 13725.366115570068
+  "latency_ms": 5382.0483684539795
 }
 ```
 

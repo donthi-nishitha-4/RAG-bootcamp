@@ -14,6 +14,7 @@ from src.core.llm import query_llm
 from src.core.query_router_Nishitha import route_query
 from src.core.retriever import retrieve_similar
 from src.core.entity_mapper import resolve_entity_types
+from src.core.hardening_Nishitha import redact_pii
 
 # ================== GLOBAL MODEL ==================
 embed_model = SentenceTransformer("all-MiniLM-L6-v2")
@@ -134,7 +135,7 @@ def retriever_node(state: AgentState):
                     retrieval_trace = [
                         {
                             "id": r[0],
-                            "content": r[1],
+                            "content": redact_pii(r[1]),
                             "distance": r[2],
                             "tenant_id": t,
                             "entity_type": etype,
@@ -145,7 +146,7 @@ def retriever_node(state: AgentState):
                         for r in results
                     ]
 
-                    chunks = [r[1] for r in results]
+                    chunks = [redact_pii(r[1]) for r in results]
                     break
 
             if chunks:
@@ -157,8 +158,11 @@ def retriever_node(state: AgentState):
     # ================== FALLBACK ==================
     if not chunks:
         fallback_chunks, fallback_trace = retrieve_local_fallback(search_query, domain)
-        chunks = fallback_chunks
-        retrieval_trace = fallback_trace
+        chunks = [redact_pii(c) for c in fallback_chunks]
+        retrieval_trace = [
+            {**t, "content": redact_pii(t["content"])} 
+            for t in fallback_trace
+        ]
 
     return {
         "retrieved_chunks": chunks,
@@ -206,13 +210,13 @@ def answer_generator_node(state: AgentState):
     chunks = state["retrieved_chunks"]
 
     if not chunks:
-        return {"answer": "I cannot answer based on provided context"}
+        return {"answer": "I cannot answer this question based on available documents in the system. Please contact the administrator."}
 
     context = "\n\n".join(chunks)
 
     prompt = [
-        {"role": "system", "content": "Answer ONLY from context"},
-        {"role": "user", "content": context}
+        {"role": "system", "content": "Answer using ONLY the provided context. Do not add external knowledge."},
+        {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {state['query']}"}
     ]
 
     return {"answer": query_llm(prompt)}
