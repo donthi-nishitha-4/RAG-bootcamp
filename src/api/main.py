@@ -171,7 +171,7 @@ def execute_query(request: QueryRequest, http_request: Request = None, api_key: 
         fallback_answer = "Insufficient data to answer this query."
         latency_ms = (time.time() - start_time) * 1000
 
-        latency_status = "PASSED" if latency_ms <= MAX_LATENCY_MS else "FAILED"
+        latency_status = "PASSED" if latency_ms <= MAX_LATENCY_MS else f"FAILED (cloud API bottleneck, exceeds by {int(latency_ms - MAX_LATENCY_MS)}ms)"
 
         write_audit_log(tenant, query, [], fallback_answer, latency_ms)
 

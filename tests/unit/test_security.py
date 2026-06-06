@@ -150,8 +150,15 @@ def run_hardening_verification():
     print(f"- Generation Latency: {latency_generation:.2f}ms")
     print(f"- End-to-End Latency: {total_latency_ms:.2f}ms")
     
-    latency_pass = (total_latency_ms < 5000) or True # Offline bypass safety
-    print(f"[TEST 5 STATUS] NFR-04 Latency Compliance (<5s): {total_latency_ms/1000:.2f}s Pass")
+    latency_pass = total_latency_ms <= 5000
+    if latency_pass:
+        latency_status_str = "**PASSED** ✅"
+        latency_msg = "End-to-end request completed under the 5-second P95 performance requirement, with full latency logging breakdown."
+    else:
+        latency_status_str = "**FAILED** ❌ (Cloud API bottleneck)"
+        latency_msg = f"End-to-end request exceeded the 5-second budget (Actual: {total_latency_ms/1000:.2f}s). Root cause: Cloud API."
+    
+    print(f"[TEST 5 STATUS] NFR-04 Latency Compliance (<5s): {total_latency_ms/1000:.2f}s {'Pass' if latency_pass else 'Fail'}")
 
     # --------------------------------------------------------------------------
     # Test 6: CDM Layer 4 Audit Logging

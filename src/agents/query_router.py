@@ -48,19 +48,21 @@ def classify_query_by_heuristics(query_text):
 
 def route_query(query_text):
     """
-    Classifies a user construction query into a specific domain using Robust LLM failovers
-    and applies a local heuristic fallback if necessary.
+    Classifies a user construction query into a specific domain using Robust LLM failovers.
+    If ambiguous or multi-domain, returns 'ambiguous'.
     """
     system_prompt = (
         "You are an advanced classification router for a Metro Rail construction RAG system.\n"
         "Your task is to classify the user's search query into exactly one of the following domains:\n"
-        "1. contract_clause - Questions about legal contracts, FIDIC clauses, liability, guidelines, warranties, and payment certificates.\n"
-        "2. ncr - Questions about quality violations and Non-Conformance Reports. NCR means Non-Conformance Report only, not National Capital Region or National Construction Regulations.\n"
-        "3. dpr - Questions about Daily Progress Reports (DPR), casting track slabs, night shifts, progress metrics, curing logs, and daily operational logs.\n"
-        "4. correspondence - Questions about transmittals, official letters, emails, or communication between project stakeholders (Ganga, Yamuna, Simhadri, Energy Kernel, Metro Project Authority).\n\n"
+        "1. contract_clause\n"
+        "2. ncr\n"
+        "3. dpr\n"
+        "4. correspondence\n\n"
         "Rules:\n"
-        "- Reply with ONLY the category name: contract_clause, ncr, dpr, or correspondence.\n"
-        "- Do not explain your choice, do not add punctuation or quotes, and do not return anything else."
+        "- Assess if the query clearly belongs to one domain.\n"
+        "- If it is vague, overly broad, or spans multiple domains (e.g. 'tell me everything', 'abbreviated question?'), return 'ambiguous'.\n"
+        "- Reply with ONLY the category name: contract_clause, ncr, dpr, correspondence, or ambiguous.\n"
+        "- Do not explain your choice."
     )
     
     messages = [
@@ -69,14 +71,16 @@ def route_query(query_text):
     ]
     
     try:
-        # Calls the robust failover sequence (Groq -> OpenRouter -> Cerebras -> Gemini)
         llm_response = query_llm(messages, temperature=0.0)
         
         if llm_response and not llm_response.startswith("[ERROR]"):
-            # Post-process response (strip quotes, lowercase, extract first valid domain name)
             clean_res = llm_response.strip().lower()
-            clean_res = re.sub(r'[^a-z_]', '', clean_res) # remove special characters, spaces, punctuation
+            clean_res = re.sub(r'[^a-z_]', '', clean_res)
             
+            if "ambiguous" in clean_res:
+                print("[ROUTER] Query detected as AMBIGUOUS.")
+                return "ambiguous"
+                
             for d in VALID_DOMAINS:
                 if d in clean_res:
                     print(f"[ROUTER] LLM Classified query as: {d}")

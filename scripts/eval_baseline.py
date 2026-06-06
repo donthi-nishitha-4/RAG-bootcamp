@@ -45,6 +45,8 @@ def run_baseline_eval():
         res      = ask_rag(query, tenant_id=TENANT_ID)
         answer   = res.get("answer", "")
         context  = res.get("context", "")
+        chunks   = res.get("retrieved_chunks", [])
+        c_ids    = res.get("chunk_ids", [])
         scores   = evaluate_generation(query, context, answer)
         f_score  = scores.get("faithfulness", 0.0)
         r_score  = scores.get("relevance",    0.0)
@@ -60,6 +62,8 @@ def run_baseline_eval():
             "query": query, "expected": expected, "answer": answer,
             "faithfulness": f_score, "relevance": r_score,
             "status": status, "category": category, "source": source,
+            "retrieved_chunks": chunks,
+            "citations": c_ids
         })
 
     # Save results
