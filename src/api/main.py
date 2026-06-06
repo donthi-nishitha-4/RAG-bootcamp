@@ -53,7 +53,7 @@ except ImportError:
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.agents.langgraph_agent import run_agentic_query
-from src.core.hardening_Nishitha import (
+from src.core.security import (
     check_query_out_of_scope,
     generate_hardened_citation_chain,
     write_audit_log,

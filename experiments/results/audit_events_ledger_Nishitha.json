@@ -10,5 +10,29 @@
     ],
     "final_answer": "Based on the provided context chunks, the active water seepage issue detected in Station B cavern ceiling is related to water ingress in the concrete segment joints of the station cavern ceiling. This issue is directly impacting the installation of cable trays and fire alarm wiring.\n\nSource: [CORRESPONDENCE LET] File: let_004_station_cavern_seepage_Nishitha.txt, Chunk 3 [NCR DATASET] ID: DMRC-0056.\n\nAdditionally, this issue was reported in a Non-Conformance Report (NCR) issued by NCR, which is referenced as NCR-0056. \n\nSource: [NCR DATASET] ID: DMRC-0056.\n\nThe issue was also discussed in a correspondence letter dated 2026-05-14, where the Resident Engineer, Ganga, from Energy Kernel, reported the issue to the Waterproofing Subcontractor, Simhadri.\n\nSource: [CORRESPONDENCE LET] File: let_004_station_cavern_seepage_Nishitha.txt, Chunk 1.",
     "latency_ms": 18765.692949295044
+  },
+  {
+    "event_type": "AuditEvent",
+    "timestamp": "2026-06-06T06:37:12.171888Z",
+    "tenant_id": "metro_tenant",
+    "query_hash": "afe7faa575b08fa2f64a7b0aa835cb7d5687fb9f33fbf5a9ef3b6d857d230aab",
+    "retrieved_chunk_ids": [
+      "84",
+      "105"
+    ],
+    "response_hash": "8dac3ffa99a93c4124b3a5259d9eca6bce9c8d633fe787a6dbe2e5c5b5c62bef",
+    "latency_ms": 5961.4763259887695
+  },
+  {
+    "event_type": "AuditEvent",
+    "timestamp": "2026-06-06T06:39:59.772832Z",
+    "tenant_id": "metro_tenant",
+    "query_hash": "afe7faa575b08fa2f64a7b0aa835cb7d5687fb9f33fbf5a9ef3b6d857d230aab",
+    "retrieved_chunk_ids": [
+      "84",
+      "105"
+    ],
+    "response_hash": "3aa26d9e0ecab202bb1199bf990bdc3249de4b60f09aea43a62ce4ef980d71fe",
+    "latency_ms": 3267.7690982818604
   }
 ]

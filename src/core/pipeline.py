@@ -39,7 +39,7 @@ def ask_rag(query, tenant_id="default", entity_type=None, contract_standard=None
         query_embedding = embed_model.encode([query])[0].tolist()
 
         # 3. Retrieve
-        from .retriever import retrieve_similar, retrieve_hybrid
+        
 
         if search_type == "hybrid":
             results = retrieve_hybrid(query, query_embedding, tenant_id=tenant_id, k=TOP_K)

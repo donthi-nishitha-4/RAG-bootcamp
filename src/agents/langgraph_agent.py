@@ -12,9 +12,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.core.llm import query_llm
 from src.agents.query_router import route_query
-from src.core.retriever import retrieve_similar
+from src.core.database.connection import retrieve_similar
 from src.core.entity_mapper import resolve_entity_types
-from src.core.hardening_Nishitha import redact_pii
+from src.core.security import redact_pii
 
 # ================== GLOBAL MODEL ==================
 embed_model = SentenceTransformer("all-MiniLM-L6-v2")
