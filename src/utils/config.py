@@ -11,7 +11,8 @@ class Settings(BaseSettings):
     RESULTS_DIR: Path = PROJECT_ROOT / "experiments" / "results"
     AUDIT_LOG_FILE: Path = RESULTS_DIR / "audit_events_ledger_Nishitha.json"
     EVALUATION_DATASET: Path = PROJECT_ROOT / "evaluation" / "dataset" / "evaluation_dataset.json"
-    
+    RETRIEVAL_DISTANCE_THRESHOLD: float = 0.5
+
     DB_HOST: str = os.getenv("DB_HOST", "localhost")
     DB_PORT: int = int(os.getenv("DB_PORT", 5433))
     DB_USER: str = os.getenv("DB_USER", "rag_user")

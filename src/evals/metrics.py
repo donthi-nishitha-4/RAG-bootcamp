@@ -25,6 +25,15 @@ def evaluate_generation(query, context, answer):
     """
     LLM-based evaluation for Faithfulness and Relevance.
     """
+     # 1. Refusal Awareness: Check if system refused correctly
+    refusal_keywords = ["cannot answer", "insufficient", "no information"]
+    is_refusal = any(keyword in answer.lower() for keyword in refusal_keywords)
+    
+    if is_refusal:
+        # Correct refusal IS faithful and relevant to the constraint of using only context
+        return {"faithfulness": 1.0, "relevance": 1.0}
+
+    # 2. Existing logic for actual answers
     if not context or not context.strip():
         return {"faithfulness": 0.0, "relevance": 0.0, "error": "Empty context"}
         

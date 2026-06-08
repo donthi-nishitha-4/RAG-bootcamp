@@ -125,16 +125,22 @@ def run_hardening_verification():
     
     # 2. Retrieval & Citation formatting
     t_start = time.time()
-    mock_chunks = [
-        {"id": 84, "tenant_id": "metro_tenant", "entity_type": "ncr", "content": "NCR issued for water seepage in station cavern ceiling platform edge.", "distance": 0.1245},
-        {"id": 105, "tenant_id": "metro_tenant", "entity_type": "correspondence", "content": "File: let_004_station_cavern_seepage_Nishitha.txt - Chunk 3: Active ingress detected at concrete joints.", "distance": 0.2874}
-    ]
-    citation_chain = generate_hardened_citation_chain(mock_chunks)
+    # Instead of mock chunks, use actual retrieval to ensure tests reflect real behavior
+    output = run_agentic_query(test_query)
+    # Extract the retrieval trace/chunks from the output if available
+    retrieved_chunks = output.get("retrieval_trace", [])
+    
+    # If no trace is found, format minimal data from IDs or fallback safely
+    if not retrieved_chunks:
+         # Fallback to simulate a minimal chunk if structure is missing, but ideally output has 'retrieved_chunks' details
+         retrieved_chunks = [{"id": f"chunk_{i}", "tenant_id": "metro_tenant", "entity_type": "ncr", "content": text} for i, text in enumerate(output.get("retrieved_chunks", []))]
+
+    citation_chain = generate_hardened_citation_chain(retrieved_chunks)
     latency_retrieval = (time.time() - t_start) * 1000
     
     # 3. LLM Generation
     t_start = time.time()
-    output = run_agentic_query(test_query)
+    # Generation already happened in run_agentic_query above
     latency_generation = (time.time() - t_start) * 1000
     
     total_latency_ms = (time.time() - start_total) * 1000
@@ -165,7 +171,7 @@ def run_hardening_verification():
     # Test 6: CDM Layer 4 Audit Logging
     # --------------------------------------------------------------------------
     print("\n--- [TEST 6/6] Generating CDM Layer 4 AuditEvent Logs ---")
-    chunk_ids_str = [str(c["id"]) for c in mock_chunks]
+    chunk_ids_str = [str(c.get("id", "")) for c in retrieved_chunks]
     write_audit_log(
         tenant_id="metro_tenant",
         query=test_query,

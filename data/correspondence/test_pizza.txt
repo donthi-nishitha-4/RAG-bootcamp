@@ -1,0 +1,2 @@
+# Create a unique file in your correspondence folder
+echo "The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden." > data/correspondence/test_pizza.txt

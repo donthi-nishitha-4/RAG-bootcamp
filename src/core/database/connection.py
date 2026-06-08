@@ -197,9 +197,12 @@ def retrieve_similar(query_embedding, tenant_id="default", entity_type=None, con
         
     try:
         cur = conn.cursor()
-        
-        query_sql = "SELECT id, content, embedding <-> %s::vector as distance FROM rag_documents WHERE tenant_id = %s"
-        params = [query_embedding, tenant_id]
+        query_sql = """
+            SELECT id, content, embedding <-> %s::vector as distance 
+            FROM rag_documents 
+            WHERE tenant_id = %s AND (embedding <-> %s::vector) < %s
+        """
+        params = [query_embedding, tenant_id, query_embedding, settings.RETRIEVAL_DISTANCE_THRESHOLD]
         
         if entity_type:
             query_sql += " AND entity_type = %s"
@@ -208,12 +211,16 @@ def retrieve_similar(query_embedding, tenant_id="default", entity_type=None, con
         if contract_standard:
             query_sql += " AND contract_standard = %s"
             params.append(contract_standard)
-            
-        query_sql += " ORDER BY embedding <-> %s::vector LIMIT %s;"
-        params.extend([query_embedding, k])
+
+        query_sql += " ORDER BY distance ASC LIMIT %s;"
+        params.append(k)
         
         cur.execute(query_sql, tuple(params))
-        return cur.fetchall()
+        raw_results = cur.fetchall()
+
+        filtered = [r for r in raw_results if r[2] is not None and r[2] < settings.RETRIEVAL_DISTANCE_THRESHOLD]
+        return filtered
+        
     except Exception as e:
         print(f"[ERROR] Vector retrieval failed: {e}")
         return []

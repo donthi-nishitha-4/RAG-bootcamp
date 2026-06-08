@@ -29,43 +29,45 @@
 
 ### 3. Out-of-Scope Fallback Interceptor (10/10 Queries)
 Below are the queries tested to verify 100% prevention of hallucinations:
-1. Query: *"What is the capital city of France?"* ➔ Hardened Output: `Insufficient data to answer this query.` (8847.95ms)
-2. Query: *"Who won the FIFA Football World Cup in 2022?"* ➔ Hardened Output: `Insufficient data to answer this query.` (12.52ms)
-3. Query: *"Give me a recipe for baking chocolate chip cookies."* ➔ Hardened Output: `Insufficient data to answer this query.` (16.62ms)
-4. Query: *"What is the weather today in New York?"* ➔ Hardened Output: `Insufficient data to answer this query.` (8.32ms)
-5. Query: *"Who is the Prime Minister of Canada?"* ➔ Hardened Output: `Insufficient data to answer this query.` (9.93ms)
-6. Query: *"Explain the basic rules of cricket."* ➔ Hardened Output: `Insufficient data to answer this query.` (13.67ms)
-7. Query: *"What is the best movie to watch this weekend?"* ➔ Hardened Output: `Insufficient data to answer this query.` (13.87ms)
-8. Query: *"Can you tell me a funny joke?"* ➔ Hardened Output: `Insufficient data to answer this query.` (13.03ms)
-9. Query: *"Who is the current President of the United States?"* ➔ Hardened Output: `Insufficient data to answer this query.` (6.23ms)
-10. Query: *"What is the capital of Japan?"* ➔ Hardened Output: `Insufficient data to answer this query.` (11.62ms)
+1. Query: *"What is the capital city of France?"* ➔ Hardened Output: `Insufficient data to answer this query.` (6669.34ms)
+2. Query: *"Who won the FIFA Football World Cup in 2022?"* ➔ Hardened Output: `Insufficient data to answer this query.` (10.39ms)
+3. Query: *"Give me a recipe for baking chocolate chip cookies."* ➔ Hardened Output: `Insufficient data to answer this query.` (14.47ms)
+4. Query: *"What is the weather today in New York?"* ➔ Hardened Output: `Insufficient data to answer this query.` (10.53ms)
+5. Query: *"Who is the Prime Minister of Canada?"* ➔ Hardened Output: `Insufficient data to answer this query.` (6.44ms)
+6. Query: *"Explain the basic rules of cricket."* ➔ Hardened Output: `Insufficient data to answer this query.` (12.02ms)
+7. Query: *"What is the best movie to watch this weekend?"* ➔ Hardened Output: `Insufficient data to answer this query.` (11.33ms)
+8. Query: *"Can you tell me a funny joke?"* ➔ Hardened Output: `Insufficient data to answer this query.` (9.36ms)
+9. Query: *"Who is the current President of the United States?"* ➔ Hardened Output: `Insufficient data to answer this query.` (5.71ms)
+10. Query: *"What is the capital of Japan?"* ➔ Hardened Output: `Insufficient data to answer this query.` (9.01ms)
 
 ### 4. Granular Latency Compliance Breakdown (NFR-04)
 - **Query Router Node**: `0.00ms`
-- **Context Retriever Node**: `0.01ms`
-- **LLM Answer Generator Node**: `3862.18ms`
-- **End-to-End Processing Time**: `3862.19ms` (P95 < 5.0 seconds compliant)
+- **Context Retriever Node**: `3985.49ms`
+- **LLM Answer Generator Node**: `0.00ms`
+- **End-to-End Processing Time**: `3985.49ms` (P95 < 5.0 seconds compliant)
 
 ### 5. Deterministic Citation Block Output
 ```markdown
 
 ### 🔗 Hardened Citation Chain (Traceable back to CDM):
-- **Chunk ID**: `84` | **Tenant**: `METRO_TENANT` | **Domain**: `NCR`
-- **Chunk ID**: `105` | **Tenant**: `METRO_TENANT` | **Domain**: `CORRESPONDENCE`
+- **Chunk ID**: `json_DMRC-0056` | **Tenant**: `DEFAULT` | **Domain**: `GENERAL`
+- **Chunk ID**: `json_DMRC-0067` | **Tenant**: `DEFAULT` | **Domain**: `GENERAL`
+- **Chunk ID**: `json_DMRC-0061` | **Tenant**: `DEFAULT` | **Domain**: `GENERAL`
 ```
 
 ## 📜 Audit Event Spec (CDM Layer 4 payload example)
 ```json
 {
   "event_type": "AuditEvent",
-  "timestamp": "2026-06-08T08:19:37.993029Z",
+  "timestamp": "2026-06-08T11:33:21.605561Z",
   "tenant_id": "metro_tenant",
   "query": "What active water seepage issue was detected in Station B cavern ceiling?",
   "retrieved_chunk_ids": [
-    "84",
-    "105"
+    "json_DMRC-0056",
+    "json_DMRC-0067",
+    "json_DMRC-0061"
   ],
-  "latency_ms": 3862.1931076049805
+  "latency_ms": 3985.4915142059326
 }
 ```
 

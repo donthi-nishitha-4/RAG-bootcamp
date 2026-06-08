@@ -1,12 +1,12 @@
 """Utility: chunk a sample NCR/DPR text and save output to experiments/results/ingest_sample.
 
-This is a small runnable helper to validate `src.chunkers.ncr_dpr_chunker_UDAY` without
+This is a small runnable helper to validate `src.chunkers.ncr_dpr_chunker` without
 modifying the stable ingestion pipeline. It writes named JSON files for reviewer proof-of-work.
 """
 import os
 import json
 import time
-from src.chunkers import ncr_dpr_chunker_UDAY as chunker
+from src.chunkers import ncr_dpr_chunker as chunker
 
 OUT_DIR = 'experiments/results/ingest_sample'
 

@@ -1,0 +1,7 @@
+{
+  "path_hint": "sample_ncr.txt",
+  "num_chunks": 1,
+  "chunks": [
+    "NCR-321\nSupplier: ACME Supplies\n\nRoot Cause:\nThe joint assembly failed due to improper torqueing of bolts. Detailed inspection shows uneven preload across the flange.\n\nCorrective Action:\nContractor to rework joint, replace gasket, retorque bolts to specification. Submit verification report within 14 days.\n\nVerification:\nQA to perform NDT and visual inspection and sign-off."
+  ]
+}
