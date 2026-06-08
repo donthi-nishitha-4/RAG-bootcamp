@@ -8,11 +8,12 @@ import mlflow
 
 from src.core.pipeline import ask_rag
 from src.evals.metrics import evaluate_generation
-from src.core.retriever import check_table_exists
+from src.core.database.connection import check_table_exists
+from src.utils.config import settings
 
-DATASET_PATH  = os.path.join(os.path.dirname(__file__), '..', 'evaluation', 'dataset', 'evaluation_dataset.json')
+DATASET_PATH  = settings.EVALUATION_DATASET
 RESULTS_DIR   = os.path.join(os.path.dirname(__file__), '..', 'experiments', 'results')
-TENANT_ID     = "default_strategy"
+TENANT_ID     = "metro_tenant"
 MLFLOW_DIR    = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'experiments', 'mlflow_runs'))
 
 # Use file-based MLflow tracking — avoids readonly sqlite error on shared mlflow.db
@@ -60,7 +61,7 @@ def run_experiment(exp_name, dataset_label, config, queries, tenant_id=TENANT_ID
         mlflow.log_param("tenant_id", tenant_id)
         mlflow.log_param("num_queries", len(queries))
         
-        for q in queries:
+        for i, q in enumerate(queries):
             print(f"\nEvaluating Query: '{q}'")
             rag_result = ask_rag(
                 query=q, 
@@ -72,7 +73,9 @@ def run_experiment(exp_name, dataset_label, config, queries, tenant_id=TENANT_ID
             
             answer = rag_result.get("answer", "")
             context = rag_result.get("context", "")
-            
+            print(f"[DEBUG] Context length: {len(context)}")
+            print(f"[DEBUG] Answer length: {len(answer)}")
+
             # Evaluate
             scores = evaluate_generation(q, context, answer)
             faithfulness = scores.get("faithfulness", 0.0)
@@ -94,11 +97,12 @@ def run_experiment(exp_name, dataset_label, config, queries, tenant_id=TENANT_ID
                 "query": q,
                 "faithfulness": faithfulness,
                 "relevance": relevance,
+                "retrieved_chunks": rag_result.get("retrieved_chunks", []),
                 "observations": f"{status} - {reason}"
             })
             
-            mlflow.log_metric(f"faithfulness_{q[:15]}", faithfulness)
-            mlflow.log_metric(f"relevance_{q[:15]}", relevance)
+            mlflow.log_metric(f"faithfulness_{i}", faithfulness)
+            mlflow.log_metric(f"relevance_{i}", relevance)
             print(f"  -> {status} (F: {faithfulness}, R: {relevance})")
 
     # Save experiment log (experiments/)
@@ -123,6 +127,7 @@ def run_experiment(exp_name, dataset_label, config, queries, tenant_id=TENANT_ID
             f.write(f"### Query: {res['query']}\n")
             f.write(f"- **Faithfulness:** {res['faithfulness']}\n")
             f.write(f"- **Relevance:** {res['relevance']}\n")
+            f.write(f"- **Chunks Retrieved:** {len(res.get('retrieved_chunks', []))}\n") # Add this line
             f.write(f"- **Observations:**\n  - {res['observations']}\n\n")
 
 if __name__ == "__main__":

@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     DMRC_DATASET: Path = DATA_DIR / "dmrc" / "dmrc_Synthetic_Dataset_Nishitha.json"
     RESULTS_DIR: Path = PROJECT_ROOT / "experiments" / "results"
     AUDIT_LOG_FILE: Path = RESULTS_DIR / "audit_events_ledger_Nishitha.json"
+    EVALUATION_DATASET: Path = PROJECT_ROOT / "evaluation" / "dataset" / "evaluation_dataset.json"
     
     DB_HOST: str = os.getenv("DB_HOST", "localhost")
     DB_PORT: int = int(os.getenv("DB_PORT", 5433))

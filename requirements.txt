@@ -2,10 +2,16 @@ openai
 sentence-transformers
 numpy
 mlflow
-# ragas (optional - skipped due to setup complexity)
 python-dotenv
 psycopg2-binary
 pymupdf
 einops
 torch
 umap-learn
+ragas
+datasets
+langchain
+langchain-groq
+langchain-huggingface
+transformers
+pydantic_settings

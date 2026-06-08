@@ -1,8 +1,0 @@
-ragas
-datasets
-langchain
-langchain-groq
-langchain-huggingface
-transformers
-torch
-sentence-transformers

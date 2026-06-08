@@ -1,0 +1,14 @@
+artifact_uri: file:///home/d_nishitha/AIPMS/RAG-bootcamp/scripts/experiments/mlflow_runs/868147535044883112/ed751c9a420e40c58883b94c3ca578a9/artifacts
+end_time: 1780903544491
+entry_point_name: ''
+experiment_id: '868147535044883112'
+lifecycle_stage: active
+run_id: ed751c9a420e40c58883b94c3ca578a9
+run_name: colorful-carp-250
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1780903542346
+status: 3
+tags: []
+user_id: d_nishitha
