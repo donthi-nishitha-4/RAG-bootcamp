@@ -3,7 +3,6 @@ import sys
 import json
 from statistics import mean
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.core.pipeline import embed_model
 from src.core.llm import query_llm

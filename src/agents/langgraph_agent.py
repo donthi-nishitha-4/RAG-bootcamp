@@ -8,7 +8,6 @@ from typing import TypedDict, List, Dict, Any
 from langgraph.graph import StateGraph, END
 from sentence_transformers import SentenceTransformer
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.core.llm import query_llm
 from src.agents.query_router import route_query

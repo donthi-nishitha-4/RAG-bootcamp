@@ -34,5 +34,53 @@
     ],
     "response_hash": "3aa26d9e0ecab202bb1199bf990bdc3249de4b60f09aea43a62ce4ef980d71fe",
     "latency_ms": 3267.7690982818604
+  },
+  {
+    "event_type": "AuditEvent",
+    "timestamp": "2026-06-06T06:52:10.981821Z",
+    "tenant_id": "metro_tenant",
+    "query_hash": "afe7faa575b08fa2f64a7b0aa835cb7d5687fb9f33fbf5a9ef3b6d857d230aab",
+    "retrieved_chunk_ids": [
+      "84",
+      "105"
+    ],
+    "response_hash": "3aa26d9e0ecab202bb1199bf990bdc3249de4b60f09aea43a62ce4ef980d71fe",
+    "latency_ms": 4520.293474197388
+  },
+  {
+    "event_type": "AuditEvent",
+    "timestamp": "2026-06-06T09:01:06.355197Z",
+    "tenant_id": "metro_tenant",
+    "query_hash": "afe7faa575b08fa2f64a7b0aa835cb7d5687fb9f33fbf5a9ef3b6d857d230aab",
+    "retrieved_chunk_ids": [
+      "84",
+      "105"
+    ],
+    "response_hash": "3aa26d9e0ecab202bb1199bf990bdc3249de4b60f09aea43a62ce4ef980d71fe",
+    "latency_ms": 7893.051862716675
+  },
+  {
+    "event_type": "AuditEvent",
+    "timestamp": "2026-06-06T09:11:02.017057Z",
+    "tenant_id": "metro_tenant",
+    "query_hash": "afe7faa575b08fa2f64a7b0aa835cb7d5687fb9f33fbf5a9ef3b6d857d230aab",
+    "retrieved_chunk_ids": [
+      "84",
+      "105"
+    ],
+    "response_hash": "97af5b5021c1aed6cf39b64ff7b25d39bc820cb1944b30775d2307bf96e9dab9",
+    "latency_ms": 4282.668113708496
+  },
+  {
+    "event_type": "AuditEvent",
+    "timestamp": "2026-06-06T09:15:42.105166Z",
+    "tenant_id": "metro_tenant",
+    "query_hash": "afe7faa575b08fa2f64a7b0aa835cb7d5687fb9f33fbf5a9ef3b6d857d230aab",
+    "retrieved_chunk_ids": [
+      "84",
+      "105"
+    ],
+    "response_hash": "3aa26d9e0ecab202bb1199bf990bdc3249de4b60f09aea43a62ce4ef980d71fe",
+    "latency_ms": 3776.627779006958
   }
 ]

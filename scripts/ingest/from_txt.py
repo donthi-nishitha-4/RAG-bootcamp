@@ -15,9 +15,8 @@ import gc
 from sentence_transformers import SentenceTransformer
 
 # Add project root to path so we can import src core modules
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.core.retriever import init_pgvector, load_documents
+from src.core.database.connection import init_pgvector, load_documents
 
 def parse_correspondence_file(file_path):
     """

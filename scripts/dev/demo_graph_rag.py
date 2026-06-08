@@ -16,7 +16,6 @@ import json
 from sentence_transformers import SentenceTransformer
 
 # Add project root to path so we can import src core modules
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.core.graph_rag import retrieve_graph_nodes, get_node_neighbors, get_hierarchical_path, get_interface_impact_analysis
 from src.core.retriever import retrieve_similar

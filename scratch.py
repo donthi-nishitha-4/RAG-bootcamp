@@ -1,5 +1,4 @@
 import sys, os
-sys.path.append(os.path.abspath('.'))
 from src.core.pipeline import embed_model
 from src.core.retriever import retrieve_hybrid
 

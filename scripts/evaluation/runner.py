@@ -5,7 +5,6 @@ import json
 import mlflow
 
 # Add project root to path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.core.pipeline import ask_rag
 from src.evals.metrics import evaluate_generation

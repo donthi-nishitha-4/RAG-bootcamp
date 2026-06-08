@@ -1,5 +1,4 @@
 import sys, os
-sys.path.append(os.path.abspath('.'))
 from src.core.retriever import get_connection
 
 conn = get_connection()

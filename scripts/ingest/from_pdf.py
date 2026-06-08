@@ -6,7 +6,6 @@ import re
 import gc
 
 # Add project root to path so we can import src
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.core.retriever import init_pgvector, load_documents
 from sentence_transformers import SentenceTransformer

@@ -14,7 +14,6 @@ import json
 import statistics
 from datetime import datetime
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.core.pipeline import embed_model, reranker as reranker_msmarco
 from src.core.retriever import retrieve_hybrid

@@ -14,7 +14,6 @@ import sys
 import re
 
 # Add project root to path so we can import src core modules
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.core.llm import query_llm
 

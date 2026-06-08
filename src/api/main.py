@@ -50,7 +50,6 @@ except ImportError:
     class JSONResponse: pass
 
 # Add project root to path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.agents.langgraph_agent import run_agentic_query
 from src.core.security import (

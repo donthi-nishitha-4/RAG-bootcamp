@@ -15,7 +15,6 @@ import json
 from datetime import datetime
 
 # Add project root to path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # --------------------------------------------------------------------------
 # Dynamic Dependency Installation
