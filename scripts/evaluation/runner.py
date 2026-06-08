@@ -75,6 +75,7 @@ def run_experiment(exp_name, dataset_label, config, queries, tenant_id=TENANT_ID
             context = rag_result.get("context", "")
             print(f"[DEBUG] Context length: {len(context)}")
             print(f"[DEBUG] Answer length: {len(answer)}")
+            print(f"[DEBUG] Full Answer: {answer}")
 
             # Evaluate
             scores = evaluate_generation(q, context, answer)

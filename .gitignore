@@ -54,3 +54,8 @@ graphify-out/
 .DS_Store
 Thumbs.db
 experiments/mlflow_runs/
+
+# MLflow
+mlruns/
+scripts/experiments/mlflow_runs/
+mlflow.db

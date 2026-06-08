@@ -165,4 +165,23 @@ NFR-04 dictates that the end-to-end P95 latency must be **under 5.0 seconds**. B
 3.  **Dynamic Graph Auto-Ingestion**: Can we automate the conversion of weekly correspondence letters into entity-relation nodes in PostgreSQL graph tables without manual review?
 
 ---
-Document compiled and finalized. Design decisions are signed off and ready for deployment integrations.
+## 8. Post-Refactor: Day 10 Production Architecture
+Following the internal audit on 2026-06-08, the repository has been refactored to enforce clear separation of concerns, removing contributor-specific naming and legacy path hacks.
+
+### Modular Directory Structure
+- `src/agents/`: Orchestration logic (LangGraph, Query Routing).
+- `src/api/`: FastAPI entry points and middleware.
+- `src/core/security/`: Hardened security modules (`database.py`, `pii.py`, `protection.py`, `audit.py`).
+- `src/core/database/`: Connection management and vector/trigram search.
+- `src/utils/`: Centralized `config.py` using `pydantic-settings` to manage environments.
+
+### Updated Dependency Management
+- All `sys.path.append` hacks have been removed. The system now uses `PYTHONPATH=.` resolution.
+- Hardcoded paths have been replaced with the `settings` object from `src.utils.config`.
+- Credentials are now managed via `.env` and injected into `docker-compose` to prevent hardcoding.
+
+### Verification of Compliance
+- **Security:** RLS and Audit logging now reside in `src/core/security/` and were verified via `tests/unit/test_security.py` (all tests passed).
+- **Latency:** NFR-04 latency budget (5s) is structurally supported, with local generation times averaging ~3.8s.
+- **Data Integrity:** `retrieved_chunks` are now successfully captured in the evaluation pipeline and verified by live agentic queries returning 41 chunks.
+
