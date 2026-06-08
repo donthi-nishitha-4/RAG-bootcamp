@@ -1,9 +1,0 @@
-artifact_location: file:///home/d_nishitha/AIPMS/RAG-bootcamp/scripts/experiments/mlflow_runs/868147535044883112
-creation_time: 1780903541940
-effective_trace_archival_retention: null
-experiment_id: '868147535044883112'
-last_update_time: 1780903541940
-lifecycle_stage: active
-name: exp_05_vector_golden_dataset
-trace_location: null
-workspace: default
