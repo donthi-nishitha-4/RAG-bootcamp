@@ -14,7 +14,7 @@ import time
 
 # Add project root to path so we can import src core modules
 
-from src.core.query_router_Nishitha import route_query
+from src.agents.query_router import route_query
 
 def run_query_router_evaluation():
     test_suite = [

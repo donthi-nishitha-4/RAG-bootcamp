@@ -29,7 +29,7 @@ except ImportError:
     import fastapi
     from fastapi.testclient import TestClient
 
-from src.api_Nishitha import app
+from src.api.main import app
 
 client = TestClient(app)
 

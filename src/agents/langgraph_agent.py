@@ -36,7 +36,8 @@ class AgentState(TypedDict):
 def retrieve_local_fallback(query_text: str, domain: str, k: int = 3):
     candidate_chunks = []
 
-    json_path = "data/dmrc/dmrc_Synthetic_Dataset_Nishitha.json"
+    from src.utils.config import settings
+    json_path = str(settings.DMRC_DATASET)
     if os.path.exists(json_path):
         with open(json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)

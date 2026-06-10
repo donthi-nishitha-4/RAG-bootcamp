@@ -14,7 +14,7 @@ import time
 
 # Add project root to path so we can import src core modules
 
-from src.core.agent_Nishitha import run_agentic_query
+from src.agents.langgraph_agent import run_agentic_query
 
 def run_agentic_rag_evaluation():
     test_queries = [
