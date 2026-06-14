@@ -198,15 +198,15 @@ aipms-rag-bootcamp/
 ├── src/api/main.py                # FastAPI web service with TestClient
 │
 ├── scripts/
-│   ├── ncr_dpr_chunker.py        # Day 6: Custom paragraph-aware parser
-│   ├── generate_correspondence.py    # Mock transmittal generator
-│   ├── test_agent.py                    # Day 8: Agent loop validation
-│   ├── test_security.py                # Day 9: RLS + adversarial testing
-│   ├── test_api.py                      # Day 10: FastAPI live query suite
-│   ├── test_routing.py             # Day 7: Router accuracy verification
-│   ├── demo_graph_rag.py                         # Day 7: GraphRAG prototype & Matrix Ingestion
-│   ├── ingest_taxonomy.py                        # Day 7: Systems Taxonomy ingestion
-│   └── benchmark_retrieval.py                    # Precision@5, NDCG scoring
+│   ├── dev/
+│   │   ├── demo_graph_rag.py         # Day 7: GraphRAG prototype
+│   │   └── embedding_benchmark.py
+│   ├── ingest/
+│   │   ├── from_xlsx.py              # Day 7: Systems Taxonomy ingestion
+│   │   ├── chunk_data.py             # Day 6: Data chunking
+│   │   └── generate_correspondence.py # Mock transmittal generator
+│   └── evaluation/
+│       └── benchmark.py              # Precision@5, NDCG scoring
 │
 ├── data/
 │   ├── correspondence/                # Synthetic transmittal letters (let_001–let_005)
@@ -228,9 +228,12 @@ aipms-rag-bootcamp/
 │   └── SECURITY.md
 │
 ├── tests/                             # Unit + integration test suite
-│   ├── test_pipeline.py
-│   ├── test_retriever.py
-│   └── test_llm.py
+│   ├── unit/
+│   │   ├── test_routing.py
+│   │   └── test_security.py
+│   └── integration/
+│       ├── test_agent.py
+│       └── test_api.py
 │
 ├── docker-compose.yml                 # PostgreSQL + pgvector setup
 ├── requirements.txt
@@ -309,7 +312,7 @@ uvicorn src.api.main:app --reload
 python scripts/ingest/chunk_data.py
 
 # Day 7: GraphRAG & Query router
-python scripts/demo_graph_rag.py
+python scripts/dev/demo_graph_rag.py
 pytest tests/unit/test_routing.py -v
 
 # Day 8: Agent loops

@@ -1922,7 +1922,7 @@ Minimum 15 experiment entries required across the bootcamp. Copy this template f
 </tr>
 <tr>
 <td><b>Dataset Used</b></td>
-<td><span style="color:#E74C3C;">Systems Taxonomy (383 nodes)</span></td>
+<td><span style="color:#E74C3C;">Systems Taxonomy (336 nodes)</span></td>
 </tr>
 <tr>
 <td><b>Retrieval Metrics</b></td>

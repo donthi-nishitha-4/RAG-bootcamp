@@ -50,15 +50,15 @@
     *   *Location*: [Final_Deliverables/Documentation_Nishitha.md](file:///home/d_nishitha/AIPMS/aipms-rag-bootcamp/Final_Deliverables/Documentation_Nishitha.md) (Exp 04 - Exp 08).
 *   **Metadata Filtering**: `[✅ COMPLETED]`  
     *   *Resource*: **Real**. Enforced standard tags (`tenant_id`, `entity_type`, `source_document_id`, `package_id`) at chunk level.
-    *   *Location*: [src/core/retriever.py](file:///home/d_nishitha/AIPMS/aipms-rag-bootcamp/src/core/retriever.py).
+    *   *Location*: [src/core/database/connection.py](file:///home/d_nishitha/AIPMS/aipms-rag-bootcamp/src/core/database/connection.py).
 
 #### 🟢 Day 4: Hybrid Search & Cross-Encoder Reranking
 *   **Hybrid BM25 + Vector Search via RRF**: `[✅ COMPLETED]`  
     *   *Resource*: **Real**. Reciprocal Rank Fusion ($k=60$) combining semantic embeddings and trigram keyword indexing.
-    *   *Location*: `src/core/retriever.py#L240-L282`.
+    *   *Location*: `src/core/database/connection.py`.
 *   **Cross-Encoder Reranker Benchmarking**: `[✅ COMPLETED]`  
     *   *Resource*: **Real**. Integrated `ms-marco-MiniLM-L-12-v2` to filter top retrieved chunks.
-    *   *Location*: `src/core/retriever.py`.
+    *   *Location*: [src/core/pipeline.py](file:///home/d_nishitha/AIPMS/aipms-rag-bootcamp/src/core/pipeline.py).
 
 #### 🟢 Day 5: Advanced Retrieval & Evaluation Review
 *   **Advanced Retrieval Strategies**: `[✅ COMPLETED]`  
@@ -84,7 +84,7 @@
 *   **GraphRAG Systems Taxonomy Ingestion**: `[⚠️ PAUSED & FAILSAFED]`  
     *   *Resource*: **Mock Graph rel-join traversal**. Paused Apache AGE ingestion because the 383-entry taxonomy raw file usage has to be confirmed yet.
     *   *Failsafe*: Programmed relational hierarchical self-joins (`retrieve_graph`) to traverse connected sibling chunks from document indexes, proving "Graph Layer" capabilities locally.
-    *   *Location*: [src/core/retriever.py#L284-L302](file:///home/d_nishitha/AIPMS/aipms-rag-bootcamp/src/core/retriever.py#L284-L302) and [docs/Architecture_Decision_Document_Nishitha.md](file:///home/d_nishitha/AIPMS/aipms-rag-bootcamp/docs/Architecture_Decision_Document_Nishitha.md) Section 5 GraphRAG Viability Matrix.
+    *   *Location*: [src/core/graph_rag.py](file:///home/d_nishitha/AIPMS/aipms-rag-bootcamp/src/core/graph_rag.py) and [docs/Architecture_Decision_Document_Nishitha.md](file:///home/d_nishitha/AIPMS/aipms-rag-bootcamp/docs/Architecture_Decision_Document_Nishitha.md) Section 5 GraphRAG Viability Matrix.
 
 #### 🟢 Day 8: Agentic RAG with LangGraph StateGraph
 *   **State Machine Orchestration**: `[✅ COMPLETED]`  
