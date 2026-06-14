@@ -1,0 +1,914 @@
+[
+  {
+    "query": "What clause governs contractor claims in GCC?",
+    "expected": "Clause 20.1 governs contractor claims.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 3: You are instructed to execute high-pressure polyurethane grouting in all affected segment joints by the end of the shift. All payment certificates for the underground lining segment will be withheld until the seepage is completely arrested.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 3: You are instructed to execute high-pressure polyurethane grouting in all affected segment joints by the end of the shift. All payment certificates for the underground lining segment will be withheld until the seepage is completely arrested.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 3: You are instructed to execute high-pressure polyurethane grouting in all affected segment joints by the end of the shift. All payment certificates for the underground lining segment will be withheld until the seepage is completely arrested.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 4: Best regards,\nSimhadri\nQuality Assurance Lead, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 4: Best regards,\nSimhadri\nQuality Assurance Lead, Energy Kernel"
+    ],
+    "citations": [
+      "9",
+      "87",
+      "31",
+      "84",
+      "28"
+    ]
+  },
+  {
+    "query": "What happens if disputes are not resolved amicably in GCC contracts?",
+    "expected": "They are referred to arbitration.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "multi-hop",
+    "source": "gcc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,"
+    ],
+    "citations": [
+      "42",
+      "20",
+      "100",
+      "94",
+      "37"
+    ]
+  },
+  {
+    "query": "Which clause allows termination of contract?",
+    "expected": "Clause 16 deals with termination.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 3: You are instructed to execute high-pressure polyurethane grouting in all affected segment joints by the end of the shift. All payment certificates for the underground lining segment will be withheld until the seepage is completely arrested.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 3: You are instructed to execute high-pressure polyurethane grouting in all affected segment joints by the end of the shift. All payment certificates for the underground lining segment will be withheld until the seepage is completely arrested."
+    ],
+    "citations": [
+      "42",
+      "20",
+      "100",
+      "9",
+      "87"
+    ]
+  },
+  {
+    "query": "What causes TBM delays in GCC projects?",
+    "expected": "Breakdowns and maintenance issues cause TBM delays.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "multi-hop",
+    "source": "gcc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 2: We are issuing this formal notice regarding the incomplete documentation of the TBM (Tunnel Boring Machine) shield locking mechanism. Although the physical alignment has been validated, the inspection sheets do not carry the certified signature of the safety engineer.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 2: We are issuing this formal notice regarding the incomplete documentation of the TBM (Tunnel Boring Machine) shield locking mechanism. Although the physical alignment has been validated, the inspection sheets do not carry the certified signature of the safety engineer.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 2: We are issuing this formal notice regarding the incomplete documentation of the TBM (Tunnel Boring Machine) shield locking mechanism. Although the physical alignment has been validated, the inspection sheets do not carry the certified signature of the safety engineer.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,"
+    ],
+    "citations": [
+      "82",
+      "4",
+      "26",
+      "81",
+      "3"
+    ]
+  },
+  {
+    "query": "Which GCC clause handles contractor claims and documentation?",
+    "expected": "Clause 20.1 handles claims and requires documentation.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 1: Dear Yamuna,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 1: Dear Yamuna,"
+    ],
+    "citations": [
+      "94",
+      "37",
+      "15",
+      "41",
+      "19"
+    ]
+  },
+  {
+    "query": "What is the role of the engineer in GCC contract execution?",
+    "expected": "The engineer supervises project execution and ensures contract compliance.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 4: Sincerely,\nGanga\nChief Project Engineer",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 4: Sincerely,\nGanga\nChief Project Engineer",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 4: Sincerely,\nGanga\nChief Project Engineer",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 1: Dear Yamuna,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 1: Dear Yamuna,"
+    ],
+    "citations": [
+      "44",
+      "22",
+      "102",
+      "99",
+      "41"
+    ]
+  },
+  {
+    "query": "What is the impact of TBM breakdown on project timeline?",
+    "expected": "TBM breakdown causes delays and requires claim submissions with diagnostic reports.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "analytical",
+    "source": "gcc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 2: We are issuing this formal notice regarding the incomplete documentation of the TBM (Tunnel Boring Machine) shield locking mechanism. Although the physical alignment has been validated, the inspection sheets do not carry the certified signature of the safety engineer.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 2: We are issuing this formal notice regarding the incomplete documentation of the TBM (Tunnel Boring Machine) shield locking mechanism. Although the physical alignment has been validated, the inspection sheets do not carry the certified signature of the safety engineer.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 2: We are issuing this formal notice regarding the incomplete documentation of the TBM (Tunnel Boring Machine) shield locking mechanism. Although the physical alignment has been validated, the inspection sheets do not carry the certified signature of the safety engineer.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,"
+    ],
+    "citations": [
+      "82",
+      "4",
+      "26",
+      "81",
+      "3"
+    ]
+  },
+  {
+    "query": "What are the OHE catenary responsibilities of the contractor during commissioning?",
+    "expected": "The contractor is responsible for maintaining the temporary OHE catenary support system during commissioning.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 1: Dear Yamuna,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 1: Dear Yamuna,"
+    ],
+    "citations": [
+      "42",
+      "20",
+      "100",
+      "99",
+      "41"
+    ]
+  },
+  {
+    "query": "Which contractor shows highest rejection rate in DMRC data?",
+    "expected": "Contractor ABC has highest rejection rate.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "analytical",
+    "source": "dmrc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt",
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,"
+    ],
+    "citations": [
+      "98",
+      "93",
+      "81",
+      "3",
+      "25"
+    ]
+  },
+  {
+    "query": "Which subsystem causes most delays in DMRC projects?",
+    "expected": "Structural subsystem causes most delays.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "multi-hop",
+    "source": "dmrc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,"
+    ],
+    "citations": [
+      "42",
+      "20",
+      "100",
+      "81",
+      "3"
+    ]
+  },
+  {
+    "query": "Which station has highest number of RFIs?",
+    "expected": "Station A has the highest number of RFIs.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "analytical",
+    "source": "dmrc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 1: Dear Sirs,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 1: Dear Sirs,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 1: Dear Sirs,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 2: Active water ingress has been detected in the concrete segment joints of the station cavern ceiling (reference NCR-0056). This seepage is directly impacting the installation of cable trays and fire alarm wiring.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 2: Active water ingress has been detected in the concrete segment joints of the station cavern ceiling (reference NCR-0056). This seepage is directly impacting the installation of cable trays and fire alarm wiring."
+    ],
+    "citations": [
+      "85",
+      "29",
+      "7",
+      "86",
+      "8"
+    ]
+  },
+  {
+    "query": "What are common NCR defects in DMRC reports?",
+    "expected": "Welding misalignment and joint failure are common NCR defects.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "summary",
+    "source": "dmrc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,"
+    ],
+    "citations": [
+      "42",
+      "20",
+      "100",
+      "81",
+      "3"
+    ]
+  },
+  {
+    "query": "Which contractor shows both high rejection and low closure rate?",
+    "expected": "Contractor ABC shows poor performance with high rejection and low closure rate.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "multi-hop",
+    "source": "dmrc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 3: You are instructed to execute high-pressure polyurethane grouting in all affected segment joints by the end of the shift. All payment certificates for the underground lining segment will be withheld until the seepage is completely arrested.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 3: You are instructed to execute high-pressure polyurethane grouting in all affected segment joints by the end of the shift. All payment certificates for the underground lining segment will be withheld until the seepage is completely arrested."
+    ],
+    "citations": [
+      "43",
+      "21",
+      "101",
+      "9",
+      "87"
+    ]
+  },
+  {
+    "query": "Identify RFIs open beyond SLA in DMRC system.",
+    "expected": "Several RFIs remain open beyond the SLA and are marked as delayed.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "anomaly",
+    "source": "dmrc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 4: Best regards,\nSimhadri\nQuality Assurance Lead, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 4: Best regards,\nSimhadri\nQuality Assurance Lead, Energy Kernel"
+    ],
+    "citations": [
+      "81",
+      "3",
+      "25",
+      "84",
+      "6"
+    ]
+  },
+  {
+    "query": "Which contractor shows abnormal rejection trend?",
+    "expected": "Contractor ABC shows an irregular and fluctuating rejection pattern.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "anomaly",
+    "source": "dmrc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 1: Dear Sirs,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 1: Dear Sirs,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 1: Dear Sirs,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 4: Sincerely,\nGanga\nResident Engineer, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 4: Sincerely,\nGanga\nResident Engineer, Energy Kernel"
+    ],
+    "citations": [
+      "85",
+      "29",
+      "7",
+      "88",
+      "32"
+    ]
+  },
+  {
+    "query": "What is a common defect type in DMRC welding NCRs?",
+    "expected": "Welding misalignment and joint failure are the most common defects.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "dmrc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 3: Please submit the verified torque checks and pressure gauge logs for the cutterhead hydraulics immediately. Spoil disposal records must also be appended to ensure compliance with the environmental protection clearance.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 3: Please submit the verified torque checks and pressure gauge logs for the cutterhead hydraulics immediately. Spoil disposal records must also be appended to ensure compliance with the environmental protection clearance.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 3: Please submit the verified torque checks and pressure gauge logs for the cutterhead hydraulics immediately. Spoil disposal records must also be appended to ensure compliance with the environmental protection clearance.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,"
+    ],
+    "citations": [
+      "83",
+      "5",
+      "27",
+      "81",
+      "3"
+    ]
+  },
+  {
+    "query": "Which subsystem has highest NCR escalation in DMRC?",
+    "expected": "The structural subsystem generates the most NCRs and escalations.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "multi-hop",
+    "source": "dmrc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 1: Dear Sirs,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 1: Dear Sirs,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 1: Dear Sirs,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 4: Sincerely,\nGanga\nResident Engineer, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 4: Sincerely,\nGanga\nResident Engineer, Energy Kernel"
+    ],
+    "citations": [
+      "85",
+      "7",
+      "29",
+      "32",
+      "10"
+    ]
+  },
+  {
+    "query": "What NCR was raised for OHE catenary hanger damage?",
+    "expected": "An NCR was issued for damaged OHE catenary hanger at the platform edge.",
+    "answer": "The NCR raised for OHE catenary hanger damage is NCR-0051.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "dmrc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 1: Dear Yamuna,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 1: Dear Yamuna,"
+    ],
+    "citations": [
+      "42",
+      "20",
+      "100",
+      "99",
+      "41"
+    ]
+  },
+  {
+    "query": "What does the DPR say about TBM advance progress?",
+    "expected": "DPR reports TBM advance of 32 meters and successful segmental lining installation.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "dmrc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 2: We are issuing this formal notice regarding the incomplete documentation of the TBM (Tunnel Boring Machine) shield locking mechanism. Although the physical alignment has been validated, the inspection sheets do not carry the certified signature of the safety engineer.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 2: We are issuing this formal notice regarding the incomplete documentation of the TBM (Tunnel Boring Machine) shield locking mechanism. Although the physical alignment has been validated, the inspection sheets do not carry the certified signature of the safety engineer.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 2: We are issuing this formal notice regarding the incomplete documentation of the TBM (Tunnel Boring Machine) shield locking mechanism. Although the physical alignment has been validated, the inspection sheets do not carry the certified signature of the safety engineer.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,"
+    ],
+    "citations": [
+      "82",
+      "4",
+      "26",
+      "81",
+      "3"
+    ]
+  },
+  {
+    "query": "What is total revenue reported in the enterprise dataset?",
+    "expected": "Total revenue for FY2023 is $12.4 billion.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "kaggle",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt",
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,"
+    ],
+    "citations": [
+      "98",
+      "93",
+      "94",
+      "37",
+      "15"
+    ]
+  },
+  {
+    "query": "Which segment contributes highest revenue in the enterprise dataset?",
+    "expected": "The cloud services segment contributes the highest revenue.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "analytical",
+    "source": "kaggle",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 2: We have completed the correction of the joint alignment between the track slab segments near the depot portal (referred to in NCR-0054).",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 2: We have completed the correction of the joint alignment between the track slab segments near the depot portal (referred to in NCR-0054).",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 2: We have completed the correction of the joint alignment between the track slab segments near the depot portal (referred to in NCR-0054).",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,"
+    ],
+    "citations": [
+      "95",
+      "38",
+      "16",
+      "94",
+      "37"
+    ]
+  },
+  {
+    "query": "Which region shows highest growth but declining trend?",
+    "expected": "Europe shows high revenue but a declining growth rate.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "multi-hop",
+    "source": "kaggle",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 4: Warm regards,\nYamuna\nSenior Infrastructure Lead, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 4: Warm regards,\nYamuna\nSenior Infrastructure Lead, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 4: Warm regards,\nYamuna\nSenior Infrastructure Lead, Energy Kernel"
+    ],
+    "citations": [
+      "37",
+      "15",
+      "92",
+      "36",
+      "14"
+    ]
+  },
+  {
+    "query": "What are key risks in the enterprise report?",
+    "expected": "Supply chain disruption and regulatory challenges are the key risks.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "summary",
+    "source": "kaggle",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 1: To Whom It May Concern,"
+    ],
+    "citations": [
+      "42",
+      "20",
+      "100",
+      "81",
+      "3"
+    ]
+  },
+  {
+    "query": "What is the enterprise RAG dataset used for?",
+    "expected": "The Kaggle enterprise dataset is used for benchmarking RAG systems on business reports.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "kaggle",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt",
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt"
+    ],
+    "citations": [
+      "94",
+      "15",
+      "37",
+      "98",
+      "93"
+    ]
+  },
+  {
+    "query": "What is the YoY revenue growth rate in the enterprise dataset?",
+    "expected": "Revenue increased by 10% year-over-year.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "kaggle",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt",
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt"
+    ],
+    "citations": [
+      "94",
+      "15",
+      "37",
+      "98",
+      "93"
+    ]
+  },
+  {
+    "query": "What is an unrelated question about quantum physics?",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 1: Dear Sirs,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 1: Dear Sirs,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 1: Dear Sirs,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed."
+    ],
+    "citations": [
+      "29",
+      "85",
+      "7",
+      "43",
+      "21"
+    ]
+  },
+  {
+    "query": "Who is the CEO of Google?",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 4: Warm regards,\nYamuna\nSenior Infrastructure Lead, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 4: Warm regards,\nYamuna\nSenior Infrastructure Lead, Energy Kernel"
+    ],
+    "citations": [
+      "89",
+      "33",
+      "11",
+      "92",
+      "36"
+    ]
+  },
+  {
+    "query": "What is the capital of France?",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt",
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 3: Hourly monitoring of the track slab concrete temperature is now active. The moist curing blanket will remain saturated for 14 continuous days as specified in the technical specification manual. Rework is not required as core compression tests confirm structural compliance.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 3: Hourly monitoring of the track slab concrete temperature is now active. The moist curing blanket will remain saturated for 14 continuous days as specified in the technical specification manual. Rework is not required as core compression tests confirm structural compliance.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 3: Hourly monitoring of the track slab concrete temperature is now active. The moist curing blanket will remain saturated for 14 continuous days as specified in the technical specification manual. Rework is not required as core compression tests confirm structural compliance."
+    ],
+    "citations": [
+      "98",
+      "93",
+      "91",
+      "35",
+      "13"
+    ]
+  },
+  {
+    "query": "Generate a Python script for sorting a list.",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 1: Dear Yamuna,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 1: Dear Yamuna,"
+    ],
+    "citations": [
+      "89",
+      "33",
+      "11",
+      "99",
+      "41"
+    ]
+  },
+  {
+    "query": "What was the score in last night's cricket match?",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 4: Sincerely,\nYamuna\nTrack Alignment Inspector, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 4: Sincerely,\nYamuna\nTrack Alignment Inspector, Energy Kernel"
+    ],
+    "citations": [
+      "94",
+      "37",
+      "15",
+      "97",
+      "40"
+    ]
+  },
+  {
+    "query": "Does DMRC comply with FIDIC Red Book or Yellow Book?",
+    "expected": "DMRC synthetic dataset references FIDIC as source. Specific book version not distinguishable from context.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt",
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 3: Please submit the verified torque checks and pressure gauge logs for the cutterhead hydraulics immediately. Spoil disposal records must also be appended to ensure compliance with the environmental protection clearance.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 3: Please submit the verified torque checks and pressure gauge logs for the cutterhead hydraulics immediately. Spoil disposal records must also be appended to ensure compliance with the environmental protection clearance.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 3: Please submit the verified torque checks and pressure gauge logs for the cutterhead hydraulics immediately. Spoil disposal records must also be appended to ensure compliance with the environmental protection clearance."
+    ],
+    "citations": [
+      "98",
+      "93",
+      "83",
+      "5",
+      "27"
+    ]
+  },
+  {
+    "query": "What is the exact bank guarantee percentage per GCC Yellow Book?",
+    "expected": "Not found in context. The documents do not specify Yellow Book-specific guarantee percentages.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 4: Warm regards,\nYamuna\nSenior Infrastructure Lead, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 4: Warm regards,\nYamuna\nSenior Infrastructure Lead, Energy Kernel"
+    ],
+    "citations": [
+      "89",
+      "33",
+      "11",
+      "92",
+      "36"
+    ]
+  },
+  {
+    "query": "What is the contractor's warranty period for track slab surfacing?",
+    "expected": "Contractor warranties shall cover 24 months of remedial work on track slab surfacing.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 3: The transition zone gradient has been adjusted to meet the 1:1000 slope requirement, and torque checks on the anchor bolts have been verified. The track slab surfaces are now fully cured and ready for permanent OHE catenary pole foundations.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 3: The transition zone gradient has been adjusted to meet the 1:1000 slope requirement, and torque checks on the anchor bolts have been verified. The track slab surfaces are now fully cured and ready for permanent OHE catenary pole foundations.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 3: The transition zone gradient has been adjusted to meet the 1:1000 slope requirement, and torque checks on the anchor bolts have been verified. The track slab surfaces are now fully cured and ready for permanent OHE catenary pole foundations.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 3: Hourly monitoring of the track slab concrete temperature is now active. The moist curing blanket will remain saturated for 14 continuous days as specified in the technical specification manual. Rework is not required as core compression tests confirm structural compliance.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/102\nDate: 2026-05-12\nFrom: Yamuna, Senior Infrastructure Lead, Energy Kernel\nTo: Ganga, Chief Project Engineer, Metro Project Authority\nSubject: Ballastless Track Slab Curing temperature and Moisture Control\n----------------------------------------\nParagraph 3: Hourly monitoring of the track slab concrete temperature is now active. The moist curing blanket will remain saturated for 14 continuous days as specified in the technical specification manual. Rework is not required as core compression tests confirm structural compliance."
+    ],
+    "citations": [
+      "96",
+      "39",
+      "17",
+      "91",
+      "35"
+    ]
+  },
+  {
+    "query": "What must the contractor submit before OHE catenary energization?",
+    "expected": "The contractor shall prepare a detailed OHE catenary risk assessment before energization.",
+    "answer": "The contractor must submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays."
+    ],
+    "citations": [
+      "43",
+      "21",
+      "101",
+      "42",
+      "20"
+    ]
+  },
+  {
+    "query": "What action can the engineer take for non-compliant OHE catenary erection?",
+    "expected": "The engineer may issue a stop-work order for non-compliant OHE catenary erection.",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "factual",
+    "source": "gcc",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.",
+      "[CORRESPONDENCE METADATA]\nReference: EK/OHE/2026/089\nDate: 2026-05-10\nFrom: Ganga, Chief Project Engineer, Metro Project Authority\nTo: Yamuna, Senior Infrastructure Lead, Energy Kernel\nSubject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage\n----------------------------------------\nParagraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays."
+    ],
+    "citations": [
+      "43",
+      "21",
+      "101",
+      "42",
+      "20"
+    ]
+  },
+  {
+    "query": "What is the best recipe for baking a chocolate cake?",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt",
+      "[CORRESPONDENCE METADATA]\nReference: N/A\nDate: N/A\nFrom: N/A\nTo: N/A\nSubject: N/A\n----------------------------------------\nParagraph 1: # Create a unique file in your correspondence folder\necho \"The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden.\" > data/correspondence/test_pizza.txt",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 4: Best regards,\nSimhadri\nQuality Assurance Lead, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 4: Best regards,\nSimhadri\nQuality Assurance Lead, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 4: Best regards,\nSimhadri\nQuality Assurance Lead, Energy Kernel"
+    ],
+    "citations": [
+      "98",
+      "93",
+      "84",
+      "6",
+      "28"
+    ]
+  },
+  {
+    "query": "How many planets are in the solar system?",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 4: Best regards,\nSimhadri\nQuality Assurance Lead, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 4: Best regards,\nSimhadri\nQuality Assurance Lead, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TBM/2026/044\nDate: 2026-05-13\nFrom: Simhadri, Quality Assurance Lead, Energy Kernel\nTo: Joint Venture Construction Partners, Metro Line 3\nSubject: NCR-0053 Documentation for TBM Shield Locking Mechanism\n----------------------------------------\nParagraph 4: Best regards,\nSimhadri\nQuality Assurance Lead, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 4: Sincerely,\nGanga\nResident Engineer, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/CIVIL/2026/211\nDate: 2026-05-14\nFrom: Ganga, Resident Engineer, Energy Kernel\nTo: Simhadri, Waterproofing Subcontractor\nSubject: NCR-0056 Active Water Seepage in Station Cavern Ceiling\n----------------------------------------\nParagraph 4: Sincerely,\nGanga\nResident Engineer, Energy Kernel"
+    ],
+    "citations": [
+      "84",
+      "6",
+      "28",
+      "88",
+      "32"
+    ]
+  },
+  {
+    "query": "Translate 'Hello' to Japanese.",
+    "expected": "Not found in context",
+    "answer": "I cannot answer this based on the provided context.",
+    "faithfulness": 1.0,
+    "relevance": 1.0,
+    "status": "PASSED",
+    "category": "out_of_scope",
+    "source": "adversarial",
+    "retrieved_chunks": [
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 1: Dear Sir,",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 4: Sincerely,\nYamuna\nTrack Alignment Inspector, Energy Kernel",
+      "[CORRESPONDENCE METADATA]\nReference: EK/TRACK/2026/145\nDate: 2026-05-15\nFrom: Yamuna, Track Alignment Inspector, Energy Kernel\nTo: Ganga, Operations Manager, Metro Project Authority\nSubject: NCR-0054 Grout Joint Alignment Rectification\n----------------------------------------\nParagraph 4: Sincerely,\nYamuna\nTrack Alignment Inspector, Energy Kernel"
+    ],
+    "citations": [
+      "94",
+      "37",
+      "15",
+      "97",
+      "40"
+    ]
+  }
+]

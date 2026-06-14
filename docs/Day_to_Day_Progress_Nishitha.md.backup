@@ -339,7 +339,7 @@ Ready to perform:
 
 
 ### Day 6: Dedicated Correspondence Chunker
-*   **Domain Chunker:** Developed `src/chunkers/ncr_dpr_chunker.py`, a custom paragraph-aware correspondence parser.
+*   **Domain Chunker:** Developed `scripts/correspondence_chunker_Nishitha.py`, a custom paragraph-aware correspondence parser.
 *   **Context Preservation:** Automatically extracts metadata headers (Reference, Date, From, To, Subject) from stakeholder letters and permanently prepends them to individual paragraphs.
 *   **Deduplication & Safety:** Cleaned all real credentials to use pseudo names (`Ganga`, `Yamuna`, `Simhadri`) and pseudo company (`Energy Kernel`). Verified using 5 mock transmittals in `data/correspondence/` and wrote `experiments/results/correspondence_chunk_test_Nishitha.md`.
 
@@ -361,7 +361,7 @@ Ready to perform:
 
 ### Day 10: FastAPI Integration & Architecture Decision Document
 *   **FastAPI Service Wrapper:** Wrapped the entire agentic RAG pipeline in `src/api_Nishitha.py` exposing `POST /query`.
-*   **10 Live Demo Queries:** Programmed `tests/integration/test_api.py` to evaluate 10 highly diverse live queries (factoid, multi-hop, contract, adversarial, cross-entity) through TestClient HTTP payload parsing. Passed all 10 checks and generated `experiments/results/api_test_Nishitha.md`.
+*   **10 Live Demo Queries:** Programmed `scripts/test_api_Nishitha.py` to evaluate 10 highly diverse live queries (factoid, multi-hop, contract, adversarial, cross-entity) through TestClient HTTP payload parsing. Passed all 10 checks and generated `experiments/results/api_test_Nishitha.md`.
 *   **Architecture Decision Document (ADD):** Compiled a premium, evidence-based recommendations report in `docs/Architecture_Decision_Document_Nishitha.md` detailing embedding models, chunking matrix, hybrid routing, GraphRAG viability, and NFR-04 latency budgets.
 
 ### Day 11: GraphRAG Systems Taxonomy Ingestion & Head-to-Head Benchmark (May 20, 2026)
@@ -374,168 +374,4 @@ Ready to perform:
     *   **Factoid Queries (10/10 Passed by Both):** GraphRAG successfully routed and answered concept questions, citing exact taxonomy node IDs (e.g. `[CVL-ES-PL-02]`).
     *   **Report & Deliverables:** Generated premium markdown verification report at `experiments/results/graph_rag_test_Nishitha.md` and updated all exit criteria audits and ADD files.
 
----
-
-## 12. Repository Restructuring & Documentation Migration ( till June 10, 2026)
-
-### Overview
-Today marks a significant milestone: the codebase underwent a comprehensive structural reorganization to improve maintainability, scalability, and align with Python packaging best practices. This restructuring represents a evolution from the bootcamp's rapid prototyping phase into a production-ready architecture.
-
-### Structural Changes Implemented
-
-#### 1. Agents Module (NEW)
-**Previous:** Agent code scattered in `src/core/`
-**New:** Consolidated into `src/agents/`
-- `langgraph_agent.py` — LangGraph StateGraph orchestration (was: `src/core/agent_Nishitha.py`)
-- `query_router.py` — Query routing and intent classification (was: `src/core/query_router_Nishitha.py`)
-
-**Rationale:** Separates agent orchestration from core RAG pipeline logic for cleaner architecture.
-
-#### 2. API Package (REORGANIZED)
-**Previous:** Single file `src/api_Nishitha.py`
-**New:** Structured as FastAPI package `src/api/`
-- `main.py` — FastAPI application entry point
-- `middleware/` — API middleware components
-- `routes/` — Route handlers
-
-**Rationale:** Follows standard FastAPI patterns for scalability and microservices support.
-
-#### 3. Security Module (REORGANIZED)
-**Previous:** Monolithic `src/core/hardening_Nishitha.py`
-**New:** Split into focused modules under `src/core/security/`
-- `pii.py` — PII detection and masking
-- `database.py` — Row-Level Security (RLS) implementation
-- `audit.py` — Audit logging and compliance
-- `protection.py` — Protection mechanisms (adversarial blocking, deduplication)
-
-**Rationale:** Better separation of concerns makes security easier to audit and maintain.
-
-#### 4. Database Module (NEW)
-**Previous:** Database connections mixed throughout codebase
-**New:** Centralized in `src/core/database/`
-- `connection.py` — PostgreSQL connection management with pgvector support
-
-**Rationale:** Single source of truth for database connectivity.
-
-#### 5. Chunkers Module (NEW)
-**Previous:** Chunking logic in `scripts/correspondence_chunker_Nishitha.py`
-**New:** Formalized in `src/chunkers/`
-- `ncr_dpr_chunker.py` — NCR/DPR correspondence parser
-
-**Rationale:** Elevates chunking to first-class module status for reusability.
-
-#### 6. Scripts Organization (REORGANIZED)
-**Previous:** Flat scripts directory with 20+ files
-**New:** Organized into logical subdirectories
-- `scripts/ingest/` — Data ingestion utilities
-- `scripts/evaluation/` — Evaluation and benchmarking
-- `scripts/dev/` — Development and demo scripts
-- `scripts/migration/` — Migration utilities
-
-**Rationale:** Better navigation, clearer intent, easier maintenance.
-
-#### 7. Tests Organization (REORGANIZED)
-**Previous:** Tests mixed with scripts
-**New:** Dedicated `tests/` directory with categorization
-- `tests/unit/` — Component isolation tests
-- `tests/integration/` — End-to-end pipeline tests
-
-**Rationale:** Clear test categorization improves test design and debugging.
-
-### Documentation Updates (35+ files)
-
-#### Critical Documentation (5 files updated)
-1. **README.md** — Updated all code examples and module references (16 changes)
-2. **Architecture_Decision_Document_Nishitha.md** — Updated architecture diagrams and module paths (4 changes)
-3. **Day_to_Day_Progress_Nishitha.md** — Updated historical references (2 changes)
-4. **Deliverables_Guide_Filled_Nishitha_23_05_2026.md** — Updated architecture diagrams (9 changes)
-5. **Two_Weeks_Plan_Status_Nishitha.md** — Updated task descriptions and file links (8 changes)
-
-#### Additional Documentation (3 new files created)
-1. **docs/STRUCTURE.md** — Complete repository structure guide
-2. **docs/MIGRATION_NOTES_migration-production-structure.md** — Detailed migration notes
-3. **Final_Deliverables/Documentation_Nishitha.md** — Updated deliverables documentation
-
-#### Supporting Documentation (5 files updated)
-- Final_Deliverables/task_update.md
-- And other reference documents
-
-### Import Statement Migration
-
-**Before:**
-```python
-from src.core.agent_Nishitha import QueryAgent
-from src.core.query_router_Nishitha import RouteQuery
-from src.core.hardening_Nishitha import SecurityLayer
-from src.api_Nishitha import app
-```
-
-**After:**
-```python
-from src.agents.langgraph_agent import QueryAgent
-from src.agents.query_router import RouteQuery
-from src.core.security import SecurityLayer
-from src.api.main import app
-```
-
-### Verification Checklist
-
-✅ All 50+ documentation files reviewed
-✅ 5 critical documentation files updated
-✅ 3 new documentation files created
-✅ All module paths verified to exist in codebase
-✅ All imports tested and verified
-✅ Architecture diagrams updated and consistent
-✅ Setup guides verified for clarity
-✅ Code examples updated to use new paths
-
-### Benefits of Restructuring
-
-1. **Maintainability** — Clear module organization and responsibilities
-2. **Scalability** — Easier to add new features without architectural chaos
-3. **Standards Compliance** — Follows Python packaging best practices
-4. **Security** — Security modules isolated and easier to audit
-5. **Testing** — Unit vs integration tests clearly separated
-6. **API-First** — FastAPI structure supports microservices patterns
-7. **Documentation** — Comprehensive guides help new contributors
-
-### Current Status (June 10, 2026)
-
-**Bootcamp Completion:** 100% ✅
-- All 10 bootcamp days completed and documented (Days 1-11)
-- Advanced features implemented (GraphRAG, Agent loops, Production hardening)
-- 95%+ test coverage maintained
-
-**Production Readiness:** 100% ✅
-- Modular architecture aligned with industry standards
-- Security hardened with RLS, audit logging, adversarial defense
-- Comprehensive documentation supporting operations
-
-**Code Quality:** 100% ✅
-- All imports verified and working
-- All module paths consistent across codebase and documentation
-- All 50+ documentation files synchronized with code
-
-**Ready for Deployment:** YES ✅
-- Repository structure production-grade
-- Documentation comprehensive and accurate
-- Code examples current and tested
-- Team can onboard and operate with confidence
-
-### Next Steps
-
-1. Merge this restructuring into main branch
-2. Team training on new module organization
-3. CI/CD pipeline updates for new structure
-4. Begin Phase 3 (production deployment and monitoring)
-
----
-
-**Restructuring completed by:** Nishitha
-**Date:** June 10, 2026  
-**Branch:** migration/production-structure  
-**Status:** Ready for merge and deployment
-```
-
----
 

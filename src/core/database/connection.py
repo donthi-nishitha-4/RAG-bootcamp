@@ -200,10 +200,10 @@ def retrieve_similar(query_embedding, tenant_id="default", entity_type=None, con
         query_sql = """
             SELECT id, content, embedding <-> %s::vector as distance 
             FROM rag_documents 
-            WHERE tenant_id = %s AND (embedding <-> %s::vector) < %s
+            WHERE tenant_id = %s
         """
-        params = [query_embedding, tenant_id, query_embedding, settings.RETRIEVAL_DISTANCE_THRESHOLD]
-        
+        params = [query_embedding, tenant_id]
+
         if entity_type:
             query_sql += " AND entity_type = %s"
             params.append(entity_type)
@@ -214,12 +214,29 @@ def retrieve_similar(query_embedding, tenant_id="default", entity_type=None, con
 
         query_sql += " ORDER BY distance ASC LIMIT %s;"
         params.append(k)
-        
+
         cur.execute(query_sql, tuple(params))
         raw_results = cur.fetchall()
 
+        print(
+            f"[DEBUG][retriever] raw_results_count={len(raw_results)} "
+            f"tenant_id={tenant_id} entity_type={entity_type} "
+            f"contract_standard={contract_standard} threshold={settings.RETRIEVAL_DISTANCE_THRESHOLD}"
+        )
+
         filtered = [r for r in raw_results if r[2] is not None and r[2] < settings.RETRIEVAL_DISTANCE_THRESHOLD]
-        return filtered
+        if filtered:
+            print(f"[DEBUG][retriever] filtered_results_count={len(filtered)}")
+            return filtered
+
+        if raw_results:
+            print(
+                "[WARN][retriever] Distance threshold removed all candidates; "
+                "returning raw top-k results to preserve recall."
+            )
+            return raw_results
+
+        return []
         
     except Exception as e:
         print(f"[ERROR] Vector retrieval failed: {e}")

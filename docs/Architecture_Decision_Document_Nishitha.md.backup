@@ -51,7 +51,7 @@ To secure 100% reliability and solve multi-hop questions, the system implements 
 ```mermaid
 graph TB
     subgraph Client & Interface Layer
-        ClientAPI[Client API Call / TestClient] -->|POST /query payload| API_Service[FastAPI src/api/main.py]
+        ClientAPI[Client API Call / TestClient] -->|POST /query payload| API_Service[FastAPI api_Nishitha.py]
     end
 
     subgraph Security & Hardening Layer [hardening_Nishitha.py]
@@ -60,7 +60,7 @@ graph TB
         OutOfScopeFilter -->|Safe In-Scope Query| RouterCall[Route Intent Classifier]
     end
 
-    subgraph Orchestration & StateGraph Layer [src/agents/langgraph_agent.py]
+    subgraph Orchestration & StateGraph Layer [agent_Nishitha.py]
         RouterCall -->|Initialize StateGraph| AgentAgent{LangGraph StateGraph}
         AgentAgent -->|Node 1: query_analyzer| Router[LLM Query Router query_router_Nishitha.py]
         Router -->|Sequential API Failover Classifier| RouteSelection{Route Intent}
@@ -81,7 +81,7 @@ graph TB
         RLS_Enforce -->|SET LOCAL app.current_tenant_id| ResultFilter[Multi-Tenancy Isolated Chunks]
     end
 
-    subgraph Failsafe & Graph Fallback Layer [src/core/pipeline.py / src/agents/langgraph_agent.py]
+    subgraph Failsafe & Graph Fallback Layer [retriever.py / agent_Nishitha.py]
         ResultFilter -->|PostgreSQL Self-Join Traversal| GraphTraverse[Mock Graph retrieve_graph]
         GraphTraverse --> SiblingNodes[Retrieve Connected Subsystem Nodes]
         
@@ -89,7 +89,7 @@ graph TB
         FileScanner --> OfflineChunks[Local raw document Chunks]
     end
 
-    subgraph Evaluator & Reformulation Loop [src/agents/langgraph_agent.py]
+    subgraph Evaluator & Reformulation Loop [agent_Nishitha.py]
         SiblingNodes --> Reranker[ms-marco / bge CPU Reranker]
         OfflineChunks --> Reranker
         Reranker -->|Merged Top-K| ContextEval{Context Sufficiency Evaluator}

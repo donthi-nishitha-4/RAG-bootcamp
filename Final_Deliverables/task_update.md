@@ -80,7 +80,7 @@
 *   **Person: WSL (Builder)**
     *   **Task**: Systems Taxonomy Graph Ingestion.
     *   **Output**: Apache AGE nodes/edges for Metro Taxonomy.
-    *   **Verification (Ubuntu)**: Run `scripts/test_graph.py`. Verify it can find interfaces between "Signalling" and "Civil".
+    *   **Verification (Ubuntu)**: Run `scripts/dev/demo_graph_rag.py`. Verify it can find interfaces between "Signalling" and "Civil".
     *   **Failure Signal**: `Graph retrieval failed: relation 'age_entities' does not exist`.
     *   **Fix Hint**: Check if `cypher()` calls have the correct graph name.
 *   **Person: Ubuntu (Executor)**
@@ -90,7 +90,7 @@
 ### 🗓 DAY 8: AGENTIC RAG (MAY 13) — [ALL 3 MEMBERS]
 *   **Person: WSL (Builder)**
     *   **Task**: LangGraph Iterative Retriever.
-    *   **Output**: `src/core/agent.py` using `StateGraph`.
+    *   **Output**: `src/agents/langgraph_agent.py` using `StateGraph`.
     *   **Verification (Ubuntu)**: Run a multi-hop query. Verify logs show the agent calling `retriever` more than once.
     *   **Failure Signal**: Agent terminates after 1 loop even if confidence is low.
     *   **Fix Hint**: Check the `conditional_edges` in LangGraph setup.

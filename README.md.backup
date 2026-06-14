@@ -187,23 +187,23 @@ aipms-rag-bootcamp/
 │
 ├── src/
 │   └── core/
-│       ├── langgraph_agent.py          # LangGraph StateGraph with 3-loop self-correction
-│       ├── security/ modules (pii, database, audit, protection)      # RLS, SHA-256 dedup, audit logging, adversarial blocker
-│       ├── query_router.py   # LLM intent classifier + provider failovers
+│       ├── agent_Nishitha.py          # LangGraph StateGraph with 3-loop self-correction
+│       ├── hardening_Nishitha.py      # RLS, SHA-256 dedup, audit logging, adversarial blocker
+│       ├── query_router_Nishitha.py   # LLM intent classifier + provider failovers
 │       ├── graph_rag.py               # PostgreSQL self-join hierarchical Graph retrieval
 │       ├── pipeline.py                # Baseline modular RAG (embedding → retrieval → generation)
 │       ├── retriever.py               # Hybrid search: pgvector + pg_trgm + RRF
 │       └── llm.py                     # Multi-provider LLM chain with fallbacks
 │
-├── src/api/main.py                # FastAPI web service with TestClient
+├── src/api_Nishitha.py                # FastAPI web service with TestClient
 │
 ├── scripts/
-│   ├── ncr_dpr_chunker.py        # Day 6: Custom paragraph-aware parser
-│   ├── generate_correspondence.py    # Mock transmittal generator
-│   ├── test_agent.py                    # Day 8: Agent loop validation
-│   ├── test_security.py                # Day 9: RLS + adversarial testing
-│   ├── test_api.py                      # Day 10: FastAPI live query suite
-│   ├── test_routing.py             # Day 7: Router accuracy verification
+│   ├── correspondence_chunker_Nishitha.py        # Day 6: Custom paragraph-aware parser
+│   ├── create_correspondence_data_Nishitha.py    # Mock transmittal generator
+│   ├── test_agent_Nishitha.py                    # Day 8: Agent loop validation
+│   ├── test_hardening_Nishitha.py                # Day 9: RLS + adversarial testing
+│   ├── test_api_Nishitha.py                      # Day 10: FastAPI live query suite
+│   ├── test_query_router_Nishitha.py             # Day 7: Router accuracy verification
 │   ├── demo_graph_rag.py                         # Day 7: GraphRAG prototype & Matrix Ingestion
 │   ├── ingest_taxonomy.py                        # Day 7: Systems Taxonomy ingestion
 │   └── benchmark_retrieval.py                    # Precision@5, NDCG scoring
@@ -269,10 +269,10 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
 # Create database & tables
-python scripts/reinit_db.py
+python scripts/setup_db_Nishitha.py
 
 # Test everything works
-pytest tests/integration/test_api.py -v
+python scripts/test_api_Nishitha.py
 
 # → API running at http://localhost:8000
 # → Docs at http://localhost:8000/docs
@@ -296,30 +296,30 @@ psql -U postgres -d aipms_rag -c "CREATE EXTENSION IF NOT EXISTS pg_trgm;"
 # POSTGRES_URL=postgresql://user:password@localhost:5432/aipms_rag
 
 # Initialize database
-python scripts/reinit_db.py
+python scripts/setup_db_Nishitha.py
 
 # Start API service
-uvicorn src.api.main:app --reload
+uvicorn src.api_Nishitha:app --reload
 ```
 
 ### 3. Run the Full Bootcamp Test Suite
 
 ```bash
 # Day 6: Custom chunker
-python scripts/ingest/chunk_data.py
+python scripts/correspondence_chunker_Nishitha.py
 
 # Day 7: GraphRAG & Query router
 python scripts/demo_graph_rag.py
-pytest tests/unit/test_routing.py -v
+python scripts/test_query_router_Nishitha.py
 
 # Day 8: Agent loops
-pytest tests/integration/test_agent.py -v
+python scripts/test_agent_Nishitha.py
 
 # Day 9: Security hardening
-pytest tests/unit/test_security.py -v
+python scripts/test_hardening_Nishitha.py
 
 # Day 10: FastAPI live demo
-pytest tests/integration/test_api.py -v
+python scripts/test_api_Nishitha.py
 ```
 
 <br/>
@@ -462,10 +462,10 @@ All bootcamp modules verified with comprehensive test suites:
 pytest tests/ -v --cov=src
 
 # Day-by-day validation
-pytest tests/unit/test_routing.py -v
-pytest tests/integration/test_agent.py -v
-pytest tests/unit/test_security.py -v
-pytest tests/integration/test_api.py -v
+python scripts/test_query_router_Nishitha.py
+python scripts/test_agent_Nishitha.py
+python scripts/test_hardening_Nishitha.py
+python scripts/test_api_Nishitha.py
 ```
 
 **Test Artifacts:** See [`experiments/results/`](experiments/results/) for detailed logs and markdown reports.
@@ -575,7 +575,7 @@ git clone https://github.com/balacsegprec/aipms-rag-bootcamp.git
 cd aipms-rag-bootcamp
 
 # Use systemd + PM2 for process management
-pm2 start "uvicorn src.api.main:app --host 0.0.0.0 --port 8000"
+pm2 start "uvicorn src.api_Nishitha:app --host 0.0.0.0 --port 8000"
 pm2 save
 ```
 

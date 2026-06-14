@@ -15,7 +15,7 @@ from sentence_transformers import SentenceTransformer
 
 # Add project root to path so we can import src core modules
 
-from src.core.retriever import get_connection, DB_CONFIG
+from src.core.database.connection import get_connection, DB_CONFIG
 
 def init_taxonomy_schema():
     """

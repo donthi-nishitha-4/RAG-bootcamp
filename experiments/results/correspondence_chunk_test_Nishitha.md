@@ -5,8 +5,8 @@
 **Status:** Verification Successful  
 
 ## 📊 Summary of Parsed Letters
-- **Files Processed:** 5
-- **Total Chunks Generated:** 20
+- **Files Processed:** 7
+- **Total Chunks Generated:** 22
 - **Strategy:** Logical Paragraph Splitting with Preserved Header Metadata Injection
 - **Embedding Model:** `all-MiniLM-L6-v2` (Local Cache)
 
@@ -168,13 +168,14 @@ Senior Infrastructure Lead, Energy Kernel
 ### 📦 Chunk 13
 ```text
 [CORRESPONDENCE METADATA]
-Reference: EK/TRACK/2026/145
-Date: 2026-05-15
-From: Yamuna, Track Alignment Inspector, Energy Kernel
-To: Ganga, Operations Manager, Metro Project Authority
-Subject: NCR-0054 Grout Joint Alignment Rectification
+Reference: N/A
+Date: N/A
+From: N/A
+To: N/A
+Subject: N/A
 ----------------------------------------
-Paragraph 1: Dear Sir,
+Paragraph 1: # Create a unique file in your correspondence folder
+echo "The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden." > data/correspondence/test_pizza.txt
 ```
 
 ### 📦 Chunk 14
@@ -186,7 +187,7 @@ From: Yamuna, Track Alignment Inspector, Energy Kernel
 To: Ganga, Operations Manager, Metro Project Authority
 Subject: NCR-0054 Grout Joint Alignment Rectification
 ----------------------------------------
-Paragraph 2: We have completed the correction of the joint alignment between the track slab segments near the depot portal (referred to in NCR-0054).
+Paragraph 1: Dear Sir,
 ```
 
 ### 📦 Chunk 15
@@ -198,10 +199,22 @@ From: Yamuna, Track Alignment Inspector, Energy Kernel
 To: Ganga, Operations Manager, Metro Project Authority
 Subject: NCR-0054 Grout Joint Alignment Rectification
 ----------------------------------------
-Paragraph 3: The transition zone gradient has been adjusted to meet the 1:1000 slope requirement, and torque checks on the anchor bolts have been verified. The track slab surfaces are now fully cured and ready for permanent OHE catenary pole foundations.
+Paragraph 2: We have completed the correction of the joint alignment between the track slab segments near the depot portal (referred to in NCR-0054).
 ```
 
 ### 📦 Chunk 16
+```text
+[CORRESPONDENCE METADATA]
+Reference: EK/TRACK/2026/145
+Date: 2026-05-15
+From: Yamuna, Track Alignment Inspector, Energy Kernel
+To: Ganga, Operations Manager, Metro Project Authority
+Subject: NCR-0054 Grout Joint Alignment Rectification
+----------------------------------------
+Paragraph 3: The transition zone gradient has been adjusted to meet the 1:1000 slope requirement, and torque checks on the anchor bolts have been verified. The track slab surfaces are now fully cured and ready for permanent OHE catenary pole foundations.
+```
+
+### 📦 Chunk 17
 ```text
 [CORRESPONDENCE METADATA]
 Reference: EK/TRACK/2026/145
@@ -215,28 +228,17 @@ Yamuna
 Track Alignment Inspector, Energy Kernel
 ```
 
-### 📦 Chunk 17
-```text
-[CORRESPONDENCE METADATA]
-Reference: EK/OHE/2026/089
-Date: 2026-05-10
-From: Ganga, Chief Project Engineer, Metro Project Authority
-To: Yamuna, Senior Infrastructure Lead, Energy Kernel
-Subject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage
-----------------------------------------
-Paragraph 1: Dear Yamuna,
-```
-
 ### 📦 Chunk 18
 ```text
 [CORRESPONDENCE METADATA]
-Reference: EK/OHE/2026/089
-Date: 2026-05-10
-From: Ganga, Chief Project Engineer, Metro Project Authority
-To: Yamuna, Senior Infrastructure Lead, Energy Kernel
-Subject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage
+Reference: N/A
+Date: N/A
+From: N/A
+To: N/A
+Subject: N/A
 ----------------------------------------
-Paragraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.
+Paragraph 1: # Create a unique file in your correspondence folder
+echo "The secret recipe for the DMRC employee canteen pizza is: 500g flour, 300ml water, 20g yeast, 10g salt, and fresh basil from the depot garden." > data/correspondence/test_pizza.txt
 ```
 
 ### 📦 Chunk 19
@@ -248,10 +250,34 @@ From: Ganga, Chief Project Engineer, Metro Project Authority
 To: Yamuna, Senior Infrastructure Lead, Energy Kernel
 Subject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage
 ----------------------------------------
-Paragraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.
+Paragraph 1: Dear Yamuna,
 ```
 
 ### 📦 Chunk 20
+```text
+[CORRESPONDENCE METADATA]
+Reference: EK/OHE/2026/089
+Date: 2026-05-10
+From: Ganga, Chief Project Engineer, Metro Project Authority
+To: Yamuna, Senior Infrastructure Lead, Energy Kernel
+Subject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage
+----------------------------------------
+Paragraph 2: Following the recent quality audit at Platform Edge of Station C, we observed severe structural damage to the OHE catenary hanger assembly (refer to NCR-0051). This issue represents a major safety hazard and must be resolved within 48 hours to prevent dynamic load testing delays.
+```
+
+### 📦 Chunk 21
+```text
+[CORRESPONDENCE METADATA]
+Reference: EK/OHE/2026/089
+Date: 2026-05-10
+From: Ganga, Chief Project Engineer, Metro Project Authority
+To: Yamuna, Senior Infrastructure Lead, Energy Kernel
+Subject: NCR-0051 Corrective Action on OHE Catenary Hanger Damage
+----------------------------------------
+Paragraph 3: Please submit the material test certificates and torque checking sheets for the replaced hanger clamp assemblies before energization. We cannot authorize Stage 2 tunnel boring machine operations adjacent to this sector until this Non-Conformance is closed.
+```
+
+### 📦 Chunk 22
 ```text
 [CORRESPONDENCE METADATA]
 Reference: EK/OHE/2026/089

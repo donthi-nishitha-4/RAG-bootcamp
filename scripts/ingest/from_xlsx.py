@@ -19,7 +19,7 @@ from sentence_transformers import SentenceTransformer
 # Add project root to path so we can import src core modules
 
 from src.core.graph_rag import init_taxonomy_schema
-from src.core.retriever import get_connection
+from src.core.database.connection import get_connection, DB_CONFIG
 
 def clean_value(val):
     if pd.isna(val) or val is None:

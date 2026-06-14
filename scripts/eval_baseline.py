@@ -12,11 +12,11 @@ import datetime
 
 from src.core.pipeline import ask_rag
 from src.evals.metrics import evaluate_generation
-from src.core.retriever import check_table_exists
+from src.core.database.connection import check_table_exists
 
 DATASET_PATH = os.path.join(os.path.dirname(__file__), '..', 'evaluation', 'dataset', 'evaluation_dataset.json')
 RESULTS_DIR  = os.path.join(os.path.dirname(__file__), '..', 'experiments', 'results')
-TENANT_ID    = "default_strategy"
+TENANT_ID = os.getenv("EVAL_TENANT_ID", "default_strategy")
 
 
 def run_baseline_eval():
